@@ -70,15 +70,19 @@ export const updateOrderStatus = async (
   orderId: string,
   payload: UpdateOrderStatusDTO
 ) => {
-  const res = await fetch(`${API_BASE_URL}/owner/orders/${orderId}/status`, {
-    method: "PATCH",
-    headers: {
-      ...COMMON_HEADERS,
-      "jwt-token": token,
-    },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) throw new Error(await res.text());
+  try {
+    const res = await fetch(`${API_BASE_URL}/owner/orders/${orderId}/status`, {
+      method: "PATCH",
+      headers: {
+        ...COMMON_HEADERS,
+        "jwt-token": token,
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(await res.text());
+  } catch (e) {
+    alert(e);
+  }
 };
 
 export const createOrder = async (

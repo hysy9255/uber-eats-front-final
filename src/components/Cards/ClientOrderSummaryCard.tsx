@@ -3,6 +3,9 @@ import type { GetOrderForClientDTO } from "../../dto/GetOrderForClient.dto";
 import { formatDateParts } from "../../utils/formatDateParts";
 import { OtherIcon } from "../Icons/RegisterAddressIcons/OtherIcon";
 import { OrderStatusIcon } from "../OrderStatusIcon/OrderStatusIcon";
+import { useEffect, useState } from "react";
+import { OrderStatus } from "../../constants/OrderStatus";
+import { socket } from "../../socket";
 
 interface ClientOrderSummaryCardProps {
   order: GetOrderForClientDTO;
@@ -14,6 +17,34 @@ const yPadding = "py-3";
 const ClientOrderSummaryCard: React.FC<ClientOrderSummaryCardProps> = ({
   order,
 }) => {
+  const [currentStatus, setCurrentStatus] = useState<OrderStatus>(
+    OrderStatus.Pending
+  );
+
+  useEffect(() => {
+    const onOrderStatusChanged = (payload: {
+      orderId: string;
+      status: OrderStatus;
+    }) => {
+      if (payload.orderId === order?.orderInfo.orderId) {
+        setCurrentStatus(payload.status);
+      }
+    };
+
+    socket.on("order.statusChanged", onOrderStatusChanged);
+
+    socket.emit("joinOrderRoom", { orderId: order?.orderInfo.orderId });
+
+    return () => {
+      socket.off("order.statusChanged", onOrderStatusChanged);
+    };
+  }, [order, order?.orderInfo.orderId]);
+
+  useEffect(() => {
+    if (!order) return;
+    setCurrentStatus(order.orderInfo.status);
+  }, [order]);
+
   const { date, time } = formatDateParts(order.orderInfo.createdAt);
   return (
     <Link
@@ -28,7 +59,8 @@ const ClientOrderSummaryCard: React.FC<ClientOrderSummaryCardProps> = ({
             # {order.orderInfo.orderId.split("-")[0]}
           </div>
           <div className="font-medium text-md ">{order.restaurantInfo.dba}</div>
-          <OrderStatusIcon status={order.orderInfo.status} />
+          {/* <OrderStatusIcon status={order.orderInfo.status} /> */}
+          <OrderStatusIcon status={currentStatus} />
         </div>
 
         <div className={`flex text-gray-800 text-md font-medium ${yPadding}`}>
