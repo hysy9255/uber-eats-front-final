@@ -1,4 +1,4 @@
-import { API_BASE_URL, COMMON_HEADERS } from "./baseUrl";
+import { API_BASE_URL, COMMON_HEADERS } from "../shared/constants/baseUrl";
 
 export const parseDishCsv = async (mode: string, fd: FormData) => {
   const res = await fetch(
