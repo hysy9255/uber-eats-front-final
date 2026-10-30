@@ -1,5 +1,5 @@
 import { Clock3 } from "lucide-react";
-import type { DayOfWeek } from "../../../constants/dayOfWeek.type";
+import type { DayOfWeek } from "../../../types/dayOfWeek.type";
 
 interface ClosedDayStateProps {
   selectedDay: DayOfWeek;

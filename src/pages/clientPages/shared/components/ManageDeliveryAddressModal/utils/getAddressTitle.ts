@@ -1,5 +1,5 @@
-import type { GetDeliveryAddressDTO } from "../../../../../api/deliveryAddress/dto/delivery-address.dto";
+import type { DeliveryAddressDTO } from "../../../api/deliveryAddress.dto";
 
-export const getAddressTitle = (address: GetDeliveryAddressDTO) => {
+export const getAddressTitle = (address: DeliveryAddressDTO) => {
   return address.alias.charAt(0).toUpperCase() + address.alias.slice(1);
 };

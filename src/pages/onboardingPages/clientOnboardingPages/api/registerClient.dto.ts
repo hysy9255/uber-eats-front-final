@@ -1,4 +1,4 @@
-import type { AddressAliasType } from "../../../../../pages/Client/Shared/ManageDeliveryAddressModal/Components/AddAddress/constants/addressAlias.type";
+import type { AddressAlias } from "../../../../shared/types/addressAlias.type";
 
 type RegisterAccountDTO = {
   email: string;
@@ -14,7 +14,7 @@ type RegisterDeliveryAddressDTO = {
   state: string;
   apt: string | null;
   zip: string;
-  alias: AddressAliasType;
+  alias: AddressAlias;
   customAlias: string | null;
 };
 

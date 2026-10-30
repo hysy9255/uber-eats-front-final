@@ -1,7 +1,7 @@
 import { BriefcaseBusiness, Home, MapPin } from "lucide-react";
-import type { GetDeliveryAddressDTO } from "../../../../../api/deliveryAddress/dto/delivery-address.dto";
+import type { DeliveryAddressDTO } from "../../../api/deliveryAddress.dto";
 
-export const getAddressIcon = (alias: GetDeliveryAddressDTO["alias"]) => {
+export const getAddressIcon = (alias: DeliveryAddressDTO["alias"]) => {
   switch (alias) {
     case "home":
       return <Home className="h-6 w-6" />;

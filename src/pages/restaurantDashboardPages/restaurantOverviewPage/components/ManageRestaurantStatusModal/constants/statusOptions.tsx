@@ -1,9 +1,10 @@
 import { CheckCircle2, CirclePause, Store } from "lucide-react";
 import type { StatusOptionType } from "./statusOptionType";
+import { RestaurantStatus } from "../../../../../../shared/types/restaurantStatus.type";
 
 export const STATUS_OPTIONS: StatusOptionType[] = [
   {
-    value: "open" as const,
+    value: RestaurantStatus.Open,
     title: "Open",
     description: "Your restaurant is open and accepting new orders.",
     badge: "Taking orders",
@@ -13,7 +14,7 @@ export const STATUS_OPTIONS: StatusOptionType[] = [
     badgeClass: "bg-green-100 text-green-700",
   },
   {
-    value: "paused" as const,
+    value: RestaurantStatus.Paused,
     title: "Pause orders",
     description:
       "Temporarily stop receiving new orders. Current orders can still be managed.",
@@ -24,7 +25,7 @@ export const STATUS_OPTIONS: StatusOptionType[] = [
     badgeClass: "bg-amber-100 text-amber-700",
   },
   {
-    value: "closed" as const,
+    value: RestaurantStatus.Closed,
     title: "Closed",
     description: "Your restaurant is closed and will not accept new orders.",
     badge: "Not taking orders",

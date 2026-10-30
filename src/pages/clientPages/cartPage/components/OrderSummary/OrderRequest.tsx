@@ -1,5 +1,5 @@
-import type { PlaceOrderForm } from "@/new/features/orders/client/types/placeOrderForm.type";
 import { type UseFormRegister } from "react-hook-form";
+import type { PlaceOrderForm } from "../../../clientOrdersPage/types/placeOrderForm.type";
 
 interface OrderRequestProps {
   register: UseFormRegister<PlaceOrderForm>;

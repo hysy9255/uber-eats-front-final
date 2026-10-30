@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import type { OwnerOnBoardingForm } from "../../constants/OwnerOnBoardingForm.type";
 import { useFormContext } from "react-hook-form";
+import type { OwnerOnBoardingForm } from "../types/ownerOnBoardingForm.type";
 
 export const useOwnerStep3LocationAndTime = () => {
   const navigate = useNavigate();

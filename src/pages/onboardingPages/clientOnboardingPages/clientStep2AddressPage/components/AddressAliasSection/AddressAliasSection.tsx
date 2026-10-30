@@ -3,6 +3,7 @@ import AddressAliasButton from "./AddressAliasButton";
 import { BriefcaseBusiness, Home, Pencil } from "lucide-react";
 import type { ClientOnBoardingForm } from "../../../types/clientOnBoardingForm.type";
 import { inputClassName } from "@/shared/constants/inputClassName";
+import { AddressAlias } from "../../../../../../shared/types/addressAlias.type";
 
 const AddressAliasSection = () => {
   const {
@@ -30,7 +31,7 @@ const AddressAliasSection = () => {
           title="home"
           Icon={Home}
           onClick={() => {
-            setValue("step2.alias", "home");
+            setValue("step2.alias", AddressAlias.home);
             setValue("step2.customAlias", null);
           }}
           isActive={alias === "home"}
@@ -40,7 +41,7 @@ const AddressAliasSection = () => {
           title="work"
           Icon={BriefcaseBusiness}
           onClick={() => {
-            setValue("step2.alias", "work");
+            setValue("step2.alias", AddressAlias.work);
             setValue("step2.customAlias", null);
           }}
           isActive={alias === "work"}
@@ -51,7 +52,7 @@ const AddressAliasSection = () => {
           title="custom"
           Icon={Pencil}
           onClick={() => {
-            setValue("step2.alias", "other");
+            setValue("step2.alias", AddressAlias.other);
             setValue("step2.customAlias", null);
           }}
           isActive={alias === "other"}

@@ -1,4 +1,4 @@
-import type { OrderStatus } from "@/new/features/orders/types/orderStatus.enum";
+import type { OrderStatus } from "../../types/orderStatus.enum";
 
 export type OrderTab =
   | "all"

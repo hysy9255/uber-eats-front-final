@@ -8,6 +8,7 @@ import type { DeliveryAddressDTO } from "../../../../api/deliveryAddress.dto";
 import { getToken } from "../../../../../../../shared/utils/getToken";
 import { UpdateDeliveryAddressDTO } from "../../api/updateDeliveryAddress/updateDeliveryAddress.dto";
 import { updateDeliveryAddress } from "../../api/updateDeliveryAddress/updateDeliveryAddress";
+import { AddressAlias } from "../../../../../../../shared/types/addressAlias.type";
 
 interface AddAddressProps {
   closeAddAddress: () => void;
@@ -23,9 +24,9 @@ const EditAddress = ({
   const token = getToken();
 
   const getAlias = (addressToEdit: DeliveryAddressDTO) => {
-    if (addressToEdit.alias === "home") return "home";
-    if (addressToEdit.alias === "work") return "work";
-    return "other";
+    if (addressToEdit.alias === "home") return AddressAlias.home;
+    if (addressToEdit.alias === "work") return AddressAlias.work;
+    return AddressAlias.other;
   };
 
   const getCustomAlias = (addressToEdit: DeliveryAddressDTO) => {

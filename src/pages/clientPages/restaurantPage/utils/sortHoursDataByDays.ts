@@ -1,5 +1,5 @@
-import type { DayOfWeekType } from "../../../../../../api/restaurant/dto/restaurant-detail.dto";
-import type { RestaurantHoursDTO } from "../../../../../../api/restaurant/dto/restaurant-hours.dto";
+import type { RestaurantHoursDTO } from "../../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/restaurantHours.dto";
+import type { DayOfWeekType } from "../api/restaurantDetail.dto";
 
 const dayOrder: Record<DayOfWeekType, number> = {
   mon: 0,

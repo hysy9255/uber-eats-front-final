@@ -1,4 +1,4 @@
-import type { DayOfWeekType } from "../../../../../../../api/restaurant/dto/restaurant-detail.dto";
+import type { DayOfWeekType } from "../../../api/restaurantDetail.dto";
 import { formatTime } from "../../../utils/formatTime";
 
 export interface RestaurantHour {

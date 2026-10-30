@@ -5,7 +5,7 @@ import Footer from "./Components/Footer";
 import HourRow from "./Components/HourRow";
 import ModalLayout from "./Components/ModalLayout";
 import { sortHoursDataByDays } from "../../utils/sortHoursDataByDays";
-import type { DayOfWeekType } from "../../../../../api/restaurant/dto/restaurant-detail.dto";
+import type { DayOfWeekType } from "../../api/restaurantDetail.dto";
 
 interface StoreHoursModalProps {
   onClose: () => void;

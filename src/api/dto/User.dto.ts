@@ -1,4 +1,4 @@
-import type { UserRole } from "../new/shared/constants/userRole.enum";
+import type { UserRole } from "../../shared/types/userRole.type";
 
 export type UserDTO = {
   userId: string;

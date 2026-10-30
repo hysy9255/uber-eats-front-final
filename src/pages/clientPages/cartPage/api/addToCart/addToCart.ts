@@ -1,5 +1,5 @@
 import { API_BASE_URL, COMMON_HEADERS } from "@/shared/constants/baseUrl";
-import type { AddToCartDTO } from "@/new/features/cart/api/dto/addToCart.dto";
+import type { AddToCartDTO } from "./addToCart.dto";
 
 export const addToCart = async (
   token: string,
