@@ -1,23 +1,30 @@
 interface SaveChangesButtonProps {
+  disabled: boolean;
   onClick: () => void;
 }
 
-const SaveChangesButton: React.FC<SaveChangesButtonProps> = ({ onClick }) => {
+const SaveChangesButton: React.FC<SaveChangesButtonProps> = ({
+  disabled,
+  onClick,
+}) => {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      className="
-        h-10
+      className={`h-10
         rounded-lg
-        bg-green-700
         px-5
         text-sm
         font-semibold
         text-white
-        hover:bg-green-800
         transition
         hover:cursor-pointer
-        "
+        ${
+          disabled
+            ? "cursor-not-allowed bg-gray-300"
+            : "cursor-pointer bg-green-700 hover:bg-green-800"
+        }
+        `}
     >
       Save changes
     </button>

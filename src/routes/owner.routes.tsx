@@ -9,6 +9,8 @@ import RestaurantOverviewPage from "../pages/restaurantDashboardPages/restaurant
 import RestaurantHoursPage from "../pages/restaurantDashboardPages/RestaurantHoursPage/RestaurantHoursPage";
 import { RestaurantDashboardProvider } from "../pages/restaurantDashboardPages/shared/context/RestaurantDashboardProvider";
 import RequireRole from "../shared/components/RequiredRole";
+import { MenuManagementProvider } from "../pages/restaurantDashboardPages/menuManagementPage/context/MenuManagementProvider";
+import { MenuModalProvider } from "../pages/restaurantDashboardPages/menuManagementPage/components/MenuTable/context/MenuModalProvider";
 
 export const ownerRoutes = [
   {
@@ -36,7 +38,13 @@ export const ownerRoutes = [
           },
           {
             path: "menu",
-            element: <MenuManagementPage />,
+            element: (
+              <MenuManagementProvider>
+                <MenuModalProvider>
+                  <MenuManagementPage />
+                </MenuModalProvider>
+              </MenuManagementProvider>
+            ),
           },
           {
             path: "hours",

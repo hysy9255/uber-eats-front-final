@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import type { ClientOnBoardingForm } from "../constants/clientOnBoardingForm.type";
+import type { ClientOnBoardingForm } from "../types/clientOnBoardingForm.type";
 import LeaveThisPagePopup from "../../shared/components/LeaveThisPagePopup";
 import { AddressAlias } from "@/shared/types/addressAlias.type";
 

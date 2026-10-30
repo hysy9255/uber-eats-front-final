@@ -13,5 +13,13 @@ export const deleteDishCategory = async (
     }
   );
 
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    const errorData = await res.json();
+
+    if (res.status === 409) {
+      throw new Error(errorData.message);
+    }
+
+    throw new Error("Unexpected server error");
+  }
 };

@@ -30,7 +30,7 @@ const OwnerNavigationSideBar = () => {
   }, [loadProfileData]);
 
   return (
-    <aside className="w-[245px] h-screen bg-white border-r border-gray-200 flex flex-col px-4 py-5">
+    <aside className="h-dvh w-[245px] shrink-0 bg-white border-gray-200 flex flex-col px-4 py-5 border-r">
       {/* Logo */}
       <Logo />
 

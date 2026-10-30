@@ -13,6 +13,7 @@ export const useOrderSummary = () => {
   const [deliveryType, setDeliveryType] = useState<DeliveryType>(
     DeliveryType.free
   );
+  const [showCheckoutErrorModal, setShowCheckoutErrorModal] = useState(false);
 
   const { register, handleSubmit } = useForm<PlaceOrderForm>({
     mode: "onSubmit",
@@ -52,6 +53,22 @@ export const useOrderSummary = () => {
         });
       } catch (e) {
         console.error("Failed to place order", e);
+
+        if (e instanceof Error) {
+          try {
+            const error = JSON.parse(e.message);
+
+            if (
+              error.statusCode === 409 &&
+              error.message === "Restaurant is not accepting orders"
+            ) {
+              setShowCheckoutErrorModal(true);
+            }
+          } catch {
+            console.error("Unable to parse checkout error");
+          }
+        }
+
         return;
       }
 
@@ -78,5 +95,7 @@ export const useOrderSummary = () => {
     handleClickDeliveryType,
     register,
     handleCheckout,
+    showCheckoutErrorModal,
+    setShowCheckoutErrorModal,
   };
 };

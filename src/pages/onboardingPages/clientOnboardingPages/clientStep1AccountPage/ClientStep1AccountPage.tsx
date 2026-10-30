@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { useClientStep1Account } from "./useClientStep1Account";
 import { ClientStep1RightPanel } from "./components/ClientStep1RightPanel";
 import ClientStep1AccountInputs from "./components/ClientStep1AccountInputs";
-import type { ClientOnBoardContext } from "../Shared/ClientOnBoardFlow";
+import type { ClientOnBoardContext } from "../shared/ClientOnBoardFlow";
 import OnBoardSteps from "../../shared/components/OnBoardSteps";
 import OnBoardHeadline from "../../shared/components/OnBoardHeadline";
 import OnBoardDescription from "../../shared/components/OnBoardDescription";

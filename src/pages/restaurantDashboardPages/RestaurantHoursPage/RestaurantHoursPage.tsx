@@ -4,52 +4,57 @@ import OperatingHoursEditor from "./components/OperatingHoursEditor/OperatingHou
 import { useRestaurantHoursPage } from "./hooks/useRestaurantHoursPage";
 import DiscardChangesButton from "./components/DiscardChangesButton";
 import SaveChangesButton from "./components/SaveChangesButton";
+import Toast from "../../clientPages/shared/components/Toast";
 
 const RestaurantHoursPage = () => {
   const {
     hours,
-    setHours,
     selectedDay,
-    setSelectedDay,
-    hasBreakTime,
-    setHasBreakTime,
-    is24Hours,
-    setIs24Hours,
     selectedHours,
+    isDirty,
+    showSuccessToast,
+
+    setSelectedDay,
+
     updateSelectedDay,
-    copyMondayHours,
-    handleUpdateRestaurantHours,
-    loadOperatingHours,
+    toggleOperatingDay,
+    applyMondayHoursToAllDays,
+
+    saveHours,
+    discardChanges,
+    closeSuccessToast,
   } = useRestaurantHoursPage();
 
   return (
-    <div className="min-h-screen bg-[#fafafa] px-6 py-5">
+    <div className="h-dvh bg-[#fafafa] px-6 py-5">
       {/* Header */}
-      <OwnerHoursPageHeader copyMondayHours={copyMondayHours} />
-      <section className="mt-6 grid grid-cols-[0.85fr_1.3fr] gap-4">
+      <OwnerHoursPageHeader copyMondayHours={applyMondayHoursToAllDays} />
+      <section className="mt-5 grid grid-cols-[0.85fr_1.3fr] gap-4">
         {/* Left - week */}
         <OperatingHoursList
           hours={hours}
-          setHours={setHours}
           selectedDay={selectedDay}
           setSelectedDay={setSelectedDay}
+          toggleOperatingDayStatus={toggleOperatingDay}
         />
         {/* Right - selected day */}
         <OperatingHoursEditor
           selectedDay={selectedDay}
           selectedHours={selectedHours}
           updateSelectedDay={updateSelectedDay}
-          is24Hours={is24Hours}
-          setIs24Hours={setIs24Hours}
-          hasBreakTime={hasBreakTime}
-          setHasBreakTime={setHasBreakTime}
         />
       </section>
       {/* Save */}
-      <div className="mt-10 flex justify-end gap-x-4">
-        <DiscardChangesButton onClick={() => loadOperatingHours()} />
-        <SaveChangesButton onClick={() => handleUpdateRestaurantHours()} />
+      <div className="mt-5 flex justify-end gap-x-4">
+        <DiscardChangesButton onClick={discardChanges} disabled={!isDirty} />
+        <SaveChangesButton disabled={!isDirty} onClick={saveHours} />
       </div>
+      {showSuccessToast && (
+        <Toast
+          message="Operating hours have been updated"
+          onClose={closeSuccessToast}
+        />
+      )}
     </div>
   );
 };

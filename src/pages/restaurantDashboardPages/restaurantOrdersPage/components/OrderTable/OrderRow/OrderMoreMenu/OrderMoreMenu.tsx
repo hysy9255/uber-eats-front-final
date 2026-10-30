@@ -11,8 +11,8 @@ import { MenuButton } from "./MenuButton";
 import { OrderStatus } from "../../../../types/orderStatus.enum";
 
 interface OrderMoreMenuProps {
-  status: OrderStatus;
-  openUpward: boolean;
+  status: OrderStatus | null;
+  openUpward?: boolean;
 
   onView: () => void;
   onAccept: () => void;
@@ -25,7 +25,7 @@ interface OrderMoreMenuProps {
 
 const OrderMoreMenu = ({
   status,
-  openUpward,
+  openUpward = true,
   onView,
   onAccept,
   onMarkReady,
@@ -47,7 +47,7 @@ const OrderMoreMenu = ({
         bg-white
         p-1.5
         shadow-xl
-        ${openUpward ? "bottom-full mb-1" : "top-full mt-1"}
+        ${openUpward ? "bottom-13" : "top-13"}
       `}
     >
       <MenuButton

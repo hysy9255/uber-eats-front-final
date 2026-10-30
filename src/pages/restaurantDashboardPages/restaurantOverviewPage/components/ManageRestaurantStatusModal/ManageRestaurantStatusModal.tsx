@@ -71,17 +71,6 @@ export const ManageRestaurantStatusModal: React.FC<
               />
             );
           })}
-          {/* {STATUS_OPTIONS.map((option) => {
-            const selected = option.value === selectedStatus;
-
-            return (
-              <StatusOptionCard
-                option={option}
-                selected={selected}
-                setSelectedStatus={setSelectedStatus}
-              />
-            );
-          })} */}
         </div>
 
         <ModalFooter />

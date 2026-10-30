@@ -54,28 +54,29 @@ const RestaurantOverviewPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] px-6 py-5">
+    <div className="h-dvh overflow-y-auto bg-[#fafafa] px-6 py-5">
       {/* Top Header */}
       <OwnerOverviewPageHeader userProfile={userProfile} />
 
       {/* Restaurant summary */}
       <RestaurantSummary
+        className="mt-5"
         onClcickManageStatus={() => setManageRestaurantStatusModalOpen(true)}
         restaurantDetail={restaurantDetail}
         renderRestaurantStatus={renderRestaurantStatus}
       />
 
       {/* KPI */}
-      <KpiSection overviewSummary={overviewSummary} />
+      <KpiSection className="mt-5" overviewSummary={overviewSummary} />
 
       {/* Revenue + live orders */}
-      <section className="mt-4 grid grid-cols-[1.05fr_1fr] gap-4">
+      <section className="mt-5 grid grid-cols-2 gap-4">
         <RevenueCard overviewRevenue={overviewRevenue} />
         <LiveOrdersCard liveOrders={liveOrders} />
       </section>
 
       {/* Bottom */}
-      <section className="mt-4 grid grid-cols-[1.05fr_1fr] gap-4">
+      <section className="mt-5 grid grid-cols-2 gap-4">
         <TopSellingItemsCard items={topSellingItems} />
         <CustomerActivityCard />
       </section>

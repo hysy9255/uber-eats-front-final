@@ -1,45 +1,81 @@
-import { TableHeader } from "./Components/TableHeader";
-import { MenuTableRow } from "./Components/MenuTableRow/MenuTableRow";
+import { TableHeader } from "./components/TableHeader";
+import { MenuTableRow } from "./components/MenuTableRow/MenuTableRow";
+import { useMenuManagement } from "../../context/useMenuManagement";
+import { useMenuDropdown } from "./components/MenuTableRow/components/MenuItemActions/useMenuDropdown";
 import type { OwnerDishSummaryDTO } from "../../api/dish/getOwnerDishSummaries/ownerDishSummary.dto";
+import { useMenuMutation } from "./components/MenuTableRow/components/MenuItemActions/hooks/useMenuMutation";
+import { useMenuModalContext } from "./context/useMenuModalContext";
 
 interface MenuTableProps {
-  menuItems: OwnerDishSummaryDTO[];
-  loadMenu: () => void;
-  openEditMenuItemModal: (value: OwnerDishSummaryDTO) => void;
+  className?: string;
 }
 
-const MenuTable: React.FC<MenuTableProps> = ({
-  menuItems,
-  loadMenu,
-  openEditMenuItemModal,
-}) => {
-  return (
-    <section className="mt-4 rounded-xl border border-gray-200 bg-white overflow-hidden">
-      <div className="max-h-[520px] overflow-y-auto">
-        <table className="w-full border-collapse">
-          <thead className="sticky top-0 z-10 bg-gray-50">
-            <tr>
-              <TableHeader>Item</TableHeader>
-              <TableHeader>Category</TableHeader>
-              <TableHeader>Price</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Sold</TableHeader>
-              <th className="w-12" />
-            </tr>
-          </thead>
+const MenuTable: React.FC<MenuTableProps> = ({ className }) => {
+  const {
+    menuList: { displayMenus },
+  } = useMenuManagement();
 
-          <tbody>
-            {menuItems.map((item) => (
-              <MenuTableRow
-                key={item.dishId}
-                item={item}
-                loadMenu={loadMenu}
-                onClickEditMenuItem={() => openEditMenuItemModal(item)}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+  const menuItems = displayMenus;
+
+  const { openDeleteMenuModal, openEditMenuModal } = useMenuModalContext();
+
+  const { openDropdownMenuId, closeDropdown, toggleDropdown } =
+    useMenuDropdown();
+
+  const { toggleMenuItemAvailability } = useMenuMutation();
+
+  const handleToggleAvailability = async (menu: OwnerDishSummaryDTO) => {
+    await toggleMenuItemAvailability(menu);
+    closeDropdown();
+  };
+
+  const handleOpenDeleteModal = (menu: OwnerDishSummaryDTO) => {
+    openDeleteMenuModal(menu);
+    closeDropdown();
+  };
+
+  const handleOpenEditMenuModal = (menu: OwnerDishSummaryDTO) => {
+    openEditMenuModal(menu);
+    closeDropdown();
+  };
+
+  const handleToggleDropdown = (menu: OwnerDishSummaryDTO) => {
+    toggleDropdown(menu.dishId);
+  };
+
+  return (
+    <section
+      className={`
+      ${className}
+      rounded-xl border border-gray-200 bg-white
+    `}
+    >
+      <table className="w-full border-collapse">
+        <thead className="sticky top-0 z-10 bg-gray-50">
+          <tr>
+            <TableHeader>Item</TableHeader>
+            <TableHeader>Category</TableHeader>
+            <TableHeader>Price</TableHeader>
+            <TableHeader>Status</TableHeader>
+            <TableHeader>Sold</TableHeader>
+            <th className="w-12" />
+          </tr>
+        </thead>
+
+        <tbody>
+          {menuItems.map((item) => (
+            <MenuTableRow
+              key={item.dishId}
+              item={item}
+              openDropdownItemId={openDropdownMenuId}
+              onOpenRenameModal={() => handleOpenEditMenuModal(item)}
+              onOpenDeleteModal={() => handleOpenDeleteModal(item)}
+              onToggleAvailability={() => handleToggleAvailability(item)}
+              onToggleDropdown={() => handleToggleDropdown(item)}
+            />
+          ))}
+        </tbody>
+      </table>
     </section>
   );
 };

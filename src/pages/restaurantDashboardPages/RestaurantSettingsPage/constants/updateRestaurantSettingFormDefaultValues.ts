@@ -1,0 +1,15 @@
+export const UpdateRestaurantSettingFormDefaultValues = {
+  name: "",
+  cuisineType: "",
+  logo: "",
+  mainImage: "",
+  sub1Image: "",
+  sub2Image: "",
+  bannerImage: "",
+  storePhone: "",
+  streetAddress: "",
+  city: "",
+  state: "",
+  zip: "",
+  apt: "",
+};

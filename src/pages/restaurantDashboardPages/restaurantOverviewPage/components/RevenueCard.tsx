@@ -1,76 +1,3 @@
-// import type { RestaurantOverviewRevenueDTO } from "../../../dtos/restaurantOverviewRevenue.dto";
-
-// interface RevenueCardProps {
-//   overviewRevenue?: RestaurantOverviewRevenueDTO;
-// }
-
-// export const RevenueCard: React.FC<RevenueCardProps> = ({
-//   overviewRevenue,
-// }) => {
-//   return (
-//     <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-//       <div className="flex justify-between">
-//         <div>
-//           <h3 className="text-lg font-bold text-gray-950">Revenue</h3>
-//           <p className="mt-1 text-sm text-gray-500">
-//             Daily revenue trend for the selected period
-//           </p>
-//         </div>
-
-//         <div className="text-right">
-//           <div className="text-[20px] font-bold text-gray-950">HK$ 428,500</div>
-//           <div className="mt-1 text-xs text-gray-500">Total revenue</div>
-//         </div>
-//       </div>
-
-//       <div className="mt-7 h-[230px] relative">
-//         {/* horizontal guides */}
-//         {[0, 1, 2, 3, 4].map((line) => (
-//           <div
-//             key={line}
-//             className="absolute left-0 right-0 border-t border-dashed border-gray-200"
-//             style={{ top: `${line * 25}%` }}
-//           />
-//         ))}
-
-//         <svg
-//           viewBox="0 0 700 230"
-//           className="absolute inset-0 w-full h-full overflow-visible"
-//         >
-//           <path
-//             d="M45 158 L140 132 L235 166 L330 115 L425 155 L520 146 L615 100"
-//             fill="none"
-//             stroke="#16a34a"
-//             strokeWidth="3"
-//           />
-
-//           {[
-//             [45, 158],
-//             [140, 132],
-//             [235, 166],
-//             [330, 115],
-//             [425, 155],
-//             [520, 146],
-//             [615, 100],
-//           ].map(([cx, cy]) => (
-//             <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="5" fill="#16a34a" />
-//           ))}
-//         </svg>
-
-//         <div className="absolute left-0 right-0 bottom-0 flex justify-between px-3 text-[11px] text-gray-500">
-//           <span>May 12</span>
-//           <span>May 13</span>
-//           <span>May 14</span>
-//           <span>May 15</span>
-//           <span>May 16</span>
-//           <span>May 17</span>
-//           <span>May 18</span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
 import type { RestaurantRevenueDTO } from "../api/queries/getRestaurantRevenue/RestaurantRevenue.dto";
 
 interface RevenueCardProps {
@@ -130,7 +57,7 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({
   };
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
       <div className="flex justify-between">
         <div>
           <h3 className="text-lg font-bold text-gray-950">Revenue</h3>

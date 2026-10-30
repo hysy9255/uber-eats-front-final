@@ -17,32 +17,37 @@ const RestaurantOrdersPage = () => {
     handleApplyFilters,
     handleResetFilters,
     filtersOpen,
-    setFiltersOpen,
+    openFilterModal,
+    closeFilterModal,
     updateOrderStatusLocally,
   } = useOwnerOrdersPage();
 
   return (
-    <div className="min-h-screen bg-[#fafafa] px-6 py-5">
+    <div className="h-dvh bg-[#fafafa] px-6 py-5 flex flex-col">
       <OwnerOrdersPageHeader />
 
       <OrderTabs
+        className="mt-5"
         orders={orders}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
       />
 
       <OrderToolBar
+        className="mt-5 "
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         filters={filters}
         setFilters={setFilters}
         filtersOpen={filtersOpen}
-        setFiltersOpen={setFiltersOpen}
+        openFilterModal={openFilterModal}
+        closeFilterModal={closeFilterModal}
         onApplyFilters={handleApplyFilters}
         onResetFilters={handleResetFilters}
       />
 
       <OrderTable
+        className="mt-5 flex-1 overflow-y-auto"
         filteredOrders={filteredOrders}
         updateOrderStatusLocally={updateOrderStatusLocally}
       />

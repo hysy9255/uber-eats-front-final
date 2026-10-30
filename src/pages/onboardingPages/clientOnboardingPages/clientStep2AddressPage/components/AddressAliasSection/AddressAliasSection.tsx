@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import AddressAliasButton from "./AddressAliasButton";
 import { BriefcaseBusiness, Home, Pencil } from "lucide-react";
-import type { ClientOnBoardingForm } from "../../../constants/clientOnBoardingForm.type";
+import type { ClientOnBoardingForm } from "../../../types/clientOnBoardingForm.type";
 import { inputClassName } from "@/shared/constants/inputClassName";
 
 const AddressAliasSection = () => {

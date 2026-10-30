@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
-import type { ClientOnBoardingForm } from "../constants/clientOnBoardingForm.type";
+import type { ClientOnBoardingForm } from "../types/clientOnBoardingForm.type";
 import { registerClient } from "../api/registerClient";
 
 export const useClientStep3Review = () => {

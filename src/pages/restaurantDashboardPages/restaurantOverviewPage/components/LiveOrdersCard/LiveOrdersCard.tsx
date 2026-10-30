@@ -3,6 +3,7 @@ import { OrderStatusBadge } from "./OrderStatusBadge";
 import type { RestaurantLiveOrdersDTO } from "../../api/queries/getRestaurantLiveOrders/RestaurantLiveOrders.dto";
 import { formatOrderItems } from "./utils/formatOrderItems";
 import { formatTimeAgo } from "./utils/formatTimeAgo";
+import { Link } from "react-router-dom";
 
 interface LiveOrdersCardProps {
   liveOrders?: RestaurantLiveOrdersDTO;
@@ -14,7 +15,7 @@ export const LiveOrdersCard: React.FC<LiveOrdersCardProps> = ({
   const orders = liveOrders?.orders ?? [];
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h3 className="text-lg font-bold text-gray-950">Live orders</h3>
@@ -24,10 +25,13 @@ export const LiveOrdersCard: React.FC<LiveOrdersCardProps> = ({
           </span>
         </div>
 
-        <button className="text-sm font-semibold text-green-700 flex items-center gap-1">
+        <Link
+          to="/dashboard/orders"
+          className="text-sm font-semibold text-green-700 flex items-center gap-1"
+        >
           View all orders
           <ChevronRight className="w-4 h-4" />
-        </button>
+        </Link>
       </div>
 
       <div className="mt-4">

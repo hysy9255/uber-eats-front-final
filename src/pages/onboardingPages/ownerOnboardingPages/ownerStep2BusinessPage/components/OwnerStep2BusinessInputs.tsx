@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import type { OwnerOnBoardingForm } from "../../constants/OwnerOnBoardingForm.type";
+import type { OwnerOnBoardingForm } from "../../types/ownerOnBoardingForm.type";
 import ProfileOrLogoUploadZone from "../../../../../shared/components/UploadZones/ProfileOrLogoUploadZone";
 import DefaultRestaurantLogoImg from "../../../../../shared/components/DefaultRestaurantLogoImg/DefaultRestaurantLogoImg";
 import OnBoardInput from "../../../shared/components/OnBoardInput";

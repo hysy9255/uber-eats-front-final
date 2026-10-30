@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const SettingTab = () => {
   return (
     <NavLink
-      to="/dashboard/settings"
+      to="/profile"
       className={({ isActive }) =>
         `
       mt-3

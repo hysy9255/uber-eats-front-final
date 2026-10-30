@@ -1,14 +1,14 @@
 import { useClientOrdersPage } from "./useClientOrdersPage";
 import OrdersPageHeader from "./components/OrdersPageHeader";
-import OrderHistoryTab from "./components/OrderHistoryTab/OrderHistoryTab";
 import { ClientOrderView } from "./types/clientOrderView.enum";
-import ClientOrderSummaryCard from "./components/ClientOrderSummaryCard/ClientOrderSummaryCard";
 import Toast from "../shared/components/Toast";
+import { ClientOrderSummaryCard } from "./components/ClientOrderSummaryCard/ClientOrderSummaryCard";
+import TabButton from "../../../shared/components/TabButton";
 
 export const ClientOrdersPage = () => {
   const {
     showOrderPlacedToast,
-    handleClickCloseToast,
+    closeToast,
     currentTab,
     onGoingCount,
     completedCount,
@@ -16,16 +16,32 @@ export const ClientOrdersPage = () => {
     handleClickTab,
   } = useClientOrdersPage();
 
+  const tabs = [ClientOrderView.ONGOING, ClientOrderView.COMPLETED];
+
   return (
-    <section className="px-4 py-6 mx-auto w-full max-w-[900px]">
+    <section className="p-5 mx-auto w-full">
       <OrdersPageHeader />
-      <div className="w-full flex justify-center py-3">
-        <OrderHistoryTab
-          currentTab={currentTab}
-          handleClickTab={handleClickTab}
-          ongoingCount={onGoingCount}
-          completedCount={completedCount}
-        />
+
+      <div className={`flex h-10 gap-8 border-b border-gray-200 mb-5 mt-5`}>
+        {tabs.map((tab) => {
+          const selected = currentTab === tab;
+
+          const label =
+            tab === ClientOrderView.ONGOING ? "On Goging" : "Completed";
+          const count =
+            tab === ClientOrderView.ONGOING ? onGoingCount : completedCount;
+
+          return (
+            <TabButton
+              key={tab}
+              label={label}
+              // onClick={() => setCurrentTab(tab.key)}
+              onClick={() => handleClickTab(tab)}
+              selected={selected}
+              count={count}
+            />
+          );
+        })}
       </div>
 
       {currentOrders.length === 0 ? (
@@ -45,16 +61,17 @@ export const ClientOrdersPage = () => {
       ) : (
         <div className="flex flex-col gap-4">
           {currentOrders.map((order) => (
-            <ClientOrderSummaryCard key={order.orderId} order={order} />
+            <ClientOrderSummaryCard
+              key={order.orderId}
+              order={order}
+              onClickDetails={() => console.log("")}
+            />
           ))}
         </div>
       )}
 
       {showOrderPlacedToast && (
-        <Toast
-          message="Order has been placed"
-          onClose={handleClickCloseToast}
-        />
+        <Toast message="Order has been placed" onClose={closeToast} />
       )}
     </section>
   );

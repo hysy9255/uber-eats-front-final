@@ -1,21 +1,28 @@
 import { ExternalLink, Settings } from "lucide-react";
 import DefaultRestaurantLogoImg from "../../../../shared/components/DefaultRestaurantLogoImg/DefaultRestaurantLogoImg";
 import { capitalizeWords } from "../../../../shared/utils/capitalizeWords";
-import type { RestaurantDetailDTO } from "../../../../api/restaurant/dto/restaurant-detail.dto";
+import type { RestaurantDetailDTO } from "../../../clientPages/restaurantPage/api/restaurantDetail.dto";
 
 interface RestaurantSummaryProps {
   restaurantDetail?: RestaurantDetailDTO;
   renderRestaurantStatus: () => React.ReactNode;
   onClcickManageStatus: () => void;
+  className?: string;
 }
 
 const RestaurantSummary: React.FC<RestaurantSummaryProps> = ({
   restaurantDetail,
   renderRestaurantStatus,
   onClcickManageStatus,
+  className,
 }) => {
   return (
-    <section className="mt-6 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm">
+    <section
+      className={`
+        ${className}
+        rounded-lg border border-gray-200 bg-white px-5 py-4 shadow-sm
+    `}
+    >
       <div className="flex items-center justify-between gap-5">
         <div className="flex items-center gap-4 min-w-0">
           <div className="border border-gray-500 w-[92px] h-[92px] rounded-full overflow-hidden shrink-0 bg-emerald-950 flex items-center justify-center">
@@ -49,17 +56,17 @@ const RestaurantSummary: React.FC<RestaurantSummaryProps> = ({
             onClick={onClcickManageStatus}
             className="
             hover:cursor-pointer
-            h-11 px-4 rounded-xl border border-gray-200 flex items-center gap-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
+            h-11 px-4 rounded-lg border border-gray-200 flex items-center gap-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
           >
             Manage status
             <ExternalLink className="w-4 h-4" />
           </button>
-          <button className="h-11 px-4 rounded-xl border border-gray-200 flex items-center gap-2 text-sm font-semibold text-gray-800 hover:bg-gray-50">
+          <button className="h-11 px-4 rounded-lg border border-gray-200 flex items-center gap-2 text-sm font-semibold text-gray-800 hover:bg-gray-50">
             View store
             <ExternalLink className="w-4 h-4" />
           </button>
 
-          <button className="h-11 px-4 rounded-xl border border-gray-200 flex items-center gap-2 text-sm font-semibold text-gray-800 hover:bg-gray-50">
+          <button className="h-11 px-4 rounded-lg border border-gray-200 flex items-center gap-2 text-sm font-semibold text-gray-800 hover:bg-gray-50">
             <Settings className="w-4 h-4" />
             Settings
           </button>

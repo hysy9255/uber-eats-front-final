@@ -6,7 +6,8 @@ import RecommendationSection from "./components/RecommendationSection/Recommenda
 
 import { useDishPage } from "./hooks/useDishPage";
 import PageNotFound from "../../../shared/components/PageNotFound";
-import CartErrorModal from "../clientOrdersPage/components/ClientOrderSummaryCard/OrderDetailArea/CartErrorModal";
+import CartErrorModal from "../../../shared/components/CartErrorModal/CartErrorModal";
+// import CartErrorModal from "../clientOrdersPage/components/ClientOrderSummaryCard/OrderDetailArea/CartErrorModal";
 
 const recommendedDishes = [
   {

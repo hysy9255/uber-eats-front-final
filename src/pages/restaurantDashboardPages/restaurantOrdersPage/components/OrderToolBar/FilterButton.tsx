@@ -2,25 +2,25 @@ import { Filter } from "lucide-react";
 
 interface FilterButtonProps {
   onClick: () => void;
+  className?: string;
 }
 
-const FilterButton: React.FC<FilterButtonProps> = ({ onClick }) => {
+const FilterButton: React.FC<FilterButtonProps> = ({ onClick, className }) => {
   return (
     <button
       onClick={onClick}
-      className="
-      ml-auto
-      h-10
+      className={`
+      ${className}
+      flex items-center gap-2
       rounded-lg
-      border border-green-200
+      border border-green-500
       bg-white
       px-4
-      flex items-center gap-2
       text-sm font-medium
       text-green-700
       hover:bg-green-50
       hover:cursor-pointer
-    "
+        `}
     >
       <Filter className="w-4 h-4" />
       Filters

@@ -104,27 +104,24 @@ const RestaurantPromotionsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] px-6 py-5">
+    <div className="h-dvh bg-[#fafafa] px-6 py-5">
       {/* Header */}
-      <header className="flex items-center justify-between">
+      <header className="flex justify-between h-10">
         <h1 className="text-[24px] font-bold tracking-[-0.5px] text-gray-950">
           Promotions
         </h1>
 
         <button
           className="
-            h-10
             rounded-lg
-            bg-green-700
+            border border-green-500
+            bg-white
             px-4
-            flex
-            items-center
-            gap-2
-            text-sm
-            font-semibold
-            text-white
-            hover:bg-green-800
-            transition
+            flex items-center gap-2
+            text-sm font-semibold
+            text-green-700
+            hover:bg-green-50
+            hover:cursor-pointer
           "
         >
           <Plus className="w-4 h-4" />

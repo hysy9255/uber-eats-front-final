@@ -10,7 +10,6 @@ const ManageCategoriesButton: React.FC<ManageCategoriesButtonProps> = ({
       type="button"
       onClick={onClick}
       className="
-    h-10
     px-4
     flex
     items-center

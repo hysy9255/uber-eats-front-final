@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { AddressPanelType } from "../constants/addressPanel.type";
-import { useDeliveryAddress } from "./useDeliveryAddress";
 import type { DeliveryAddressDTO } from "../../../api/deliveryAddress.dto";
 import { getToken } from "../../../../../../shared/utils/getToken";
 import { setDefaultAddress } from "../api/setDefaultAddress";
 import { deleteDeliveryAddress } from "../api/deleteDeliveryAddress";
+import { useAddress } from "../../../context/address/useAddress";
 
 export const useManageDeliveryAddressModal = () => {
-  const { addresses, loadMyDeliveryAddresses } = useDeliveryAddress();
+  const { addressList: addresses, loadMyDeliveryAddresses } = useAddress();
   const [addressToEdit, setAddressToEdit] = useState<DeliveryAddressDTO>();
   const token = getToken();
 

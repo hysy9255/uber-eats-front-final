@@ -23,10 +23,11 @@ export const MenuSortDropdown: React.FC<MenuSortDropdownProps> = ({
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         className="
-          h-10 px-4
+          px-4
           rounded-lg
           border border-gray-200
           bg-white
+          h-full
           flex items-center gap-2
           text-sm font-medium text-gray-700
           hover:bg-gray-50

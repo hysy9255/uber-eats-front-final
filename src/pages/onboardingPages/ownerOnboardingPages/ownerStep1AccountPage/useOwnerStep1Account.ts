@@ -2,7 +2,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { type EmailCheck } from "../../shared/types/emailCheck.type";
-import type { OwnerOnBoardingForm } from "../constants/OwnerOnBoardingForm.type";
+import type { OwnerOnBoardingForm } from "../types/ownerOnBoardingForm.type";
 import { uploadImage } from "../../../../shared/utils/uploadImage";
 import { checkEmailAvailability } from "../../shared/api/checkEmailAvailability";
 import { EmailStatus } from "../../shared/types/emailStatus.enum";

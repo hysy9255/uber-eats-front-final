@@ -10,15 +10,16 @@ const XButton: React.FC<XButtonProps> = ({ onClick }) => {
       type="button"
       onClick={onClick}
       className="
-    flex
-    h-9
-    w-9
-    items-center
-    justify-center
-    rounded-lg
-    text-gray-400
-    hover:bg-gray-100
-  "
+        flex
+        h-9
+        w-9
+        items-center
+        justify-center
+        rounded-lg
+        text-gray-400
+        hover:bg-gray-100
+        hover:cursor-pointer
+      "
     >
       <X className="h-5 w-5" />
     </button>

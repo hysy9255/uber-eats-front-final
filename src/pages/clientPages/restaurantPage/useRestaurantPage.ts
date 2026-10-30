@@ -8,6 +8,8 @@ import { getDishSummaries } from "../dishPage/api/getDishSummaries/getDishSummar
 import type { RestaurantDetailDTO } from "./api/restaurantDetail.dto";
 import type { RestaurantHoursDTO } from "../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/restaurantHours.dto";
 import { getRestaurantHours } from "../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/getRestaurantHours";
+import { socket } from "../../../socket";
+import type { RestaurantStatus } from "../../../shared/types/restaurantStatus.type";
 
 export const useRestaurantPage = () => {
   const { restaurantId } = useParams();
@@ -42,19 +44,62 @@ export const useRestaurantPage = () => {
     loadRestaurantViewData();
   }, [loadRestaurantViewData]);
 
+  useEffect(() => {
+    if (!restaurantId) return;
+
+    const handleConnect = () => {
+      console.log("Socket connected:", socket.id);
+      socket.emit("joinRestaurantStatusRoom", { restaurantId });
+    };
+
+    const handleStatusChanged = (restaurantStatus: RestaurantStatus) => {
+      console.log("Restaurant status has changed:", restaurantStatus);
+
+      setRestaurantDetail((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          status: restaurantStatus,
+        };
+      });
+    };
+
+    socket.on("connect", handleConnect);
+    socket.on("restaurant.statusChanged", handleStatusChanged);
+
+    // 현재 연결상태 확인
+    if (socket.connected) {
+      //이미 연결되어 있으므로 connect 이벤트가 새로 발생하지 않아.
+      //그래서 handleConnect()를 직접 실행하는 거야.
+      handleConnect();
+    } else {
+      //아직 연결되어 있지 않다면
+      //socket.connect()로 서버 연결을 시작하지.
+      socket.connect();
+    }
+
+    // return () => {
+    //   socket.off("connect", handleConnect);
+    //   socket.off("restaurant.statusChanged", handleStatusChanged);
+    //   socket.disconnect();
+    // };
+
+    return () => {
+      socket.off("connect", handleConnect);
+      socket.off("restaurant.statusChanged", handleStatusChanged);
+
+      if (socket.connected) {
+        socket.emit("leaveRestaurantStatusRoom", {
+          restaurantId,
+        });
+      }
+    };
+  }, [restaurantId]);
+
   const today = getDayOfWeek(new Date());
   const todayHours = operatingHours.find((day) => day.dayOfWeek === today);
 
-  const popularMenus = menu.slice(0, 6);
-
-  const finalMenu = [
-    ...popularMenus.map((dish) => ({ ...dish, category: "popular" })),
-    ...menu,
-  ];
-
-  const categories = extractUniqueCategories(
-    finalMenu.map((dish) => dish.category)
-  );
+  const categories = extractUniqueCategories(menu.map((dish) => dish.category));
 
   const handleClickOperatingHours = () => setOperatingHoursPopUpOpen(true);
   const handleClickCloseOperatingHours = () =>
@@ -62,7 +107,7 @@ export const useRestaurantPage = () => {
 
   return {
     restaurantDetail,
-    finalMenu,
+    menu,
     categories,
     operatingHours,
     todayHours,

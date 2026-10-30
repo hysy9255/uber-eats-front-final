@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import type { OwnerOnBoardingForm } from "../constants/OwnerOnBoardingForm.type";
+import type { OwnerOnBoardingForm } from "../types/ownerOnBoardingForm.type";
 import { useFormContext } from "react-hook-form";
 import { registerOwner } from "../api/registerOwner";
 

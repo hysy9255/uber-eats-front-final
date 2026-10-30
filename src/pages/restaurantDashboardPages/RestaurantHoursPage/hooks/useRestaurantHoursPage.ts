@@ -6,65 +6,64 @@ import {
   formatRestaurantHours,
 } from "../utils/formatRestaurantHours";
 import type { UpdateSelectedDay } from "../types/updateSelectedDay.type";
-import { getToken } from "../../../../shared/utils/getToken";
-import { getRestaurantHours } from "../api/getRestaurantHours/getRestaurantHours";
-import { updateRestaurantHours } from "../api/updateRestaurantHours/updateRestaurantHours";
-import { useRestaurantDashboard } from "../../shared/context/useRestaurantDashboard";
+import { useRestaurantHoursData } from "./useRestaurantHoursData";
 
 export const useRestaurantHoursPage = () => {
-  const token = getToken();
+  const { loadOperatingHours, updateOperatingHours } = useRestaurantHoursData();
+
   const [hours, setHours] = useState<DayHours[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("Monday");
-
-  const [hasBreakTime, setHasBreakTime] = useState(false);
-  const [is24Hours, setIs24Hours] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   const selectedHours = hours.find((item) => item.day === selectedDay);
-  const { restaurantId } = useRestaurantDashboard();
 
-  const loadOperatingHours = useCallback(async () => {
-    try {
-      if (!restaurantId) throw new Error("No restaurant ID found");
-      const operatingHoursData = await getRestaurantHours(restaurantId); // Replace with actual restaurant ID
-      const formattedHours = formatRestaurantHours(operatingHoursData);
-      setHours(formattedHours);
-    } catch (e) {
-      console.error(e);
-      throw new Error("Error Loading Operating Hours");
-    }
-  }, [restaurantId]);
+  const loadHours = useCallback(async () => {
+    const data = await loadOperatingHours();
 
-  const handleUpdateRestaurantHours = async () => {
-    try {
-      if (!token) throw new Error("No token found");
-      if (!restaurantId) throw new Error("No restaurant ID found");
-      const payload = formatDayHoursToRestaurantHoursDTO(hours);
-      await updateRestaurantHours(token, restaurantId, payload);
-      loadOperatingHours();
-    } catch (e) {
-      console.error(e);
-      throw new Error("Error Updating Operating Hours");
-    }
-  };
+    setHours(formatRestaurantHours(data));
+  }, [loadOperatingHours]);
 
   useEffect(() => {
-    loadOperatingHours();
-  }, [loadOperatingHours]);
+    loadHours();
+  }, [loadHours]);
+
+  const saveHours = async () => {
+    const payload = formatDayHoursToRestaurantHoursDTO(hours);
+
+    await updateOperatingHours(payload);
+    await loadHours();
+
+    setIsDirty(false);
+    setShowSuccessToast(true);
+  };
+
+  const discardChanges = async () => {
+    await loadHours();
+    setIsDirty(false);
+  };
+
+  const toggleOperatingDay = (day: DayOfWeek) => {
+    setHours((prev) =>
+      prev.map((item) =>
+        item.day === day ? { ...item, enabled: !item.enabled } : item
+      )
+    );
+
+    setIsDirty(true);
+  };
 
   const updateSelectedDay: UpdateSelectedDay = (field, value) => {
     setHours((prev) =>
       prev.map((item) =>
-        item.day === selectedDay
-          ? {
-              ...item,
-              [field]: value,
-            }
-          : item
+        item.day === selectedDay ? { ...item, [field]: value } : item
       )
     );
+
+    setIsDirty(true);
   };
 
-  const copyMondayHours = () => {
+  const applyMondayHoursToAllDays = () => {
     const monday = hours.find((item) => item.day === "Monday");
 
     if (!monday) return;
@@ -77,21 +76,29 @@ export const useRestaurantHoursPage = () => {
         enabled: monday.enabled,
       }))
     );
+
+    setIsDirty(true);
+  };
+
+  const closeSuccessToast = () => {
+    setShowSuccessToast(false);
   };
 
   return {
     hours,
-    setHours,
     selectedDay,
-    setSelectedDay,
-    hasBreakTime,
-    setHasBreakTime,
-    is24Hours,
-    setIs24Hours,
     selectedHours,
+    isDirty,
+    showSuccessToast,
+
+    setSelectedDay,
+
     updateSelectedDay,
-    copyMondayHours,
-    handleUpdateRestaurantHours,
-    loadOperatingHours,
+    toggleOperatingDay,
+    applyMondayHoursToAllDays,
+
+    saveHours,
+    discardChanges,
+    closeSuccessToast,
   };
 };

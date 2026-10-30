@@ -3,6 +3,7 @@ import { inputClassName } from "@/shared/constants/inputClassName";
 import { useFormContext } from "react-hook-form";
 import AddressAliasButton from "./AddressAliasButton";
 import type { AddDeliveryAddressForm } from "../../types/addDeliveryAddressForm.type";
+import { AddressAlias } from "../../../../../../../../../shared/types/addressAlias.type";
 
 const LeftPanel = () => {
   const { register, setValue, watch } =
@@ -107,7 +108,7 @@ const LeftPanel = () => {
             title="home"
             Icon={Home}
             onClick={() => {
-              setValue("alias", "home");
+              setValue("alias", AddressAlias.home);
               setValue("customAlias", null);
             }}
             isActive={alias === "home"}
@@ -117,7 +118,7 @@ const LeftPanel = () => {
             title="work"
             Icon={BriefcaseBusiness}
             onClick={() => {
-              setValue("alias", "work");
+              setValue("alias", AddressAlias.work);
               setValue("customAlias", null);
             }}
             isActive={alias === "work"}
@@ -128,7 +129,7 @@ const LeftPanel = () => {
             title="custom"
             Icon={Pencil}
             onClick={() => {
-              setValue("alias", "other");
+              setValue("alias", AddressAlias.other);
               setValue("customAlias", null);
             }}
             isActive={alias === "other"}

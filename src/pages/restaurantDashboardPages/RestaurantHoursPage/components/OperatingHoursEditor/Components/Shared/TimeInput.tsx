@@ -37,6 +37,7 @@ export const TimeInput = ({
             text-sm
             text-gray-700
             disabled:text-gray-400
+            hover:cursor-pointer
           "
       />
     </div>

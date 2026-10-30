@@ -11,7 +11,7 @@ export const tabOptions: TabOptionType[] = [
     label: "Orders",
     path: "/dashboard/orders",
     icon: ShoppingBag,
-    badge: 3,
+    // badge: 3,
   },
   {
     label: "Menu",

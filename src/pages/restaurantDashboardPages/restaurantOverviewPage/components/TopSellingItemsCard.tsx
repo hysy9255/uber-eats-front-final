@@ -12,7 +12,7 @@ export const TopSellingItemsCard: React.FC<TopSellingItemsCardProps> = ({
   items,
 }) => {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold text-gray-950">Top selling items</h3>
 

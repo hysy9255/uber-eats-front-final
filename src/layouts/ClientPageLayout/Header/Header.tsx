@@ -33,7 +33,9 @@ export const Header: React.FC<HeaderProps> = ({ onClickHamburger, css }) => {
         to={`/profile`}
         className={` rounded-full 
         h-[40px] w-[40px] overflow-hidden
-        hover:cursor-pointer`}
+        hover:cursor-pointer
+        shrink-0
+        `}
       >
         <DefaultProfileImg className="object-cover border border-gray-200 rounded-full" />
       </Link>

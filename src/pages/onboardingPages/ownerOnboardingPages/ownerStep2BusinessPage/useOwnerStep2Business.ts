@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
-import type { OwnerOnBoardingForm } from "../constants/OwnerOnBoardingForm.type";
+import type { OwnerOnBoardingForm } from "../types/ownerOnBoardingForm.type";
 import { uploadImage } from "@/shared/utils/uploadImage";
 
 export const useOwnerStep2Business = () => {

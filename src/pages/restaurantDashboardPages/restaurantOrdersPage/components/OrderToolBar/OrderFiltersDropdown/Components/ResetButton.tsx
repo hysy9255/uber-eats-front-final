@@ -8,13 +8,14 @@ const ResetButton: React.FC<ResetButtonProps> = ({ onClick }) => {
       type="button"
       onClick={onClick}
       className="
-    h-10
-    rounded-lg
-    px-4
-    text-sm
-    font-medium
-    text-gray-600
-    hover:bg-gray-100
+      h-10
+      rounded-lg
+      px-4
+      text-sm
+      font-medium
+      text-gray-600
+      hover:bg-gray-100
+      hover:cursor-pointer
   "
     >
       Reset

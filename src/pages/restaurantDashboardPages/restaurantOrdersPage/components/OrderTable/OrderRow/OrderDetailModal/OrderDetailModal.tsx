@@ -2,17 +2,49 @@ import { MapPin, Clock, User } from "lucide-react";
 import { createPortal } from "react-dom";
 import { capitalizeWords } from "../../../../../../../shared/utils/capitalizeWords";
 import { OrderStatusBadge } from "./OrderStatusBadge";
-import type { GetOrderDetailForOwnerDTO } from "../../../../../../../../api/order/dto/get-order-for-owner.dto";
 import { InfoBox } from "./InfoBox";
-import CloseButton from "./CloseButton";
 import XButton from "./XButton";
+import type { RestaurantOrderDetailDTO } from "../../../../api/getRestaurantOrderDetail/restaurantOrderDetail.dto";
+import { getToken } from "../../../../../../../shared/utils/getToken";
+import { useCallback, useEffect, useState } from "react";
+import { getRestaurantOrderDetail } from "../../../../api/getRestaurantOrderDetail/getRestaurantOrderDetail";
 
 interface OrderDetailModalProps {
-  order: GetOrderDetailForOwnerDTO;
+  targetOrderId: string;
   onClose: () => void;
 }
 
-const OrderDetailModal = ({ order, onClose }: OrderDetailModalProps) => {
+const OrderDetailModal = ({
+  targetOrderId,
+  onClose,
+}: OrderDetailModalProps) => {
+  const [orderDetail, setOrderDetail] =
+    useState<RestaurantOrderDetailDTO | null>(null);
+
+  const loadTargetOrderDetail = useCallback(async () => {
+    const token = getToken();
+    if (!token) throw new Error("No Token Found");
+    try {
+      const orderDetailData = await getRestaurantOrderDetail(
+        token,
+        targetOrderId
+      );
+
+      setOrderDetail(orderDetailData);
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error loading order detail");
+    }
+  }, [targetOrderId]);
+
+  useEffect(() => {
+    loadTargetOrderDetail();
+  }, [loadTargetOrderDetail]);
+
+  if (!orderDetail) return;
+
+  const order = orderDetail;
+
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
@@ -73,10 +105,11 @@ const OrderDetailModal = ({ order, onClose }: OrderDetailModalProps) => {
         {/* Items */}
         <div className="mt-6">
           <h3 className="text-sm font-semibold text-gray-900">Items</h3>
-
           <div
             className="
               mt-3
+              max-h-[200px]
+              overflow-y-auto
               divide-y
               divide-gray-100
               rounded-xl
@@ -180,10 +213,6 @@ const OrderDetailModal = ({ order, onClose }: OrderDetailModalProps) => {
           <span className="text-xl font-bold text-gray-950">
             ${order.totalPrice.toFixed(2)}
           </span>
-        </div>
-
-        <div className="mt-6 flex justify-end">
-          <CloseButton onClick={onClose} />
         </div>
       </div>
     </div>,

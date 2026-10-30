@@ -1,152 +1,116 @@
-import { useState } from "react";
-import { getToken } from "@/shared/utils/getToken";
-import { capitalizeWords } from "@/shared/utils/capitalizeWords";
-import { OrderStatusBadge } from "@/pages/restaurantDashboardPages/restaurantOverviewPage/components/LiveOrdersCard/OrderStatusBadge";
-import { OrderStatus } from "../../../types/orderStatus.enum";
-import { useOrderRow } from "./useOrderRow";
-import { formatOrderTime } from "../utils/formatOrderTime";
-import OrderMoreMenu from "./OrderMoreMenu/OrderMoreMenu";
-import OrderDetailModal from "./OrderDetailModal/OrderDetailModal";
-import type { RestaurantOrderDetailDTO } from "../../../api/getRestaurantOrderDetail/restaurantOrderDetail.dto";
 import type { RestaurantOrderSummaryDTO } from "../../../api/getRestaurantOrderSummaries/restaurantOrderSummary.dto";
-import MoreVerticalButton from "../../../../menuManagementPage/components/Modals/ManageCategoriesModal/Components/Buttons/MoreVerticalButton";
+import { useOrderData } from "./useOrderData";
+import OrderDetailModal from "./OrderDetailModal/OrderDetailModal";
+import { useState } from "react";
+import OrderRowContent from "./OrderRowContent";
+import { OrderStatus } from "../../../types/orderStatus.enum";
+import OrderItemActions from "./OrderItemActions";
 
 interface OrderRowProps {
   order: RestaurantOrderSummaryDTO;
   openUpward: boolean;
+  onToggleDropdown: () => void;
+  closeMoreDropdown: () => void;
+  targetOrderId: string | null;
   updateOrderStatusLocally: (orderId: string, status: OrderStatus) => void;
 }
 
 export const OrderRow = ({
   order,
-  openUpward,
+  onToggleDropdown,
+  closeMoreDropdown,
+  targetOrderId,
   updateOrderStatusLocally,
 }: OrderRowProps) => {
-  const [moreOpen, setMoreOpen] = useState(false);
-  const [orderDetail, setOrderDetail] =
-    useState<RestaurantOrderDetailDTO | null>(null);
-
-  const token = getToken();
-
   const {
-    loadOrderDetail,
-    handleAcceptOrder,
-    handleMarkOrderReady,
-    handleMarkOrderDeliverying,
-    handleMarkOrderDelivered,
-  } = useOrderRow();
+    acceptTargetOrder,
+    markTargetOrderReady,
+    markTargetOrderDelivering,
+    markTargetOrderDelivered,
+  } = useOrderData();
 
-  const openOrderDetail = async (order: RestaurantOrderSummaryDTO) => {
-    const orderDetailData = await loadOrderDetail(token, order.orderId);
-    setOrderDetail(orderDetailData);
+  const [orderDetailModalOpen, setOrderDetailModalOpen] =
+    useState<boolean>(false);
+
+  const openOrderDetailModal = () => {
+    setOrderDetailModalOpen(true);
+    closeMoreDropdown();
   };
 
-  const closeOrderDetail = () => {
-    setOrderDetail(null);
+  const closeOrderDetailModal = () => {
+    setOrderDetailModalOpen(false);
+  };
+
+  const handleAcceptOrder = async () => {
+    try {
+      if (!targetOrderId) return;
+      await acceptTargetOrder(targetOrderId);
+      closeMoreDropdown();
+      updateOrderStatusLocally(targetOrderId, OrderStatus.Cooking);
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error accepting order");
+    }
+  };
+
+  const handleMarkOrderReady = async () => {
+    try {
+      if (!targetOrderId) return;
+      await markTargetOrderReady(targetOrderId);
+      closeMoreDropdown();
+      updateOrderStatusLocally(targetOrderId, OrderStatus.Ready);
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error accepting order");
+    }
+  };
+
+  const handleMarkOrderDelivering = async () => {
+    try {
+      if (!targetOrderId) return;
+      await markTargetOrderDelivering(targetOrderId);
+      closeMoreDropdown();
+      updateOrderStatusLocally(targetOrderId, OrderStatus.Delivering);
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error accepting order");
+    }
+  };
+
+  const handleMarkOrderDelivered = async () => {
+    try {
+      if (!targetOrderId) return;
+      await markTargetOrderDelivered(targetOrderId);
+      closeMoreDropdown();
+      updateOrderStatusLocally(targetOrderId, OrderStatus.Delivered);
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error accepting order");
+    }
   };
   return (
-    <tr className="border-t border-gray-100 transition hover:bg-gray-50/70">
-      <td className="px-4 py-3.5">
-        <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+    <tr className="border-b border-gray-100 transition hover:bg-gray-50/70">
+      <OrderRowContent order={order} />
+
+      <td className="px-4 py-3 relative">
+        <OrderItemActions
+          orderStatus={order.status}
+          isMoreMenuOpen={targetOrderId === order.orderId}
+          onClickMoreButton={onToggleDropdown}
+          openOrderDetailModal={openOrderDetailModal}
+          handleAcceptOrder={handleAcceptOrder}
+          handleMarkOrderReady={handleMarkOrderReady}
+          handleMarkOrderDelivering={handleMarkOrderDelivering}
+          handleMarkOrderDelivered={handleMarkOrderDelivered}
+          onToggleDropdown={onToggleDropdown}
+        />
       </td>
 
-      <td className="px-3 py-3.5">
-        <span className="text-sm font-semibold text-gray-900">
-          {order.orderId.split("-")[0]}
-        </span>
-      </td>
-
-      <td className="px-3 py-3.5">
-        <span className="text-sm font-medium text-gray-800">
-          {order.client}
-        </span>
-      </td>
-
-      <td className="px-3 py-3.5 max-w-[330px]">
-        <span className="text-sm text-gray-600">
-          {order.orderItems
-            .map((item) => `${capitalizeWords(item.name)} x${item.quantity}`)
-            .join(", ")}
-        </span>
-      </td>
-
-      <td className="px-3 py-3.5 whitespace-nowrap">
-        <span className="text-sm font-medium text-gray-800">
-          $ {order.totalPrice.toFixed(2)}
-        </span>
-      </td>
-
-      <td className="px-3 py-3.5">
-        <OrderStatusBadge status={order.status} />
-      </td>
-
-      <td className="px-3 py-3.5 whitespace-nowrap">
-        <span className="text-xs text-gray-500">
-          {formatOrderTime(order.orderedAt)}
-        </span>
-      </td>
-
-      <td className="px-3 py-3.5 relative">
-        <MoreVerticalButton onClick={() => setMoreOpen((prev) => !prev)} />
-        {moreOpen && (
-          <OrderMoreMenu
-            openUpward={openUpward}
-            status={order.status}
-            onView={() => {
-              openOrderDetail(order);
-              setMoreOpen(false);
-            }}
-            onAccept={async () => {
-              try {
-                await handleAcceptOrder(token, order.orderId);
-                updateOrderStatusLocally(order.orderId, OrderStatus.Cooking);
-                setMoreOpen(false);
-              } catch (e) {
-                console.error(e);
-                throw new Error("Error accepting order");
-              }
-            }}
-            onMarkReady={async () => {
-              try {
-                await handleMarkOrderReady(token, order.orderId);
-                updateOrderStatusLocally(order.orderId, OrderStatus.Ready);
-                setMoreOpen(false);
-              } catch (e) {
-                console.error(e);
-                throw new Error("Error marking order ready");
-              }
-            }}
-            onStartDelivery={async () => {
-              try {
-                await handleMarkOrderDeliverying(token, order.orderId);
-                updateOrderStatusLocally(order.orderId, OrderStatus.Delivering);
-                setMoreOpen(false);
-              } catch (e) {
-                console.error(e);
-                throw new Error("Error starting delivery");
-              }
-            }}
-            onMarkDelivered={async () => {
-              try {
-                await handleMarkOrderDelivered(token, order.orderId);
-                updateOrderStatusLocally(order.orderId, OrderStatus.Delivered);
-                setMoreOpen(false);
-              } catch (e) {
-                console.error(e);
-                throw new Error("Error marking order delivered");
-              }
-            }}
-            onCancel={() => {
-              // cancel modal
-            }}
-            onPrint={() => {
-              // print
-            }}
-          />
-        )}
-      </td>
-      {orderDetail && (
-        <OrderDetailModal order={orderDetail} onClose={closeOrderDetail} />
+      {orderDetailModalOpen && (
+        <OrderDetailModal
+          targetOrderId={order.orderId}
+          onClose={closeOrderDetailModal}
+        />
       )}
     </tr>
   );

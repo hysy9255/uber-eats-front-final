@@ -35,7 +35,7 @@ const ClientPageLayout = () => {
         css={`
         fixed top-0 left-0 
         ${headerHeight} ${headerXPadding}
-        bg-white z-10 w-full flex items-center justify-between`}
+        bg-white z-10 w-full flex items-center justify-between gap-x-2`}
       />
 
       <NavigationSideBar

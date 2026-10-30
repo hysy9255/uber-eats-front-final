@@ -7,6 +7,7 @@ import type { AddDeliveryAddressForm } from "./types/addDeliveryAddressForm.type
 import { getToken } from "../../../../../../../shared/utils/getToken";
 import { addDeliveryAddress } from "../../api/createDeliveryAddress/createDeliveryAddress";
 import { CreateDeliveryAddressDTO } from "../../api/createDeliveryAddress/createDeliveryAddress.dto";
+import { AddressAlias } from "../../../../../../../shared/types/addressAlias.type";
 
 interface AddAddressProps {
   closeAddAddress: () => void;
@@ -26,7 +27,7 @@ const AddAddress = ({
       city: "",
       state: "",
       zip: "",
-      alias: "home",
+      alias: AddressAlias.home,
       customAlias: null,
     },
   });

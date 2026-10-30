@@ -1,23 +1,19 @@
-import type { DayHours } from "../../constants/dayHours.type";
-import type { DayOfWeek } from "../../constants/dayOfWeek.type";
+import type { DayHours } from "../../types/dayHours.type";
+import type { DayOfWeek } from "../../types/dayOfWeek.type";
 import { Toggle } from "../shared/Toggle";
 
 interface OperatingHoursListProps {
   hours: DayHours[];
-  setHours: React.Dispatch<React.SetStateAction<DayHours[]>>;
-  // updateSelectedDay: UpdateSelectedDay;
-  // selectedHours?: DayHours;
   selectedDay: DayOfWeek;
   setSelectedDay: (day: DayOfWeek) => void;
+  toggleOperatingDayStatus: (day: DayOfWeek) => void;
 }
 
 const OperatingHoursList: React.FC<OperatingHoursListProps> = ({
   hours,
-  setHours,
-  // updateSelectedDay,
-  // selectedHours,
   selectedDay,
   setSelectedDay,
+  toggleOperatingDayStatus,
 }) => {
   return (
     <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
@@ -29,18 +25,18 @@ const OperatingHoursList: React.FC<OperatingHoursListProps> = ({
             key={item.day}
             onClick={() => setSelectedDay(item.day)}
             className={`
-          w-full
-          min-h-[64px]
-          px-4
-          flex
-          items-center
-          justify-between
-          text-left
-          transition
-          hover:cursor-pointer
-          ${index !== hours.length - 1 ? "border-b border-gray-100" : ""}
-          ${selected ? "bg-green-50/70" : "bg-white hover:bg-gray-50"}
-        `}
+            w-full
+            min-h-[64px]
+            px-4
+            flex
+            items-center
+            justify-between
+            text-left
+            transition
+            hover:cursor-pointer
+            ${index !== hours.length - 1 ? "border-b border-gray-100" : ""}
+            ${selected ? "bg-green-50/70" : "bg-white hover:bg-gray-50"}
+          `}
           >
             <div>
               <div
@@ -68,16 +64,7 @@ const OperatingHoursList: React.FC<OperatingHoursListProps> = ({
                 checked={item.enabled}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setHours((prev) =>
-                    prev.map((day) =>
-                      day.day === item.day
-                        ? {
-                            ...day,
-                            enabled: !day.enabled,
-                          }
-                        : day
-                    )
-                  );
+                  toggleOperatingDayStatus(item.day);
                 }}
               />
             </div>

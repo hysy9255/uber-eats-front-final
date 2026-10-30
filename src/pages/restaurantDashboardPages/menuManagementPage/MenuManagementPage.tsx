@@ -1,105 +1,27 @@
-import { AddMenuItemModal } from "./components/Modals/AddMenuItemModal/AddMenuItemModal";
-import { tabs } from "./constants/tabs";
-import { EditMenuItemModal } from "./components/Modals/EditMenuItemModal/EditMenuItemModal";
-import { ManageCategoriesModal } from "./components/Modals/ManageCategoriesModal/ManageCategoriesModal";
-import OwnerMenuPageHeader from "./components/OwnerMenuPageHeader/OwnerMenuPageHeader";
 import MenuToolBar from "./components/MenuToolBar/MenuToolBar";
-import MenuTabs from "./components/MenuTabs/MenuTabs";
+import MenuTabs from "./components/MenuTable/MenuTabs";
 import MenuTable from "./components/MenuTable/MenuTable";
-import { useMenuManagementPage } from "./useMenuManagementPage";
+import { useMenuManagement } from "./context/useMenuManagement";
+import Toast from "../../clientPages/shared/components/Toast";
+import { MenuPageHeader } from "./components/OwnerMenuPageHeader/OwnerMenuPageHeader";
+import { MenuActionModals } from "./MenuActionModals/MenuActionModals";
 
 const MenuManagementPage = () => {
-  const {
-    // data
-    categories,
-    displayItems,
-    menu,
-
-    // filters
-    currentTab,
-    setCurrentTab,
-
-    currentCategory,
-    setCurrentCategory,
-
-    searchTerm,
-    setSearchTerm,
-
-    // add modal
-    addMenuItemModalOpen,
-    openAddMenuItemModal,
-    closeAddMenuItemModal,
-
-    // manage categories modal
-    isManageCategoriesOpen,
-    openManageCategoriesModal,
-    closeManageCategoriesModal,
-
-    // edit modal
-    targetEditMenuItem,
-    openEditMenuItemModal,
-    closeEditMenuItemModal,
-
-    // reload
-    loadMenu,
-    loadCategories,
-
-    // dropdowns
-    selectedSortOption,
-    setSelectedSortOption,
-  } = useMenuManagementPage();
+  const { successMessage } = useMenuManagement();
 
   return (
-    <div className="min-h-screen bg-[#fafafa] px-6 py-5">
-      {/* Header */}
-      <OwnerMenuPageHeader onClickAddItemButton={openAddMenuItemModal} />
-
-      {/* Tabs */}
-      <MenuTabs
-        tabs={tabs}
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-        menu={menu}
-      />
-
-      {/* Search + filters */}
-      <MenuToolBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        currentCategory={currentCategory}
-        setCurrentCategory={setCurrentCategory}
-        categories={categories}
-        onClickManageCategoriesButton={openManageCategoriesModal}
-        selectedSortOption={selectedSortOption}
-        setSelectedSortOption={setSelectedSortOption}
-      />
-
-      {/* Table */}
-      <MenuTable
-        menuItems={displayItems}
-        loadMenu={loadMenu}
-        openEditMenuItemModal={openEditMenuItemModal}
-      />
-
-      {targetEditMenuItem && (
-        <EditMenuItemModal
-          menuItem={targetEditMenuItem}
-          onClose={closeEditMenuItemModal}
-          loadMenu={loadMenu}
-        />
-      )}
-      {addMenuItemModalOpen && (
-        <AddMenuItemModal
-          categories={categories}
-          onClose={closeAddMenuItemModal}
-          loadMenu={loadMenu}
-        />
-      )}
-      {isManageCategoriesOpen && (
-        <ManageCategoriesModal
-          onClose={closeManageCategoriesModal}
-          loadCategories={loadCategories}
-          categories={categories}
+    <div className="h-dvh bg-[#fafafa] px-6 py-5 flex flex-col">
+      <MenuPageHeader />
+      <MenuTabs className="mt-5" />
+      <MenuToolBar className="mt-5" />
+      <MenuTable className="mt-5 flex-1 overflow-y-auto" />
+      <MenuActionModals />
+      {successMessage.show && (
+        <Toast
+          message={successMessage.message}
+          onClose={() =>
+            successMessage.setSuccessMessage({ show: false, message: "" })
+          }
         />
       )}
     </div>

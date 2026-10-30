@@ -1,3 +1,4 @@
-export type EditCategoryFormValues = {
+export type EditCategoryForm = {
+  categoryId: string;
   newCategoryName: string;
 };

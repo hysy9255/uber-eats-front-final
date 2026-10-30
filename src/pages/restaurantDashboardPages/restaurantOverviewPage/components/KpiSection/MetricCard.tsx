@@ -28,7 +28,7 @@ export const MetricCard = ({
     trendType === "positive" ? "↑" : trendType === "negative" ? "↓" : "";
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white px-5 py-5 shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white px-5 py-5 shadow-sm">
       <div className="flex items-center gap-4">
         <div
           className={`w-12 h-12 rounded-full flex items-center justify-center ${iconWrapClass}`}

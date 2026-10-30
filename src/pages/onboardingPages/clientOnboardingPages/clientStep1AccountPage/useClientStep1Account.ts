@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { type EmailCheck } from "../../shared/types/emailCheck.type";
 import { uploadImage } from "../../../../shared/utils/uploadImage";
-import type { ClientOnBoardingForm } from "../constants/clientOnBoardingForm.type";
+import type { ClientOnBoardingForm } from "../types/clientOnBoardingForm.type";
 import { checkEmailAvailability } from "../../shared/api/checkEmailAvailability";
 import { EmailStatus } from "../../shared/types/emailStatus.enum";
 

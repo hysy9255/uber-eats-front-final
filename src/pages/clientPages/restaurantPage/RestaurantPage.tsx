@@ -1,5 +1,6 @@
+import NoItemsMessageBox from "../../../shared/components/NoItemsMessageBox";
 import Banner from "./components/Banner/Banner";
-import Menu from "./components/Menu/Menu";
+import { MenuV2 } from "./components/Menu/MenuV2";
 import RestaurantQuickInfo from "./components/RestaurantQuickInfo/RestaurantQuickInfo";
 import StoreHoursModal from "./components/StoreHoursModal/StoreHoursModal";
 import { useRestaurantPage } from "./useRestaurantPage";
@@ -7,7 +8,7 @@ import { useRestaurantPage } from "./useRestaurantPage";
 const RestaurantPage = () => {
   const {
     restaurantDetail,
-    finalMenu: menu,
+    menu,
     categories,
     operatingHours,
     todayHours,
@@ -17,16 +18,18 @@ const RestaurantPage = () => {
   } = useRestaurantPage();
 
   return (
-    <main className="px-[16px] pt-[8px]">
+    <main className="pt-5 px-5 pb-[16px]">
       {restaurantDetail && <Banner bannerInfo={restaurantDetail} />}
       <RestaurantQuickInfo
         onClickOperatingHours={handleClickOperatingHours}
         todayHours={todayHours}
       />
       {menu.length === 0 ? (
-        <div></div>
+        <div className="mt-3">
+          <NoItemsMessageBox title="No registered menus yet" content="" />
+        </div>
       ) : (
-        <Menu categories={categories} menu={menu} />
+        <MenuV2 categories={categories} menu={menu} />
       )}
 
       {operatingHoursPopUpOpen && (

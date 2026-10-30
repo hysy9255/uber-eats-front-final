@@ -1,3 +1,3 @@
-export type AddCategoryFormValues = {
+export type AddCategoryForm = {
   categoryName: string;
 };

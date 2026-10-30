@@ -1,21 +1,14 @@
+import { useMenuModalContext } from "../MenuTable/context/useMenuModalContext";
 import AddItemButton from "./AddItemButton";
 
-interface OwnerMenuPageHeaderProps {
-  onClickAddItemButton: () => void;
-}
-
-const OwnerMenuPageHeader: React.FC<OwnerMenuPageHeaderProps> = ({
-  onClickAddItemButton,
-}) => {
+export const MenuPageHeader = () => {
+  const { openAddMenuModal } = useMenuModalContext();
   return (
-    <header className="flex items-center justify-between">
+    <header className="flex justify-between h-10">
       <h1 className="text-[24px] font-bold tracking-[-0.5px] text-gray-950">
         Menu
       </h1>
-
-      <AddItemButton onClick={onClickAddItemButton} />
+      <AddItemButton onClick={openAddMenuModal} />
     </header>
   );
 };
-
-export default OwnerMenuPageHeader;

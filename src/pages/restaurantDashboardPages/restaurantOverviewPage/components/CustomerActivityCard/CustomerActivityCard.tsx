@@ -3,7 +3,7 @@ import { CustomerMetric } from "./CustomerMetric";
 
 export const CustomerActivityCard = () => {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
       <h3 className="text-lg font-bold text-gray-950">Customer activity</h3>
 
       <div className="mt-4 grid grid-cols-2">

@@ -7,9 +7,13 @@ import type { RestaurantKpiSummaryDTO } from "../../api/queries/getRestaurantKpi
 
 interface KpiSectionProps {
   overviewSummary?: RestaurantKpiSummaryDTO;
+  className?: string;
 }
 
-const KpiSection: React.FC<KpiSectionProps> = ({ overviewSummary }) => {
+const KpiSection: React.FC<KpiSectionProps> = ({
+  overviewSummary,
+  className,
+}) => {
   const metrics = [
     {
       key: "orders",
@@ -46,7 +50,7 @@ const KpiSection: React.FC<KpiSectionProps> = ({ overviewSummary }) => {
   ];
 
   return (
-    <section className="mt-4 grid grid-cols-4 gap-4">
+    <section className={`${className} grid grid-cols-4 gap-4`}>
       {metrics.map((metric) => (
         <MetricCard
           key={metric.key}

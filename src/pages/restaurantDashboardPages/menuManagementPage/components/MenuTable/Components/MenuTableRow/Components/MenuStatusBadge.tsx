@@ -1,4 +1,4 @@
-export type MenuStatus = "Active" | "Inactive" | "Out of stock";
+export type MenuStatus = "Available" | "Unavailable";
 
 interface MenuStatusBadgeProps {
   status: MenuStatus;
@@ -9,24 +9,17 @@ export const MenuStatusBadge = ({ status }: MenuStatusBadgeProps) => {
     "inline-flex w-[90px] justify-center items-center rounded-full px-3 py-1 text-xs font-medium";
 
   switch (status) {
-    case "Active":
+    case "Available":
       return (
         <span className={`${baseClass} bg-green-50 text-green-700`}>
-          Active
+          Available
         </span>
       );
 
-    case "Inactive":
+    case "Unavailable":
       return (
         <span className={`${baseClass} bg-gray-100 text-gray-600`}>
-          Inactive
-        </span>
-      );
-
-    case "Out of stock":
-      return (
-        <span className={`${baseClass} bg-red-50 text-red-600`}>
-          Out of stock
+          Unavailable
         </span>
       );
   }

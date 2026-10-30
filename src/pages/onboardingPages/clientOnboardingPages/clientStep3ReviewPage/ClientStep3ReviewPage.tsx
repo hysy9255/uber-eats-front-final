@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import ReviewContent from "./components/ReviewContent";
 import { ClientStep3RightPanel } from "./components/ClientStep3RightPanel";
 import { useClientStep3Review } from "./useClientStep3Review";
-import type { ClientOnBoardContext } from "../Shared/ClientOnBoardFlow";
+import type { ClientOnBoardContext } from "../shared/ClientOnBoardFlow";
 import OnBoardSteps from "../../shared/components/OnBoardSteps";
 import OnBoardHeadline from "../../shared/components/OnBoardHeadline";
 import OnBoardDescription from "../../shared/components/OnBoardDescription";

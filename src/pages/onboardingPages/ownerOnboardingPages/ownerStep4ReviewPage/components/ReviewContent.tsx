@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import type { OwnerOnBoardingForm } from "../../constants/OwnerOnBoardingForm.type";
+import type { OwnerOnBoardingForm } from "../../types/ownerOnBoardingForm.type";
 import EditButton from "./EditButton";
 import AgreementsSection from "./AgreementsSection";
 import { formatAddress } from "../utils/formatAddress";

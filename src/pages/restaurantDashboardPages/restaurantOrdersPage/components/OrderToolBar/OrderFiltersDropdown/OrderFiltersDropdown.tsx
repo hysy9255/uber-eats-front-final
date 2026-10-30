@@ -13,6 +13,7 @@ interface OrderFiltersDropdownProps {
   onClose: () => void;
   onReset: () => void;
   onApply: () => void;
+  className?: string;
 }
 
 const OrderFiltersDropdown = ({
@@ -21,22 +22,19 @@ const OrderFiltersDropdown = ({
   onClose,
   onReset,
   onApply,
+  className,
 }: OrderFiltersDropdownProps) => {
   return (
     <div
-      className="
-        absolute
-        right-0
-        top-[calc(100%+8px)]
+      className={`
+        ${className}
         z-50
         w-[340px]
         rounded-2xl
-        border
-        border-gray-200
-        bg-white
+        border border-gray-200 bg-white
         p-5
-        shadow-xl
-      "
+        shadow-xl  
+        `}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
