@@ -1,5 +1,5 @@
-import ApplyButton from "./Components/ApplyButton";
-import ResetButton from "./Components/ResetButton";
+import ApplyButton from "./ApplyButton";
+import ResetButton from "./ResetButton";
 import type { OrderFilters } from "./constants/orderFilters.type";
 import {
   OrderTimeFilterEnum,

@@ -1,10 +1,10 @@
 import OwnerHoursPageHeader from "./components/OwnerHoursPageHeader";
-import OperatingHoursList from "./components/OperatingHoursList/OperatingHoursList";
+import OperatingHoursList from "./components/OperatingHoursList";
 import OperatingHoursEditor from "./components/OperatingHoursEditor/OperatingHoursEditor";
-import { useRestaurantHoursPage } from "./hooks/useRestaurantHoursPage";
 import DiscardChangesButton from "./components/DiscardChangesButton";
 import SaveChangesButton from "./components/SaveChangesButton";
 import Toast from "../../clientPages/shared/components/Toast";
+import { useRestaurantHoursPage } from "./hooks/useRestaurantHoursPage";
 
 const RestaurantHoursPage = () => {
   const {

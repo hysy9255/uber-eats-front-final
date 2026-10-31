@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { MoreVerticalButton } from "../../../../menuManagementPage/components/shared/components/MoreVerticalButton";
+import { MoreVerticalButton } from "../../../../MenuManagementPage/components/shared/MoreVerticalButton";
 import type { OrderStatus } from "../../../types/orderStatus.enum";
 import OrderMoreMenu from "./OrderMoreMenu/OrderMoreMenu";
 

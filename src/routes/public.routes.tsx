@@ -1,5 +1,5 @@
-import LoginPage from "../pages/loginPage/LoginPage";
-import CreateAccountPage from "../pages/createAccountPage/CreateAccountPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import CreateAccountPage from "../pages/CreateAccountPage/CreateAccountPage";
 import RequireGuest from "../shared/components/RequireGuest";
 
 export const publicRoutes = [

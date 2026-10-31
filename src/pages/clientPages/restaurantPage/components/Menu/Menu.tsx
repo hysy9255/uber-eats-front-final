@@ -1,9 +1,9 @@
 import { useState } from "react";
-import PrevNextButtons from "./Components/PrevNextButtons";
-import ViewAllMenuButton from "./Components/ViewAllMenuButton";
-import Categories from "./Components/Categories/Categories";
-import { MenuSection } from "./Components/MenuSection";
-import type { DishSummaryDTO } from "../../../dishPage/api/getDishSummaries/dishSummary.dto";
+import PrevNextButtons from "./PrevNextButtons";
+import ViewAllMenuButton from "./ViewAllMenuButton";
+import Categories from "./Categories/Categories";
+import { MenuSection } from "./MenuSection";
+import type { DishSummaryDTO } from "../../../DishPage/api/getDishSummaries/dishSummary.dto";
 
 interface MenuProps {
   categories: string[];

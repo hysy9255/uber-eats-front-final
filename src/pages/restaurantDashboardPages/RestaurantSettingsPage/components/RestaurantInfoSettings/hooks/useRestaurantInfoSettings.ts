@@ -3,7 +3,7 @@ import type { UpdateRestaurantSettingForm } from "../../../types/updateRestauran
 import { useForm } from "react-hook-form";
 import { useRestaurantInfoData } from "./useRestaurantInfoData";
 import type { UpdateRestaurantSettingDTO } from "../../../api/updateRestaurantSetting/updateRestaurantSetting.dto";
-import { resolveDishImgUrl } from "../../../../menuManagementPage/components/shared/utils/resolveDishImgUrl";
+import { resolveDishImgUrl } from "../../../../MenuManagementPage/components/shared/utils/resolveDishImgUrl";
 
 export const useRestaurantInfoSettings = () => {
   const { loadRestaurantInfoData, updateRestaurantInfo } =

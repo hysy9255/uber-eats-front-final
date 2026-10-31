@@ -1,7 +1,7 @@
 import { ExternalLink, Settings } from "lucide-react";
 import DefaultRestaurantLogoImg from "../../../../shared/components/DefaultRestaurantLogoImg/DefaultRestaurantLogoImg";
 import { capitalizeWords } from "../../../../shared/utils/capitalizeWords";
-import type { RestaurantDetailDTO } from "../../../clientPages/restaurantPage/api/restaurantDetail.dto";
+import type { RestaurantDetailDTO } from "../../../clientPages/RestaurantPage/api/restaurantDetail.dto";
 
 interface RestaurantSummaryProps {
   restaurantDetail?: RestaurantDetailDTO;

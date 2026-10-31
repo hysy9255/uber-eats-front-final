@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { OrderStatus } from "../../../../restaurantDashboardPages/restaurantOrdersPage/types/orderStatus.enum";
+import { OrderStatus } from "../../../../restaurantDashboardPages/RestaurantOrdersPage/types/orderStatus.enum";
 import { capitalizeWords } from "../../../../../shared/utils/capitalizeWords";
 
 const progressSteps: OrderStatus[] = [

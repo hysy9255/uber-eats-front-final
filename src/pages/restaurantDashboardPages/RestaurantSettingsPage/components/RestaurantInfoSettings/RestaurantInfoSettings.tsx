@@ -1,12 +1,12 @@
-import Footer from "./components/Footer";
-import { RestaurantImageField } from "./components/RestaurantImageField";
-import RestaurantInfoSettingsHeader from "./components/RestaurantInfoSettingHeader/RestaurantInfoSettingsHeader";
 import { FormProvider } from "react-hook-form";
-import { RestaurantPreviewModal } from "./components/RestaurantPreviewModal";
-import RestaurantLogoField from "./components/RestaurantLogoField";
 import Toast from "../../../../clientPages/shared/components/Toast";
-import { FormField } from "./components/FormField";
 import { useRestaurantInfoSettings } from "./hooks/useRestaurantInfoSettings";
+import RestaurantInfoSettingsHeader from "./RestaurantInfoSettingHeader/RestaurantInfoSettingsHeader";
+import { FormField } from "./FormField";
+import RestaurantLogoField from "./RestaurantLogoField";
+import { RestaurantImageField } from "./RestaurantImageField";
+import Footer from "./Footer";
+import { RestaurantPreviewModal } from "./RestaurantPreviewModal";
 
 export const RestaurantInfoSettings = () => {
   const {

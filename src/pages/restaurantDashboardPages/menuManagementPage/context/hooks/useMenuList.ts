@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { MenuTab } from "../../constants/tabs";
-import type { MenuSortType } from "../../components/MenuToolBar/components/MenuSortDropdown/menuSortType";
+import type { MenuSortType } from "../../components/MenuToolBar/MenuSortDropdown/menuSortType";
 import type { OwnerDishSummaryDTO } from "../../api/dish/getOwnerDishSummaries/ownerDishSummary.dto";
 import type { DishCategoryDTO } from "../../api/category/getDishCategories/dishCategory.dto";
 import { useMenuQuery } from "./useMenuQuery";

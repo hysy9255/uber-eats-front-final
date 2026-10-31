@@ -5,9 +5,9 @@ import {
   Clock3,
   WalletCards,
 } from "lucide-react";
-import InfoSection from "./Components/InfoSection";
-import { formatTime } from "../../utils/formatTime";
 import type { RestaurantHoursDTO } from "../../../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/restaurantHours.dto";
+import InfoSection from "./InfoSection";
+import { formatTime } from "../../utils/formatTime";
 
 const deliveryTime = "10 - 20 mins";
 const minimumOrder = 15000;

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { CartDTO } from "../../../cartPage/api/getCart/cart.dto";
+import type { CartDTO } from "../../../CartPage/api/getCart/cart.dto";
 
 type CartContextValue = {
   cart: CartDTO | null;

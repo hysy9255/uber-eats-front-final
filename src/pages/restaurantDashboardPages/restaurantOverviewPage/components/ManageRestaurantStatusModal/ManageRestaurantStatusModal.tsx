@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { STATUS_OPTIONS } from "./constants/statusOptions";
-import Overlay from "./Components/Overlay";
-import ModalHeader from "./Components/ModalHeader";
-import ModalFooter from "./Components/ModalFooter";
-import CancelButton from "./Components/CancelButton";
-import SaveButton from "./Components/SaveButton";
-import StatusOptionCard from "./Components/StatusOptionCard";
+import Overlay from "./Overlay";
+import ModalHeader from "./ModalHeader";
+import ModalFooter from "./ModalFooter";
+import CancelButton from "./CancelButton";
+import SaveButton from "./SaveButton";
+import StatusOptionCard from "./StatusOptionCard";
 import { RestaurantStatus } from "../../../../../shared/types/restaurantStatus.type";
 
 interface ManageRestaurantStatusModalProps {

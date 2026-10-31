@@ -16,8 +16,8 @@ import { useRestaurantDashboard } from "../shared/context/useRestaurantDashboard
 import { getMyProfile } from "../../../shared/api/getMyProfile/getMyProfile";
 import type { UserProfileDTO } from "../../../shared/api/getMyProfile/userProfile.dto";
 import { RestaurantStatus } from "../../../shared/types/restaurantStatus.type";
-import type { RestaurantDetailDTO } from "../../clientPages/restaurantPage/api/restaurantDetail.dto";
-import { getRestaurantDetail } from "../../clientPages/restaurantPage/api/getRestaurantDetail";
+import type { RestaurantDetailDTO } from "../../clientPages/RestaurantPage/api/restaurantDetail.dto";
+import { getRestaurantDetail } from "../../clientPages/RestaurantPage/api/getRestaurantDetail";
 
 export const useRestaurantOverviewPage = () => {
   const token = getToken();

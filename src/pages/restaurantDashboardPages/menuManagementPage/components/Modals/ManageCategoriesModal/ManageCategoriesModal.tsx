@@ -1,7 +1,7 @@
-import AddCategorySection from "./components/AddCategorySection/AddCategorySection";
-import CategoryList from "./components/CategoryList/CategoryList";
-import CategoryActionModals from "./components/CategoryActionModals/CategoryActionModals";
-import CategoriesModalHeader from "./components/CategoriesModalHeader";
+import AddCategorySection from "./AddCategorySection/AddCategorySection";
+import CategoryList from "./CategoryList/CategoryList";
+import CategoryActionModals from "./CategoryActionModals/CategoryActionModals";
+import CategoriesModalHeader from "./CategoriesModalHeader";
 import { CategoriesModalProvider } from "./context/CategoriesModalProvider";
 
 interface ManageCategoriesModalProps {

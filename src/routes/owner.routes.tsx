@@ -3,14 +3,14 @@ import { UserRole } from "../shared/types/userRole.type";
 import OwnerDashboardLayout from "../layouts/RestaurantDashboardLayout/OwnerDashboardLayout";
 import RestaurantPromotionsPage from "../pages/restaurantDashboardPages/RestaurantPromotionsPage";
 import RestaurantSettingsPage from "../pages/restaurantDashboardPages/RestaurantSettingsPage/RestaurantSettingsPage";
-import RestaurantOrdersPage from "../pages/restaurantDashboardPages/restaurantOrdersPage/RestaurantOrdersPage";
-import MenuManagementPage from "../pages/restaurantDashboardPages/menuManagementPage/MenuManagementPage";
-import RestaurantOverviewPage from "../pages/restaurantDashboardPages/restaurantOverviewPage/RestaurantOverviewPage";
+import RestaurantOrdersPage from "../pages/restaurantDashboardPages/RestaurantOrdersPage/RestaurantOrdersPage";
+import MenuManagementPage from "../pages/restaurantDashboardPages/MenuManagementPage/MenuManagementPage";
+import RestaurantOverviewPage from "../pages/restaurantDashboardPages/RestaurantOverviewPage/RestaurantOverviewPage";
 import RestaurantHoursPage from "../pages/restaurantDashboardPages/RestaurantHoursPage/RestaurantHoursPage";
 import { RestaurantDashboardProvider } from "../pages/restaurantDashboardPages/shared/context/RestaurantDashboardProvider";
 import RequireRole from "../shared/components/RequiredRole";
-import { MenuManagementProvider } from "../pages/restaurantDashboardPages/menuManagementPage/context/MenuManagementProvider";
-import { MenuModalProvider } from "../pages/restaurantDashboardPages/menuManagementPage/components/MenuTable/context/MenuModalProvider";
+import { MenuManagementProvider } from "../pages/restaurantDashboardPages/MenuManagementPage/context/MenuManagementProvider";
+import { MenuModalProvider } from "../pages/restaurantDashboardPages/MenuManagementPage/components/MenuTable/context/MenuModalProvider";
 
 export const ownerRoutes = [
   {

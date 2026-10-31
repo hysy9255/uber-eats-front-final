@@ -3,13 +3,13 @@ import { extractUniqueCategories } from "./utils/extractUniqueCategories";
 import { getDayOfWeek } from "./utils/getDayOfWeek";
 import { useParams } from "react-router-dom";
 import { getRestaurantDetail } from "./api/getRestaurantDetail";
-import type { DishSummaryDTO } from "../dishPage/api/getDishSummaries/dishSummary.dto";
-import { getDishSummaries } from "../dishPage/api/getDishSummaries/getDishSummaries";
+import type { DishSummaryDTO } from "../DishPage/api/getDishSummaries/dishSummary.dto";
+import { getDishSummaries } from "../DishPage/api/getDishSummaries/getDishSummaries";
 import type { RestaurantDetailDTO } from "./api/restaurantDetail.dto";
-import type { RestaurantHoursDTO } from "../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/restaurantHours.dto";
-import { getRestaurantHours } from "../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/getRestaurantHours";
 import { socket } from "../../../socket";
 import type { RestaurantStatus } from "../../../shared/types/restaurantStatus.type";
+import type { RestaurantHoursDTO } from "../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/restaurantHours.dto";
+import { getRestaurantHours } from "../../restaurantDashboardPages/RestaurantHoursPage/api/getRestaurantHours/getRestaurantHours";
 
 export const useRestaurantPage = () => {
   const { restaurantId } = useParams();

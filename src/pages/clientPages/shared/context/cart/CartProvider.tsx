@@ -3,8 +3,8 @@ import { CartContext } from "./CartContext";
 import { getToken } from "../../../../../shared/utils/getToken";
 import { useAuth } from "../../../../../shared/context/auth/useAuth";
 import { UserRole } from "../../../../../shared/types/userRole.type";
-import type { CartDTO } from "../../../cartPage/api/getCart/cart.dto";
-import { getCart } from "../../../cartPage/api/getCart/getCart";
+import type { CartDTO } from "../../../CartPage/api/getCart/cart.dto";
+import { getCart } from "../../../CartPage/api/getCart/getCart";
 
 interface CartProviderProps {
   children: ReactNode;

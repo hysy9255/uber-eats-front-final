@@ -3,7 +3,7 @@ import AddressCard from "./AddressCard/AddressCard";
 import DeliveryTypeSelector from "./DeliveryTypeSelector/DeliveryTypeSelector";
 import OrderRequest from "./OrderRequest";
 import CheckoutButton from "./CheckoutButton";
-import { DeliveryType } from "../../../clientOrdersPage/types/deliveryType.enum";
+import { DeliveryType } from "../../../ClientOrdersPage/types/deliveryType.enum";
 import { CheckoutErrorModal } from "./CheckoutErrorModal";
 
 const OrderSummary = () => {

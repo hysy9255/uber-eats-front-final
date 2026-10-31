@@ -1,4 +1,4 @@
-import type { OrderStatus } from "../../../../restaurantDashboardPages/restaurantOrdersPage/types/orderStatus.enum";
+import type { OrderStatus } from "../../../../restaurantDashboardPages/RestaurantOrdersPage/types/orderStatus.enum";
 import type { OrderItemDTO } from "../shared/orderItem.dto";
 
 export type ClientOrderDetailDTO = {

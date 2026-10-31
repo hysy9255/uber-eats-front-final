@@ -1,5 +1,5 @@
 import { Bike, CheckCircle2, ChefHat, Clock3 } from "lucide-react";
-import { OrderStatus } from "../../../restaurantOrdersPage/types/orderStatus.enum";
+import { OrderStatus } from "../../../RestaurantOrdersPage/types/orderStatus.enum";
 
 export const OrderStatusBadge = ({ status }: { status: OrderStatus }) => {
   switch (status) {

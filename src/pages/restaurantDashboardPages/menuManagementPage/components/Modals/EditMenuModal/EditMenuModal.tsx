@@ -1,17 +1,17 @@
 import { FormProvider, useForm } from "react-hook-form";
-import CancelButton from "../../shared/components/CancelButton";
+import CancelButton from "../../shared/CancelButton";
 import { createPortal } from "react-dom";
-import ReadonlyField from "./components/Inputs/ReadonlyField";
-import EditMenuItemModalHeader from "./components/EditMenuItemModalHeader";
-import SaveButton from "../../shared/components/SaveButton";
-import { FormField } from "../../shared/components/inputs/FormField";
-import GeneralInput from "../../shared/components/inputs/GeneralInput";
-import PriceInput from "../../shared/components/inputs/PriceInput";
-import DescriptionInput from "../../shared/components/inputs/DescriptionInput";
-import { ImageInput } from "../../shared/components/inputs/ImageInput";
+import ReadonlyField from "./Inputs/ReadonlyField";
+import EditMenuItemModalHeader from "./EditMenuItemModalHeader";
+import SaveButton from "../../shared/SaveButton";
+import { FormField } from "../../shared/inputs/FormField";
+import GeneralInput from "../../shared/inputs/GeneralInput";
+import PriceInput from "../../shared/inputs/PriceInput";
+import DescriptionInput from "../../shared/inputs/DescriptionInput";
+import { ImageInput } from "../../shared/inputs/ImageInput";
 import type { EditMenuForm } from "./edit-menu-form.types";
 import { useEffect } from "react";
-import { useMenuMutation } from "../../MenuTable/components/MenuTableRow/components/MenuItemActions/hooks/useMenuMutation";
+import { useMenuMutation } from "../../MenuTable/MenuTableRow/MenuItemActions/hooks/useMenuMutation";
 import { useMenuModalContext } from "../../MenuTable/context/useMenuModalContext";
 
 export const EditMenuModal = () => {

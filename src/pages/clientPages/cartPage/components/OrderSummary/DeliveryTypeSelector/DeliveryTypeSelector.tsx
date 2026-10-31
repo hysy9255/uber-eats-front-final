@@ -1,4 +1,4 @@
-import type { DeliveryType } from "../../../../clientOrdersPage/types/deliveryType.enum";
+import type { DeliveryType } from "../../../../ClientOrdersPage/types/deliveryType.enum";
 import RoundCheckBox from "./RoundCheckBox";
 
 interface DeliveryTypeSelectorProps {

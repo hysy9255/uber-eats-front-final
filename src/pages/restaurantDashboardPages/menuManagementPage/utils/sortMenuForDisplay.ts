@@ -1,5 +1,5 @@
 import type { OwnerDishSummaryDTO } from "../api/dish/getOwnerDishSummaries/ownerDishSummary.dto";
-import type { MenuSortType } from "../components/MenuToolBar/components/MenuSortDropdown/menuSortType";
+import type { MenuSortType } from "../components/MenuToolBar/MenuSortDropdown/menuSortType";
 
 export const sortMenuForDisplay = (
   menu: OwnerDishSummaryDTO[],

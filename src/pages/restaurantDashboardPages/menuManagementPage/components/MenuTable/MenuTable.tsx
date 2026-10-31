@@ -1,9 +1,9 @@
-import { TableHeader } from "./components/TableHeader";
-import { MenuTableRow } from "./components/MenuTableRow/MenuTableRow";
+import { TableHeader } from "./TableHeader";
+import { MenuTableRow } from "./MenuTableRow/MenuTableRow";
 import { useMenuManagement } from "../../context/useMenuManagement";
-import { useMenuDropdown } from "./components/MenuTableRow/components/MenuItemActions/useMenuDropdown";
+import { useMenuDropdown } from "./MenuTableRow/MenuItemActions/useMenuDropdown";
 import type { OwnerDishSummaryDTO } from "../../api/dish/getOwnerDishSummaries/ownerDishSummary.dto";
-import { useMenuMutation } from "./components/MenuTableRow/components/MenuItemActions/hooks/useMenuMutation";
+import { useMenuMutation } from "./MenuTableRow/MenuItemActions/hooks/useMenuMutation";
 import { useMenuModalContext } from "./context/useMenuModalContext";
 
 interface MenuTableProps {

@@ -1,8 +1,8 @@
 import type { DayHours } from "../../types/dayHours.type";
 import type { DayOfWeek } from "../../types/dayOfWeek.type";
-import OperatingHoursEditorHeader from "./Components/OperatingHoursEditorHeader/OperatingHoursEditorHeader";
-import OperatingHoursTimeSection from "./Components/OperatingHoursTimeSection";
-import ClosedDayState from "./Components/ClosedDayState";
+import OperatingHoursEditorHeader from "./OperatingHoursEditorHeader";
+import OperatingHoursTimeSection from "./OperatingHoursTimeSection";
+import ClosedDayState from "./ClosedDayState";
 import type { UpdateSelectedDay } from "../../types/updateSelectedDay.type";
 
 interface OperatingHoursEditorProps {

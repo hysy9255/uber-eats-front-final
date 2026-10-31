@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "@/shared/utils/getToken";
-import { addToCart } from "../../cartPage/api/addToCart/addToCart";
-import { replaceItems } from "../../cartPage/api/addToCart/replaceItems";
+import { addToCart } from "../../CartPage/api/addToCart/addToCart";
+import { replaceItems } from "../../CartPage/api/addToCart/replaceItems";
 import { getDishDetail } from "../api/getDishDetail/getDishDetail";
 import type { DishDetailDTO } from "../api/getDishDetail/dishDetail.dto";
 import { useQuantity } from "./useQuantity";

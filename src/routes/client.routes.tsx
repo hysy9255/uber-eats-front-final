@@ -1,11 +1,11 @@
 import { UserRole } from "@/shared/types/userRole.type";
-import ProfilePage from "@/pages/profilePage/ProfilePage";
+import ProfilePage from "@/pages/ProfilePage/ProfilePage";
 import { CartProvider } from "@/pages/clientPages/shared/context/cart/CartProvider";
-import RestaurantsPage from "../pages/clientPages/restaurantsPage/RestaurantsPage";
-import RestaurantPage from "../pages/clientPages/restaurantPage/RestaurantPage";
-import DishPage from "../pages/clientPages/dishPage/DishPage";
-import CartPage from "../pages/clientPages/cartPage/CartPage";
-import { ClientOrdersPage } from "../pages/clientPages/clientOrdersPage/ClientOrdersPage";
+import RestaurantsPage from "../pages/clientPages/RestaurantsPage/RestaurantsPage";
+import RestaurantPage from "../pages/clientPages/RestaurantPage/RestaurantPage";
+import DishPage from "../pages/clientPages/DishPage/DishPage";
+import CartPage from "../pages/clientPages/CartPage/CartPage";
+import { ClientOrdersPage } from "../pages/clientPages/ClientOrdersPage/ClientOrdersPage";
 import ClientPageLayout from "../layouts/ClientPageLayout/ClientPageLayout";
 import { AddressProvider } from "../pages/clientPages/shared/context/address/AddressProvider";
 import RequireRole from "../shared/components/RequiredRole";

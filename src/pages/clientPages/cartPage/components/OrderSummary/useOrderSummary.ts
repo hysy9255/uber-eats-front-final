@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { placeOrder } from "../../api/placeOrder/placeOrder";
-import { DeliveryType } from "../../../clientOrdersPage/types/deliveryType.enum";
-import type { PlaceOrderForm } from "../../../clientOrdersPage/types/placeOrderForm.type";
+import { DeliveryType } from "../../../ClientOrdersPage/types/deliveryType.enum";
+import type { PlaceOrderForm } from "../../../ClientOrdersPage/types/placeOrderForm.type";
 import { useCart } from "../../../shared/context/cart/useCart";
 
 export const useOrderSummary = () => {

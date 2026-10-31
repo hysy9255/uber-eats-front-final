@@ -1,9 +1,9 @@
-import { useMenuMutation } from "../components/MenuTable/components/MenuTableRow/components/MenuItemActions/hooks/useMenuMutation";
+import { useMenuMutation } from "../components/MenuTable/MenuTableRow/MenuItemActions/hooks/useMenuMutation";
 import { useMenuModalContext } from "../components/MenuTable/context/useMenuModalContext";
 import { AddMenuModal } from "../components/Modals/AddMenuIModal/AddMenuIModal";
 import { EditMenuModal } from "../components/Modals/EditMenuModal/EditMenuModal";
 import { ManageCategoriesModal } from "../components/Modals/ManageCategoriesModal/ManageCategoriesModal";
-import DeleteModal from "../components/shared/components/DeleteModal/DeleteModal";
+import DeleteModal from "../components/shared/DeleteModal/DeleteModal";
 
 export const MenuActionModals = () => {
   const {

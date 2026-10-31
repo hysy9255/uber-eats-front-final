@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
-import CategoriesDropdown from "./components/CategoriesDropdown";
-import ManageCategoriesButton from "./components/ManageCategoriesButton";
-import { MenuSortDropdown } from "./components/MenuSortDropdown/MenuSortDropdown";
+import CategoriesDropdown from "./CategoriesDropdown";
+import ManageCategoriesButton from "./ManageCategoriesButton";
+import { MenuSortDropdown } from "./MenuSortDropdown/MenuSortDropdown";
 import { useMenuManagement } from "../../context/useMenuManagement";
 import { useMenuModalContext } from "../MenuTable/context/useMenuModalContext";
 

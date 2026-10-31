@@ -8,7 +8,7 @@ import type {
 } from "./api/getClientOrderSummaries/clientOrderSummary.dto";
 import { getClientOrderSummaries } from "./api/getClientOrderSummaries/getClientOrderSummaries";
 import { socket } from "../../../socket";
-import { OrderStatus } from "../../restaurantDashboardPages/restaurantOrdersPage/types/orderStatus.enum";
+import { OrderStatus } from "../../restaurantDashboardPages/RestaurantOrdersPage/types/orderStatus.enum";
 
 export const useClientOrdersPage = () => {
   const token = getToken();

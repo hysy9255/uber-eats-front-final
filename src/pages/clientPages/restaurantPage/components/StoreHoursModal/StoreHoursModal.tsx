@@ -1,9 +1,9 @@
 import { createPortal } from "react-dom";
-import Overlay from "./Components/Overlay";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import HourRow from "./Components/HourRow";
-import ModalLayout from "./Components/ModalLayout";
+import Overlay from "./Overlay";
+import Header from "./Header";
+import Footer from "./Footer";
+import HourRow from "./HourRow";
+import ModalLayout from "./ModalLayout";
 import { sortHoursDataByDays } from "../../utils/sortHoursDataByDays";
 import type { DayOfWeekType } from "../../api/restaurantDetail.dto";
 

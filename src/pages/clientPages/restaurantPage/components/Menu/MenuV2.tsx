@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import Categories from "./Components/Categories/Categories";
-import { MenuSection } from "./Components/MenuSection";
-import type { DishSummaryDTO } from "../../../dishPage/api/getDishSummaries/dishSummary.dto";
+import Categories from "./Categories/Categories";
+import { MenuSection } from "./MenuSection";
+import type { DishSummaryDTO } from "../../../DishPage/api/getDishSummaries/dishSummary.dto";
 
 interface MenuProps {
   categories: string[];
