@@ -9,6 +9,7 @@ import EditAddress from "./components/EditAddress/EditAddress";
 interface AddressPopUpProps {
   closeAddressPopUp: () => void;
 }
+
 const ManageDeliveryAddressModal = ({
   closeAddressPopUp,
 }: AddressPopUpProps) => {
@@ -31,8 +32,7 @@ const ManageDeliveryAddressModal = ({
       className="
         fixed inset-0 z-[9999]
         flex items-center justify-center
-        px-4 py-6
-      "
+        p-3 sm:px-4 sm:py-6"
       role="dialog"
       aria-modal="true"
     >
@@ -41,51 +41,50 @@ const ManageDeliveryAddressModal = ({
       <div
         className={`
           relative z-10
-          w-full
-          max-h-[85vh]
+          flex w-full min-w-0 flex-col
+          max-h-[calc(100dvh-24px)]
           overflow-hidden
-          rounded-[28px]
+          rounded-[20px]
           bg-white
           shadow-[0_30px_80px_rgba(15,23,42,0.25)]
-          transition-[max-width]
-          duration-300
-
+          transition-[max-width] duration-300
+          sm:max-h-[85dvh]
+          sm:rounded-[28px]
           ${
-            panel !== AddressPanelType.List ? "max-w-[1180px]" : "max-w-[760px]"
+            panel === AddressPanelType.List ? "max-w-[760px]" : "max-w-[1180px]"
           }
         `}
       >
-        {/* LIST */}
-        {panel === AddressPanelType.List && (
-          <AddressList
-            addresses={addresses}
-            setSelectedAddressId={setSelectedAddressId}
-            selectedAddressId={selectedAddressId}
-            setAddressToEdit={setAddressToEdit}
-            setPanel={setPanel}
-            handleDeleteAddress={handleDeleteAddress}
-            handleClickSetAsDefault={handleClickSetAsDefault}
-            closeAddressPopUp={closeAddressPopUp}
-            canChangeDefault={canChangeDefault}
-          />
-        )}
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          {panel === AddressPanelType.List && (
+            <AddressList
+              addresses={addresses}
+              setSelectedAddressId={setSelectedAddressId}
+              selectedAddressId={selectedAddressId}
+              setAddressToEdit={setAddressToEdit}
+              setPanel={setPanel}
+              handleDeleteAddress={handleDeleteAddress}
+              handleClickSetAsDefault={handleClickSetAsDefault}
+              closeAddressPopUp={closeAddressPopUp}
+              canChangeDefault={canChangeDefault}
+            />
+          )}
 
-        {/* ADD */}
-        {panel === AddressPanelType.Add && (
-          <AddAddress
-            onSuccessAddAddress={loadMyDeliveryAddresses}
-            closeAddAddress={() => setPanel(AddressPanelType.List)}
-          />
-        )}
+          {panel === AddressPanelType.Add && (
+            <AddAddress
+              onSuccessAddAddress={loadMyDeliveryAddresses}
+              closeAddAddress={() => setPanel(AddressPanelType.List)}
+            />
+          )}
 
-        {/* EDIT */}
-        {panel === AddressPanelType.Edit && addressToEdit && (
-          <EditAddress
-            onSuccessAddAddress={loadMyDeliveryAddresses}
-            closeAddAddress={() => setPanel(AddressPanelType.List)}
-            addressToEdit={addressToEdit}
-          />
-        )}
+          {panel === AddressPanelType.Edit && addressToEdit && (
+            <EditAddress
+              onSuccessAddAddress={loadMyDeliveryAddresses}
+              closeAddAddress={() => setPanel(AddressPanelType.List)}
+              addressToEdit={addressToEdit}
+            />
+          )}
+        </div>
       </div>
     </div>,
     document.body

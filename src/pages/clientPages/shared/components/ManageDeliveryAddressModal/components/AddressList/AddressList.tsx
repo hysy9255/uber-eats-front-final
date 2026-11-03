@@ -1,3 +1,81 @@
+// import type { DeliveryAddressDTO } from "../../../../api/deliveryAddress.dto";
+// import type { AddressPanelType } from "../../constants/addressPanel.type";
+// import AddressCard from "./components/AddressCard/AddressCard";
+// import Footer from "./components/Footer";
+// import Header from "./components/Header";
+// import NoDeliveryAddresses from "./components/NoDeliveryAddresses";
+
+// interface AddressListProps {
+//   addresses?: DeliveryAddressDTO[];
+//   closeAddressPopUp: () => void;
+//   setSelectedAddressId: (value: string) => void;
+//   selectedAddressId?: string;
+//   setAddressToEdit: (value: DeliveryAddressDTO) => void;
+//   setPanel: (value: AddressPanelType) => void;
+//   handleDeleteAddress: (addressId: string) => void;
+//   handleClickSetAsDefault: () => void;
+//   canChangeDefault: boolean;
+// }
+
+// const AddressList: React.FC<AddressListProps> = ({
+//   addresses,
+//   closeAddressPopUp,
+//   setSelectedAddressId,
+//   selectedAddressId,
+//   setAddressToEdit,
+//   setPanel,
+//   handleDeleteAddress,
+//   handleClickSetAsDefault,
+//   canChangeDefault,
+// }) => {
+//   const sortedAddresses = [...(addresses ?? [])].sort(
+//     (a, b) => Number(b.isDefault) - Number(a.isDefault)
+//   );
+//   return (
+//     <div className="flex max-h-[85vh] flex-col">
+//       <Header closeAddressPopUp={closeAddressPopUp} />
+
+//       <div
+//         className="
+//         flex-1
+//         overflow-y-auto
+//         px-7 py-5
+//       "
+//       >
+//         <div className="flex flex-col gap-3">
+//           {sortedAddresses?.map((address) => {
+//             const selected = selectedAddressId === address.deliveryAddressId;
+
+//             return (
+//               <AddressCard
+//                 address={address}
+//                 setSelectedAddressId={setSelectedAddressId}
+//                 setAddressToEdit={setAddressToEdit}
+//                 setPanel={setPanel}
+//                 handleDeleteAddress={handleDeleteAddress}
+//                 selected={selected}
+//               />
+//             );
+//           })}
+
+//           {/* Empty */}
+//           {addresses?.length === 0 && <NoDeliveryAddresses />}
+//         </div>
+//       </div>
+
+//       <Footer
+//         closeAddressPopUp={closeAddressPopUp}
+//         setPanel={setPanel}
+//         handleClickSetAsDefault={handleClickSetAsDefault}
+//         selectedAddressId={selectedAddressId}
+//         canChangeDefault={canChangeDefault}
+//       />
+//     </div>
+//   );
+// };
+
+// export default AddressList;
+
 import type { DeliveryAddressDTO } from "../../../../api/deliveryAddress.dto";
 import type { AddressPanelType } from "../../constants/addressPanel.type";
 import AddressCard from "./components/AddressCard/AddressCard";
@@ -31,23 +109,26 @@ const AddressList: React.FC<AddressListProps> = ({
   const sortedAddresses = [...(addresses ?? [])].sort(
     (a, b) => Number(b.isDefault) - Number(a.isDefault)
   );
+
   return (
-    <div className="flex max-h-[85vh] flex-col">
+    <div className="flex min-h-0 max-h-[calc(100dvh-24px)] flex-col sm:max-h-[85dvh]">
       <Header closeAddressPopUp={closeAddressPopUp} />
 
       <div
         className="
-        flex-1
-        overflow-y-auto
-        px-7 py-5
-      "
+          min-h-0 flex-1
+          overflow-y-auto overscroll-contain
+          px-3 py-4
+          sm:px-7 sm:py-5
+        "
       >
-        <div className="flex flex-col gap-3">
-          {sortedAddresses?.map((address) => {
+        <div className="flex flex-col gap-2.5 sm:gap-3">
+          {sortedAddresses.map((address) => {
             const selected = selectedAddressId === address.deliveryAddressId;
 
             return (
               <AddressCard
+                key={address.deliveryAddressId}
                 address={address}
                 setSelectedAddressId={setSelectedAddressId}
                 setAddressToEdit={setAddressToEdit}
@@ -58,7 +139,6 @@ const AddressList: React.FC<AddressListProps> = ({
             );
           })}
 
-          {/* Empty */}
           {addresses?.length === 0 && <NoDeliveryAddresses />}
         </div>
       </div>
