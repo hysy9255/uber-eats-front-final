@@ -15,8 +15,8 @@ export const AddressProvider: React.FC<AddressProviderProps> = ({
 }) => {
   const { loggedIn, user, isAuthLoading } = useAuth();
 
-  const [addressList, setAddressList] = useState<DeliveryAddressDTO[]>();
-  const [address, setAddress] = useState<DeliveryAddressDTO>();
+  const [addresses, setAddresses] = useState<DeliveryAddressDTO[]>();
+  const [defaultAddress, setDefaultAddress] = useState<DeliveryAddressDTO>();
 
   const token = getToken();
 
@@ -27,8 +27,8 @@ export const AddressProvider: React.FC<AddressProviderProps> = ({
     try {
       if (!token) throw new Error("No Token");
       const data = await viewMyDeliveryAddresses(token);
-      setAddressList(data);
-      setAddress(data.find((d) => d.isDefault === true));
+      setAddresses(data);
+      setDefaultAddress(data.find((d) => d.isDefault === true));
     } catch (error) {
       console.error("Failed to load address", error);
     }
@@ -42,8 +42,8 @@ export const AddressProvider: React.FC<AddressProviderProps> = ({
   return (
     <AddressContext.Provider
       value={{
-        addressList,
-        address,
+        addresses,
+        defaultAddress,
         loadMyDeliveryAddresses,
       }}
     >

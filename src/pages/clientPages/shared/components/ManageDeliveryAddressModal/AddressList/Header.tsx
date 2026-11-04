@@ -1,10 +1,10 @@
 import { X } from "lucide-react";
 
 interface HeaderProps {
-  closeAddressPopUp: () => void;
+  onClose: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ closeAddressPopUp }) => {
+const Header: React.FC<HeaderProps> = ({ onClose }) => {
   return (
     <div
       className="
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ closeAddressPopUp }) => {
 
       <button
         type="button"
-        onClick={closeAddressPopUp}
+        onClick={onClose}
         aria-label="Close address modal"
         className="
           flex h-8 w-8 shrink-0

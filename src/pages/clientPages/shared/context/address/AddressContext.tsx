@@ -2,8 +2,8 @@ import { createContext } from "react";
 import type { DeliveryAddressDTO } from "../../api/deliveryAddress.dto";
 
 type AddressContextValue = {
-  addressList?: DeliveryAddressDTO[];
-  address?: DeliveryAddressDTO;
+  addresses?: DeliveryAddressDTO[];
+  defaultAddress?: DeliveryAddressDTO;
   loadMyDeliveryAddresses: () => Promise<void>;
 };
 

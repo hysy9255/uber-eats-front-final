@@ -1,6 +1,6 @@
 import type { AddressAlias } from "@/shared/types/addressAlias.type";
 
-export interface AddDeliveryAddressForm {
+export interface DeliveryAddressForm {
   streetAddress: string;
   apt: string | null;
   city: string;

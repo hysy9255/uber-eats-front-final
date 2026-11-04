@@ -1,10 +1,12 @@
+import type { AddressAlias } from "../../../../../../../shared/types/addressAlias.type";
+
 export class UpdateDeliveryAddressDTO {
   streetAddress: string;
   apt: string | null;
   city: string;
   state: string;
   zip: string;
-  alias: "home" | "work" | "other";
+  alias: AddressAlias;
   customAlias: string | null;
 
   constructor(data: {
@@ -13,7 +15,7 @@ export class UpdateDeliveryAddressDTO {
     city: string;
     state: string;
     zip: string;
-    alias: "home" | "work" | "other";
+    alias: AddressAlias;
     customAlias: string | null;
   }) {
     this.streetAddress = data.streetAddress;

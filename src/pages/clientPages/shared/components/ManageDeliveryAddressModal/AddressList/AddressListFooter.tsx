@@ -1,19 +1,17 @@
 import { Plus } from "lucide-react";
-import { AddressPanelType } from "../../../constants/addressPanel.type";
 
-interface FooterProps {
-  closeAddressPopUp: () => void;
-  setPanel: (value: AddressPanelType) => void;
-  handleClickSetAsDefault: () => void;
-  selectedAddressId?: string;
-  canChangeDefault: boolean;
+interface AddressListFooterProps {
+  onClose: () => void;
+  onAdd: () => void;
+  onSetDefault: () => void;
+  canSetDefault: boolean;
 }
 
-const Footer: React.FC<FooterProps> = ({
-  closeAddressPopUp,
-  setPanel,
-  handleClickSetAsDefault,
-  canChangeDefault,
+export const AddressListFooter: React.FC<AddressListFooterProps> = ({
+  onClose,
+  onAdd,
+  onSetDefault,
+  canSetDefault,
 }) => {
   return (
     <div
@@ -32,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({
       {/* Add Address */}
       <button
         type="button"
-        onClick={() => setPanel(AddressPanelType.Add)}
+        onClick={onAdd}
         className="
           flex h-9 min-w-0
           items-center justify-center
@@ -71,7 +69,7 @@ const Footer: React.FC<FooterProps> = ({
       >
         <button
           type="button"
-          onClick={closeAddressPopUp}
+          onClick={onClose}
           className="
             h-9 min-w-0
             whitespace-nowrap
@@ -94,8 +92,8 @@ const Footer: React.FC<FooterProps> = ({
 
         <button
           type="button"
-          onClick={handleClickSetAsDefault}
-          disabled={!canChangeDefault}
+          onClick={onSetDefault}
+          disabled={!canSetDefault}
           className="
             h-9 min-w-0
             whitespace-nowrap
@@ -121,5 +119,3 @@ const Footer: React.FC<FooterProps> = ({
     </div>
   );
 };
-
-export default Footer;

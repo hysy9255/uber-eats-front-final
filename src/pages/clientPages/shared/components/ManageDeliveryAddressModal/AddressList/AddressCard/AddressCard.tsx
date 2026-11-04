@@ -1,32 +1,29 @@
-import { AddressPanelType } from "../../../../constants/addressPanel.type";
-import { getAddressIcon } from "../../../../utils/getAddressIcon";
-import { getAddressTitle } from "../../../../utils/getAddressTitle";
-import { formatViewAddress } from "../../../../utils/formatViewAddress";
+import { getAddressIcon } from "../../utils/getAddressIcon";
+import { getAddressTitle } from "../../utils/getAddressTitle";
+import { formatViewAddress } from "../../utils/formatViewAddress";
 import DefaultAddressBadge from "./DefaultAddressBadge";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import type { DeliveryAddressDTO } from "../../../../../../api/deliveryAddress.dto";
+import type { DeliveryAddressDTO } from "../../../../api/deliveryAddress.dto";
 
 interface AddressCardProps {
   address: DeliveryAddressDTO;
-  setSelectedAddressId: (value: string) => void;
-  setAddressToEdit: (value: DeliveryAddressDTO) => void;
-  setPanel: (value: AddressPanelType) => void;
-  handleDeleteAddress: (addressId: string) => void;
-  selected: boolean;
+  isSelected: boolean;
+  onSelect: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
 const AddressCard: React.FC<AddressCardProps> = ({
   address,
-  setSelectedAddressId,
-  setAddressToEdit,
-  setPanel,
-  handleDeleteAddress,
-  selected,
+  isSelected,
+  onSelect,
+  onEdit,
+  onDelete,
 }) => {
   return (
     <div
-      onClick={() => setSelectedAddressId(address.deliveryAddressId)}
+      onClick={onSelect}
       className={`
         flex min-w-0 cursor-pointer
         flex-col gap-3
@@ -39,7 +36,7 @@ const AddressCard: React.FC<AddressCardProps> = ({
         sm:px-5 sm:py-5
 
         ${
-          selected
+          isSelected
             ? `
               border-green-500
               bg-green-50/60
@@ -63,10 +60,10 @@ const AddressCard: React.FC<AddressCardProps> = ({
             items-center justify-center
             rounded-full border-2
             sm:h-6 sm:w-6
-            ${selected ? "border-green-600" : "border-gray-300"}
+            ${isSelected ? "border-green-600" : "border-gray-300"}
           `}
         >
-          {selected && (
+          {isSelected && (
             <div className="h-2 w-2 rounded-full bg-green-600 sm:h-3 sm:w-3" />
           )}
         </div>
@@ -84,7 +81,7 @@ const AddressCard: React.FC<AddressCardProps> = ({
             sm:[&_svg]:h-6 sm:[&_svg]:w-6
 
             ${
-              selected
+              isSelected
                 ? "bg-green-100 text-green-700"
                 : "bg-gray-100 text-gray-500"
             }
@@ -159,16 +156,8 @@ const AddressCard: React.FC<AddressCardProps> = ({
         "
         onClick={(e) => e.stopPropagation()}
       >
-        <EditButton
-          onClick={() => {
-            setAddressToEdit(address);
-            setPanel(AddressPanelType.Edit);
-          }}
-        />
-
-        <DeleteButton
-          onClick={() => handleDeleteAddress(address.deliveryAddressId)}
-        />
+        <EditButton onClick={onEdit} />
+        <DeleteButton onClick={onDelete} />
       </div>
     </div>
   );

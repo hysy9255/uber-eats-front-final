@@ -1,8 +1,8 @@
 interface OverlayProps {
-  closeAddressPopUp: () => void;
+  onClose: () => void;
 }
 
-const Overlay: React.FC<OverlayProps> = ({ closeAddressPopUp }) => {
+const Overlay: React.FC<OverlayProps> = ({ onClose }) => {
   return (
     <div
       className="
@@ -10,7 +10,7 @@ const Overlay: React.FC<OverlayProps> = ({ closeAddressPopUp }) => {
           bg-black/45
           backdrop-blur-[2px]
         "
-      onClick={closeAddressPopUp}
+      onClick={onClose}
     />
   );
 };

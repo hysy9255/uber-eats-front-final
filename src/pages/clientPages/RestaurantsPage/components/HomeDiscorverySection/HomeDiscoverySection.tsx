@@ -17,7 +17,7 @@ const HomeDiscoverySection = () => {
   const [selectedFilter, setSelectedFilter] = useState<FilterType>("all");
   const [addressPopUpOpen, setAddressPopUpOpen] = useState(false);
 
-  const { address } = useAddress();
+  const { defaultAddress } = useAddress();
 
   const filters: {
     key: FilterType;
@@ -57,7 +57,7 @@ const HomeDiscoverySection = () => {
     <div className="w-full min-w-0 overflow-x-auto">
       {addressPopUpOpen && (
         <ManageDeliveryAddressModal
-          closeAddressPopUp={() => setAddressPopUpOpen(false)}
+          onClose={() => setAddressPopUpOpen(false)}
         />
       )}
 
@@ -73,7 +73,7 @@ const HomeDiscoverySection = () => {
             shadow-sm
           "
         >
-          {address && (
+          {defaultAddress && (
             <button
               onClick={() => setAddressPopUpOpen(true)}
               className="
@@ -93,11 +93,11 @@ const HomeDiscoverySection = () => {
 
               <span className="whitespace-nowrap text-xs font-semibold text-gray-900">
                 {formatViewAddress(
-                  address.streetAddress,
-                  address.apt,
-                  address.city,
-                  address.state,
-                  address.zip
+                  defaultAddress.streetAddress,
+                  defaultAddress.apt,
+                  defaultAddress.city,
+                  defaultAddress.state,
+                  defaultAddress.zip
                 )}
               </span>
 
