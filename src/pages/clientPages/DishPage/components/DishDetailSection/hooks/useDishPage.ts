@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "@/shared/utils/getToken";
-import { addToCart } from "../../CartPage/api/addToCart/addToCart";
-import { replaceItems } from "../../CartPage/api/addToCart/replaceItems";
-import { getDishDetail } from "../api/getDishDetail/getDishDetail";
-import type { DishDetailDTO } from "../api/getDishDetail/dishDetail.dto";
 import { useQuantity } from "./useQuantity";
-import { useCart } from "../../shared/context/cart/useCart";
+import type { DishDetailDTO } from "../../../api/getDishDetail/dishDetail.dto";
+import { useCart } from "../../../../shared/context/cart/useCart";
+import { getDishDetail } from "../../../api/getDishDetail/getDishDetail";
+import { addToCart } from "../../../../CartPage/api/addToCart/addToCart";
+import { replaceItems } from "../../../../CartPage/api/addToCart/replaceItems";
 
 export const useDishPage = (restaurantId?: string, dishId?: string) => {
   const navigate = useNavigate();

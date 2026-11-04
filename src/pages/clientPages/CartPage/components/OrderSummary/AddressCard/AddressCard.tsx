@@ -21,7 +21,7 @@ const AddressCard = () => {
     <Fragment>
       {addressPopUpOpen && (
         <ManageDeliveryAddressModal
-          closeAddressPopUp={() => setAddressPopUpOpen(false)}
+          onClose={() => setAddressPopUpOpen(false)}
         />
       )}
       <div className="bg-white grid grid-cols-[auto_6fr_1fr] text-sm font-medium relative rounded-md border-2 border-gray-200">

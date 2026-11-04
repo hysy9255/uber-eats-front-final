@@ -1,4 +1,4 @@
-import type { DeliveryAddressDTO } from "../../../api/deliveryAddress.dto";
+import type { DeliveryAddressDTO } from "../../../../api/deliveryAddress.dto";
 
 export const moveDefaultAddressToFront = (addresses?: DeliveryAddressDTO[]) => {
   const sortedAddresses = [...(addresses ?? [])].sort(
