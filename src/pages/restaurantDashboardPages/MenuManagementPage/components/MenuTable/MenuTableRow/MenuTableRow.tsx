@@ -1,7 +1,7 @@
 import { MenuStatusBadge } from "./MenuStatusBadge";
 import type { OwnerDishSummaryDTO } from "../../../api/dish/getOwnerDishSummaries/ownerDishSummary.dto";
-import NoImgAvailable from "@/shared/components/NoImgAvailable/NoImgAvailable";
 import { MenuActions } from "./MenuItemActions/MenuItemActions";
+import { NoImagePlaceholder } from "../../../../../../shared/components/NoImagePlaceHolder/NoImagePlaceHolder";
 
 interface MenuTableRowProps {
   item: OwnerDishSummaryDTO;
@@ -21,19 +21,22 @@ export const MenuTableRow = ({
   onToggleAvailability,
 }: MenuTableRowProps) => {
   return (
-    <tr className="border-t border-gray-100 hover:bg-gray-50/70 transition">
+    <tr className="border-t border-gray-100 transition hover:bg-gray-50/70">
       {/* Item */}
       <td className="px-4 py-3">
         <div className="flex items-center gap-3">
-          {item.dishImg === null ? (
-            <NoImgAvailable className="w-11 h-11 border border-gray-200 rounded-lg shrink-0" />
-          ) : (
-            <img
-              src={item.dishImg ? item.dishImg : undefined}
-              alt={item.name}
-              className="w-11 h-11 rounded-lg object-cover shrink-0 border border-gray-200"
-            />
-          )}
+          <div className="h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+            {item.dishImg ? (
+              <img
+                src={item.dishImg}
+                alt={item.name}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <NoImagePlaceholder iconOnly />
+            )}
+          </div>
+
           <span className="text-sm font-semibold text-gray-900">
             {item.name}
           </span>

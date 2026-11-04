@@ -3,6 +3,7 @@ import CartTable from "./CartTable";
 import { AddMenuButton } from "./AddMenuButton";
 import { useCart } from "../../../shared/context/cart/useCart";
 import DefaultRestaurantLogoImg from "../../../../../shared/components/DefaultRestaurantLogoImg/DefaultRestaurantLogoImg";
+import { capitalizeWords } from "../../../../../shared/utils/capitalizeWords";
 
 const CartSummary = () => {
   const { cart } = useCart();
@@ -21,7 +22,7 @@ const CartSummary = () => {
               <DefaultRestaurantLogoImg className="w-5 h-5 rounded-full border border-gray-400" />
             )}
             <h1 className="font-semibold text-xl leading-none">
-              {cart?.restaurantInfo?.restaurantName}
+              {capitalizeWords(cart?.restaurantInfo?.restaurantName)}
             </h1>
           </div>
         </Link>

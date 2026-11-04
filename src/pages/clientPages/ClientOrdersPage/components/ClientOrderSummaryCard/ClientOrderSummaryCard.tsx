@@ -1,9 +1,10 @@
 import { Clock3, Truck, ChefHat, MapPin, CheckCircle2 } from "lucide-react";
 
 import type { NewClientOrderSummaryDTO } from "../../api/getClientOrderSummaries/clientOrderSummary.dto";
-import NoImgAvailable from "../../../../../shared/components/NoImgAvailable/NoImgAvailable";
+
 import { capitalizeWords } from "../../../../../shared/utils/capitalizeWords";
 import { ProgressTracker } from "./ProgressTracker";
+import { NoImagePlaceholder } from "../../../../../shared/components/NoImagePlaceHolder/NoImagePlaceHolder";
 
 interface ClientOrderSummaryCardProps {
   order: NewClientOrderSummaryDTO;
@@ -74,6 +75,7 @@ export const ClientOrderSummaryCard = ({
         {/* Left: Image and Order Information */}
         <div className="flex min-w-0 flex-1 items-start gap-3 sm:gap-5">
           {/* Food Image */}
+
           <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100 sm:h-28 sm:w-28 xl:h-32 xl:w-32">
             {mainDishImg ? (
               <img
@@ -82,7 +84,7 @@ export const ClientOrderSummaryCard = ({
                 className="h-full w-full object-cover"
               />
             ) : (
-              <NoImgAvailable />
+              <NoImagePlaceholder compact />
             )}
           </div>
 

@@ -54,17 +54,6 @@ const DishCard: React.FC<DishCardProps> = ({
       `}
       >
         <div className="relative w-full aspect-[3/2] overflow-hidden rounded-t-lg">
-          {/* {dishImgUrl ? (
-            <img
-              src={dishImgUrl}
-              alt={name}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center bg-white">
-              <NoImgAvailable className="h-30 w-30" />
-            </div>
-          )} */}
           {dishImgUrl ? (
             <img
               src={dishImgUrl}
@@ -72,7 +61,7 @@ const DishCard: React.FC<DishCardProps> = ({
               className="h-full w-full object-cover"
             />
           ) : (
-            <NoImagePlaceholder />
+            <NoImagePlaceholder compact />
           )}
 
           {quantityAddedToCart > 0 && (

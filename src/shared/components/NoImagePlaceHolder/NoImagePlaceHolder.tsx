@@ -2,11 +2,15 @@ import { ImageOff } from "lucide-react";
 
 interface NoImagePlaceholderProps {
   className?: string;
+  compact?: boolean;
+  iconOnly?: boolean;
 }
 
-export const NoImagePlaceholder: React.FC<NoImagePlaceholderProps> = ({
+export const NoImagePlaceholder = ({
   className = "",
-}) => {
+  compact = false,
+  iconOnly = false,
+}: NoImagePlaceholderProps) => {
   return (
     <div
       className={`
@@ -17,18 +21,43 @@ export const NoImagePlaceholder: React.FC<NoImagePlaceholderProps> = ({
       `}
     >
       <div
-        className="
-          flex h-14 w-14 items-center justify-center
+        className={`
+          flex shrink-0 items-center justify-center
           rounded-full border border-gray-200
           bg-white shadow-sm
-        "
+          ${iconOnly ? "h-7 w-7" : compact ? "h-9 w-9" : "h-14 w-14"}
+        `}
       >
-        <ImageOff className="h-6 w-6 text-gray-400" />
+        <ImageOff
+          className={
+            iconOnly
+              ? "h-3.5 w-3.5 text-gray-400"
+              : compact
+              ? "h-4 w-4 text-gray-400"
+              : "h-6 w-6 text-gray-400"
+          }
+        />
       </div>
 
-      <p className="mt-3 text-sm font-semibold text-gray-500">No image yet</p>
+      {!iconOnly && (
+        <>
+          <p
+            className={
+              compact
+                ? "mt-2 text-[10px] font-medium text-gray-500"
+                : "mt-3 text-sm font-semibold text-gray-500"
+            }
+          >
+            No image yet
+          </p>
 
-      <p className="mt-1 text-[12px] text-gray-400">Image will be added soon</p>
+          {!compact && (
+            <p className="mt-1 text-xs text-gray-400">
+              Image will be added soon
+            </p>
+          )}
+        </>
+      )}
     </div>
   );
 };

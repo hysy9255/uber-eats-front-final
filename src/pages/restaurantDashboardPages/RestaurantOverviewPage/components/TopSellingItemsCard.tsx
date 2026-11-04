@@ -1,24 +1,22 @@
 import { ChevronRight } from "lucide-react";
-import NoImgAvailable from "../../../../shared/components/NoImgAvailable/NoImgAvailable";
 import { getTrendType } from "../utils/getTrendType";
 import { formatTrend } from "../utils/formatTrend";
 import type { RestaurantTopSellingItemDTO } from "../api/queries/getRestaurantTopSellingItems/RestaurantTopSellingItem.dto";
+import { NoImagePlaceholder } from "../../../../shared/components/NoImagePlaceHolder/NoImagePlaceHolder";
 
 interface TopSellingItemsCardProps {
   items: RestaurantTopSellingItemDTO[];
 }
 
-export const TopSellingItemsCard: React.FC<TopSellingItemsCardProps> = ({
-  items,
-}) => {
+export const TopSellingItemsCard = ({ items }: TopSellingItemsCardProps) => {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold text-gray-950">Top selling items</h3>
 
-        <button className="text-sm font-semibold text-green-700 flex items-center gap-1">
+        <button className="flex items-center gap-1 text-sm font-semibold text-green-700">
           View full report
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="h-4 w-4" />
         </button>
       </div>
 
@@ -43,23 +41,26 @@ export const TopSellingItemsCard: React.FC<TopSellingItemsCardProps> = ({
           return (
             <div
               key={item.dishId}
-              className={`py-3 flex items-center justify-between ${
+              className={`flex items-center justify-between gap-3 py-3 ${
                 index !== items.length - 1 ? "border-b border-gray-100" : ""
               }`}
             >
-              <div className="flex items-center gap-3">
-                {item.imageUrl ? (
-                  <img
-                    src={item.imageUrl}
-                    alt={item.name}
-                    className="w-14 h-14 rounded-xl object-cover"
-                  />
-                ) : (
-                  <NoImgAvailable className="w-14 h-14 rounded-xl object-cover" />
-                )}
+              {/* Dish Information */}
+              <div className="flex min-w-0 items-center gap-3">
+                <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <NoImagePlaceholder iconOnly />
+                  )}
+                </div>
 
-                <div>
-                  <div className="font-semibold text-sm text-gray-900">
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-semibold text-gray-900">
                     {item.name}
                   </div>
 
@@ -69,8 +70,9 @@ export const TopSellingItemsCard: React.FC<TopSellingItemsCardProps> = ({
                 </div>
               </div>
 
-              <div className="text-right">
-                <div className="font-bold text-sm text-gray-900">
+              {/* Revenue & Trend */}
+              <div className="shrink-0 text-right">
+                <div className="text-sm font-bold text-gray-900">
                   ${item.revenue.toLocaleString("en-US")}
                 </div>
 

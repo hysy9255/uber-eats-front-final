@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { getToken } from "@/shared/utils/getToken";
-import NoImgAvailable from "@/shared/components/NoImgAvailable/NoImgAvailable";
+
 import { increaseItemQuantity } from "../../api/increaseItemQuantity";
 import { decreaseItemQuantity } from "../../api/decreaseItemQuantity";
 import { useCart } from "../../../shared/context/cart/useCart";
+import { capitalizeWords } from "../../../../../shared/utils/capitalizeWords";
+import { NoImagePlaceholder } from "../../../../../shared/components/NoImagePlaceHolder/NoImagePlaceHolder";
 
 const CartTable = () => {
   const { cart, loadMyCart } = useCart();
@@ -52,21 +54,22 @@ const CartTable = () => {
             <td className="p-3">
               <div className="flex gap-3">
                 <Link
-                  className="shrink-0"
+                  className="block h-25 w-25 shrink-0 overflow-hidden rounded-lg"
                   to={`/restaurants/${cart?.restaurantInfo?.restaurantId}/dishes/${item.dishId}`}
                 >
                   {item.dishImg ? (
                     <img
                       src={item.dishImg}
-                      className="w-25 h-25 aspect-[1/1] object-cover hover:cursor-pointer rounded-sm"
+                      alt={item.name}
+                      className="h-full w-full object-cover"
                     />
                   ) : (
-                    <NoImgAvailable className="w-25 h-25 aspect-[1/1] object-cover hover:cursor-pointer rounded-sm border border-gray-300" />
+                    <NoImagePlaceholder compact />
                   )}
                 </Link>
                 <div className="space-y-1">
                   <div className="text-black text-sm font-semibold">
-                    {item.name}
+                    {capitalizeWords(item.name)}
                   </div>
                   <div className="text-xs font-normal text-gray-500 max-[950px]:line-clamp-3">
                     {item.description}

@@ -1,6 +1,7 @@
 import DefaultRestaurantLogoImg from "@/shared/components/DefaultRestaurantLogoImg/DefaultRestaurantLogoImg";
 import { Heart, StarIcon } from "lucide-react";
 import { useState } from "react";
+import { capitalizeWords } from "../../../../../shared/utils/capitalizeWords";
 
 type RestaurantCardInfoProps = {
   logo: string | null;
@@ -35,7 +36,9 @@ export const RestaurantCardInfo: React.FC<RestaurantCardInfoProps> = ({
       </div>
 
       <div className="min-w-0 flex-1 relative">
-        <div className="truncate text-[16px] font-bold">{name}</div>
+        <div className="truncate text-[16px] font-bold">
+          {capitalizeWords(name)}
+        </div>
 
         <div className="flex items-center gap-x-1 text-xs text-slate-700">
           <StarIcon className="size-[10px] shrink-0 text-yellow-400 fill-yellow-400" />
