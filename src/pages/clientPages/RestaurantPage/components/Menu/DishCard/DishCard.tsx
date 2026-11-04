@@ -4,11 +4,12 @@ import PopularTag from "./PopularTag";
 import FavoriteButton from "./FavoriteButton";
 import AddToCartButton from "./AddToCartButton";
 import { capitalizeWords } from "../../../../../../shared/utils/capitalizeWords";
-import NoImgAvailable from "../../../../../../shared/components/NoImgAvailable/NoImgAvailable";
+// import NoImgAvailable from "../../../../../../shared/components/NoImgAvailable/NoImgAvailable";
 // import CartErrorModal from "../../../../../clientOrdersPage/components/ClientOrderSummaryCard/OrderDetailArea/CartErrorModal";
 import { QuantityStepper } from "./QuantityStepper";
 import { useDishCard } from "./useDishCard";
 import CartErrorModal from "../../../../../../shared/components/CartErrorModal/CartErrorModal";
+import { NoImagePlaceholder } from "../../../../../../shared/components/NoImagePlaceHolder/NoImagePlaceHolder";
 
 type DishCardProps = {
   dishId: string;
@@ -53,7 +54,7 @@ const DishCard: React.FC<DishCardProps> = ({
       `}
       >
         <div className="relative w-full aspect-[3/2] overflow-hidden rounded-t-lg">
-          {dishImgUrl ? (
+          {/* {dishImgUrl ? (
             <img
               src={dishImgUrl}
               alt={name}
@@ -63,6 +64,15 @@ const DishCard: React.FC<DishCardProps> = ({
             <div className="flex h-full w-full items-center justify-center bg-white">
               <NoImgAvailable className="h-30 w-30" />
             </div>
+          )} */}
+          {dishImgUrl ? (
+            <img
+              src={dishImgUrl}
+              alt={name}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <NoImagePlaceholder />
           )}
 
           {quantityAddedToCart > 0 && (
@@ -114,8 +124,8 @@ const DishCard: React.FC<DishCardProps> = ({
       </Link>
       {addToCartError && (
         <CartErrorModal
-          onClickCancel={() => setAddToCartError(undefined)}
-          onClickAddAnyway={handleAddAnyway}
+          onClose={() => setAddToCartError(undefined)}
+          onAddAnyway={handleAddAnyway}
         />
       )}
     </>

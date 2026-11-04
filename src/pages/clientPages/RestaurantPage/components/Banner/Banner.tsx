@@ -4,6 +4,7 @@ import StatusBadge from "./StatusBadge";
 import FavoriteButton from "./FavoriteButton";
 import DefaultRestaurantLogoImg from "@/shared/components/DefaultRestaurantLogoImg/DefaultRestaurantLogoImg";
 import type { RestaurantStatus } from "@/shared/types/restaurantStatus.type";
+import { capitalizeWords } from "../../../../../shared/utils/capitalizeWords";
 
 interface BannerProps {
   bannerInfo: {
@@ -62,7 +63,9 @@ const Banner: React.FC<BannerProps> = ({
           <DefaultRestaurantLogoImg className="rounded-full object-cover w-20 h-20 border-1 border-gray-300" />
         )}
         <div className="flex flex-col items-start justify-center">
-          <div className="text-nowrap font-bold text-lg">{name}</div>
+          <div className="text-nowrap font-bold text-lg">
+            {capitalizeWords(name)}
+          </div>
 
           <div className="flex gap-x-2 text-sm flex-col min-[1000px]:flex-row">
             <div className="flex items-center gap-1">

@@ -11,8 +11,8 @@ import { useCart } from "../../shared/context/cart/useCart";
 export const useDishPage = (restaurantId?: string, dishId?: string) => {
   const navigate = useNavigate();
   const [dishDetail, setDishDetail] = useState<DishDetailDTO>();
-  const [addToCartError, setAddToCartError] = useState<string>();
-  const token = getToken();
+  const [addToCartError, setAddToCartError] = useState<string | null>(null);
+
   const { loadMyCart } = useCart();
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export const useDishPage = (restaurantId?: string, dishId?: string) => {
 
   const handleAddToCart = async () => {
     try {
+      const token = getToken();
       if (!dishId) throw new Error("Dish id not found");
       if (!token) {
         navigate("/login");
@@ -56,12 +57,13 @@ export const useDishPage = (restaurantId?: string, dishId?: string) => {
     }
   };
 
-  const handleClickAddAnyway = async () => {
+  const handleAddAnyway = async () => {
+    const token = getToken();
     if (!token) throw new Error("no token");
     if (!dishId) throw new Error("");
     await replaceItems({ dishId, quantity }, token);
     await loadMyCart();
-    setAddToCartError(undefined);
+    setAddToCartError(null);
   };
 
   return {
@@ -71,7 +73,7 @@ export const useDishPage = (restaurantId?: string, dishId?: string) => {
     quantity,
     totalPrice,
     handleAddToCart,
-    handleClickAddAnyway,
+    handleAddAnyway,
     dishDetail,
     setAddToCartError,
   };

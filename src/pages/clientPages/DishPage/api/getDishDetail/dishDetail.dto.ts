@@ -6,6 +6,7 @@ export type ReviewDTO = {
 };
 
 export type DishDetailDTO = {
+  restaurantId: string;
   restaurantName: string;
   logo: string | null;
   name: string;

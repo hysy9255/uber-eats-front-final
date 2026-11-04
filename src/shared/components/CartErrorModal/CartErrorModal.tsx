@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { ErrorCircleIcon } from "./ErrorCircleIcon";
-// import { ErrorCircleIcon } from "../Icons/ErrorCircleIcon";
 
 interface CartErrorModalProps {
-  onClickCancel: () => void;
-  onClickAddAnyway: () => void;
+  onClose: () => void;
+  onAddAnyway: () => void;
 }
 
 const CartErrorModal: React.FC<CartErrorModalProps> = ({
-  onClickCancel,
-  onClickAddAnyway,
+  onClose,
+  onAddAnyway,
 }) => {
   useEffect(() => {
     const original = document.body.style.overflow;
@@ -41,13 +40,13 @@ const CartErrorModal: React.FC<CartErrorModalProps> = ({
         </div>
         <div className="border-t border-slate-100 flex gap-3 p-5">
           <button
-            onClick={onClickAddAnyway}
+            onClick={onAddAnyway}
             className="w-full border border-gray-300 bg-white shadow-md text-black font-medium rounded-md py-1 hover:cursor-pointer"
           >
             Add anyway
           </button>
           <button
-            onClick={onClickCancel}
+            onClick={onClose}
             className="w-full border border-gray-700 bg-gray-700 shadow-md text-white font-medium rounded-md py-1 hover:cursor-pointer"
           >
             Cancel
