@@ -4,13 +4,11 @@ interface OnBoardDescriptionProps {
   description: ReactNode;
 }
 
-const OnBoardDescription: React.FC<OnBoardDescriptionProps> = ({
-  description,
-}) => {
+const OnBoardDescription = ({ description }: OnBoardDescriptionProps) => {
   return (
-    <div className="h-fit rounded-2xl bg-white/80 backdrop-blur ring-1 ring-black/10 p-5">
+    <section className="w-full min-w-0 overflow-hidden rounded-xl border border-gray-200 bg-gray-50/60 p-4 sm:rounded-2xl sm:p-6">
       {description}
-    </div>
+    </section>
   );
 };
 

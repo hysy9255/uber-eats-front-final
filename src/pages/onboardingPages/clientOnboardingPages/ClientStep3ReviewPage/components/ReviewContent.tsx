@@ -9,47 +9,86 @@ interface ReviewContentProps {
   showSuccess: boolean;
 }
 
-const ReviewContent: React.FC<ReviewContentProps> = ({ data, showSuccess }) => {
+const ReviewContent = ({ data, showSuccess }: ReviewContentProps) => {
   const navigate = useNavigate();
+
+  const address = [
+    data.step2.streetAddress,
+    data.step2.apt,
+    data.step2.city,
+    data.step2.state,
+    data.step2.zip,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
   return (
-    <div>
-      <div className="space-y-6">
-        <section className="rounded-xl ring-1 ring-slate-200 p-5 bg-white">
-          <div className="flex items-start justify-between">
-            <h3 className="text-lg font-semibold">Account</h3>
+    <div className="min-w-0">
+      <div className="flex flex-col gap-5 sm:gap-6">
+        {/* Account Information */}
+        <section className="min-w-0 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:p-8">
+          <div className="flex items-center justify-between gap-4 border-b border-gray-100 pb-4">
+            <h3 className="text-base font-bold text-gray-900 sm:text-lg">
+              Account information
+            </h3>
+
             <EditButton onClick={() => navigate("/on-board/client/step1")} />
           </div>
-          <dl className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-            <div>
-              <dt className="text-slate-500">Name</dt>
-              <dd className="text-slate-900">
+
+          <dl className="mt-5 grid min-w-0 grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
+            <div className="min-w-0">
+              <dt className="mb-1 text-xs font-medium text-gray-500">
+                Full name
+              </dt>
+              <dd className="wrap-break-word text-sm font-semibold text-gray-900">
                 {data.step1.firstName} {data.step1.lastName}
               </dd>
             </div>
-            <div>
-              <dt className="text-slate-500">Email</dt>
-              <dd className="text-slate-900">{data.step1.email}</dd>
+
+            <div className="min-w-0">
+              <dt className="mb-1 text-xs font-medium text-gray-500">
+                Phone number
+              </dt>
+              <dd className="wrap-break-word text-sm font-semibold text-gray-900">
+                {data.step1.phoneNumber}
+              </dd>
             </div>
-            <div>
-              <dt className="text-slate-500">Phone number</dt>
-              <dd className="text-slate-900">{data.step1.phoneNumber}</dd>
+
+            <div className="min-w-0 sm:col-span-2">
+              <dt className="mb-1 text-xs font-medium text-gray-500">
+                Email address
+              </dt>
+              <dd className="wrap-break-word text-sm font-semibold text-gray-900">
+                {data.step1.email}
+              </dd>
             </div>
           </dl>
         </section>
 
-        <section className="rounded-xl ring-1 ring-slate-200 p-5 bg-white">
-          <div className="flex items-start justify-between">
-            <h3 className="text-lg font-semibold">Delivery address</h3>
+        {/* Delivery Address */}
+        <section className="min-w-0 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:p-8">
+          <div className="flex items-center justify-between gap-4 border-b border-gray-100 pb-4">
+            <h3 className="text-base font-bold text-gray-900 sm:text-lg">
+              Delivery address
+            </h3>
+
             <EditButton onClick={() => navigate("/on-board/client/step2")} />
           </div>
-          <p className="mt-3 text-sm text-slate-900">
-            {data.step2.streetAddress}, {data.step2.apt}, {data.step2.city},{" "}
-            {data.step2.state} {data.step2.zip}
-          </p>
+
+          <div className="mt-5">
+            <p className="mb-1 text-xs font-medium text-gray-500">Address</p>
+
+            <p className="wrap-break-word text-sm font-semibold leading-6 text-gray-900">
+              {address}
+            </p>
+          </div>
         </section>
 
+        {/* Agreement */}
         <AgreementSection />
       </div>
+
+      {/* Success Modal */}
       <SuccessDialog
         open={showSuccess}
         message="Your account was created successfully. Please log in to continue."

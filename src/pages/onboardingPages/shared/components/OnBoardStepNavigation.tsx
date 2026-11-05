@@ -1,3 +1,5 @@
+import { ArrowLeft, ArrowRight, LogOut } from "lucide-react";
+
 interface OnBoardStepNavigationProps {
   onBack: () => void;
   onContinue: () => void;
@@ -5,38 +7,80 @@ interface OnBoardStepNavigationProps {
   continueLabel: string;
 }
 
-const OnBoardStepNavigation: React.FC<OnBoardStepNavigationProps> = ({
+const OnBoardStepNavigation = ({
   onBack,
   onContinue,
   onExit,
   continueLabel,
-}) => {
+}: OnBoardStepNavigationProps) => {
   return (
-    <div className="bg-white/80 backdrop-blur border-t border-black/5">
-      <div className="mx-auto max-w-screen-2xl px-6 lg:px-10 py-4 flex items-center justify-between gap-3">
+    <nav aria-label="Onboarding navigation" className="w-full min-w-0">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        {/* Back */}
         <button
+          type="button"
           onClick={onBack}
-          className="rounded-full px-4 py-2 text-sm font-medium ring-1 ring-slate-300 hover:bg-slate-50 hover:cursor-pointer"
+          className="
+            inline-flex h-11 items-center justify-center gap-2
+            rounded-xl border border-gray-200 bg-white
+            px-4 text-sm font-semibold text-gray-700
+            transition-colors cursor-pointer
+            hover:border-gray-300 hover:bg-gray-50
+            active:bg-gray-100
+            focus-visible:outline-2
+            focus-visible:outline-offset-2
+            focus-visible:outline-green-600
+          "
         >
+          <ArrowLeft className="h-4 w-4" />
           Back
         </button>
 
-        <div className="flex items-center gap-3">
+        {/* Exit / Continue */}
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <button
+            type="button"
             onClick={onExit}
-            className="border rounded-full px-4 py-2 text-sm font-medium text-red-600 ring-1 ring-red-200 hover:bg-red-50 hover:cursor-pointer"
+            className="
+              inline-flex h-11 items-center justify-center gap-2
+              rounded-xl border border-red-100 bg-white
+              px-3 text-sm font-medium text-red-600
+              transition-colors cursor-pointer
+              hover:border-red-200 hover:bg-red-50
+              active:bg-red-100
+              focus-visible:outline-2
+              focus-visible:outline-offset-2
+              focus-visible:outline-red-500
+              sm:px-4
+            "
           >
-            Exit
+            <LogOut className="h-4 w-4" />
+            <span className="hidden sm:inline">Exit</span>
           </button>
+
           <button
+            type="button"
             onClick={onContinue}
-            className="rounded-full px-5 py-2.5 text-sm font-semibold text-white bg-black hover:bg-black/90 hover:cursor-pointer"
+            className="
+              group inline-flex h-11 min-w-28
+              items-center justify-center gap-2
+              rounded-xl bg-green-700 px-4
+              text-sm font-semibold text-white
+              transition-all cursor-pointer
+              hover:bg-green-800
+              active:scale-[0.99] active:bg-green-900
+              focus-visible:outline-2
+              focus-visible:outline-offset-2
+              focus-visible:outline-green-600
+              sm:min-w-36 sm:px-5
+            "
           >
             {continueLabel}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -16,26 +16,36 @@ const ClientStep2Address = () => {
   const { handleSubmit } = useFormContext<ClientOnBoardingForm>();
 
   const handleBack = () => navigate("/on-board/client/step1");
+
   const handleContinue = handleSubmit(() => navigate("/on-board/client/step3"));
 
   return (
-    <div className="mx-auto max-w-[1100px]">
+    <main className="mx-auto w-full max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+      {/* Progress Steps */}
       <OnBoardSteps steps={CREATE_CLIENT_PAGE_STEPS} active={1} />
-      <div className="mx-auto max-w-[900px] flex flex-col gap-y-8 my-8">
+
+      {/* Main Content */}
+      <div className="mx-auto mt-8 flex w-full max-w-[900px] flex-col gap-6 sm:mt-10 sm:gap-8">
         <OnBoardHeadline
           title="Add your delivery address"
           subtitle="We’ll use this to find restaurants that deliver to you."
         />
+
         <OnBoardDescription description={ClientStep2RightPanel} />
+
         <ClientStep2AddressInputs />
       </div>
-      <OnBoardStepNavigation
-        onBack={handleBack}
-        onExit={handleExit}
-        onContinue={handleContinue}
-        continueLabel="Continue"
-      />
-    </div>
+
+      {/* Navigation */}
+      <div className="mx-auto mt-8 w-full max-w-[900px] border-t border-gray-100 pt-5 sm:mt-10 sm:pt-6">
+        <OnBoardStepNavigation
+          onBack={handleBack}
+          onExit={handleExit}
+          onContinue={handleContinue}
+          continueLabel="Continue"
+        />
+      </div>
+    </main>
   );
 };
 

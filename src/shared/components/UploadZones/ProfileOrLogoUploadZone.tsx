@@ -1,63 +1,121 @@
+import { Camera, Trash2 } from "lucide-react";
+import { useId } from "react";
+import type { ChangeEvent } from "react";
+import DefaultProfileImg from "../../../layouts/ClientPageLayout/Header/DefaultProfileImg/DefaultProfileImg";
+
 interface ProfileOrLogoUploadZoneProps {
   onRemove: () => void;
-  onProfileImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onProfileImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
   title: string;
-  defaultImgBackground: React.ReactNode;
+  // defaultImgBackground: ReactNode;
   imgUrl: string | null;
 }
 
-const ProfileOrLogoUploadZone: React.FC<ProfileOrLogoUploadZoneProps> = ({
+const ProfileOrLogoUploadZone = ({
   onRemove,
   onProfileImageChange,
   title,
-  defaultImgBackground,
   imgUrl,
-}) => {
-  return (
-    <div className="block col-span-2">
-      <div className="text-sm font-medium mb-2">{title}</div>
+}: ProfileOrLogoUploadZoneProps) => {
+  const inputId = useId();
 
-      {/* Preview */}
-      <div className="flex items-center gap-4">
-        <div className="h-25 w-25 rounded-full overflow-hidden ring-1 ring-slate-300 bg-slate-100 flex items-center justify-center">
+  return (
+    <div className="flex w-full min-w-0 flex-col items-center text-center">
+      {/* Title */}
+      <h3 className="mb-4 text-sm font-semibold text-gray-800">{title}</h3>
+
+      {/* Image Preview */}
+      <div className="relative">
+        <div
+          className="
+            flex h-28 w-28 items-center justify-center
+            overflow-hidden rounded-full
+            border-4 border-white bg-gray-100
+            shadow-sm ring-1 ring-gray-200
+            sm:h-32 sm:w-32
+          "
+        >
           {imgUrl ? (
             <img
               src={imgUrl}
-              alt="Profile preview"
+              alt={`${title} preview`}
               className="h-full w-full object-cover"
             />
           ) : (
-            defaultImgBackground
+            <DefaultProfileImg className="h-full w-full rounded-full object-cover" />
           )}
         </div>
 
-        <div className="flex items-center gap-3">
-          {imgUrl ? (
-            <button
-              type="button"
-              className="rounded-full px-3 py-2 text-sm font-medium ring-1 ring-slate-300 hover:bg-slate-50 cursor-pointer"
-              onClick={onRemove}
-            >
-              Remove
-            </button>
-          ) : (
-            <label className="inline-block">
-              <span className="rounded-full px-3 py-2 text-sm font-medium ring-1 ring-slate-300 hover:bg-slate-50 cursor-pointer">
-                Upload image
-              </span>
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={onProfileImageChange}
-              />
-            </label>
-          )}
-        </div>
+        {/* Camera Icon */}
+        {!imgUrl && (
+          <label
+            htmlFor={inputId}
+            aria-label={`Upload ${title.toLowerCase()}`}
+            className="
+              absolute right-0 bottom-0
+              flex h-9 w-9 cursor-pointer
+              items-center justify-center
+              rounded-full border-2 border-white
+              bg-green-700 text-white shadow-sm
+              transition-colors
+              hover:bg-green-800
+            "
+          >
+            <Camera className="h-4 w-4" />
+          </label>
+        )}
       </div>
 
-      <p className="mt-2 text-xs text-slate-500">
-        PNG or JPG up to 2MB. Circle images look best.
+      {/* Hidden File Input */}
+      <input
+        id={inputId}
+        type="file"
+        accept="image/*"
+        className="sr-only"
+        onChange={onProfileImageChange}
+      />
+
+      {/* Actions */}
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+        <label
+          htmlFor={inputId}
+          className="
+            inline-flex min-h-10 cursor-pointer
+            items-center justify-center gap-2
+            rounded-lg bg-green-700 px-4
+            text-sm font-semibold text-white
+            transition-colors
+            hover:bg-green-800
+          "
+        >
+          <Camera className="h-4 w-4" />
+          {imgUrl ? "Change photo" : "Upload photo"}
+        </label>
+
+        {imgUrl && (
+          <button
+            type="button"
+            onClick={onRemove}
+            className="
+              inline-flex min-h-10 cursor-pointer
+              items-center justify-center gap-2
+              rounded-lg border border-gray-200
+              bg-white px-4
+              text-sm font-medium text-gray-600
+              transition-colors
+              hover:border-red-200
+              hover:bg-red-50 hover:text-red-600
+            "
+          >
+            <Trash2 className="h-4 w-4" />
+            Remove
+          </button>
+        )}
+      </div>
+
+      {/* Helper Text */}
+      <p className="mt-3 text-xs leading-5 text-gray-400">
+        PNG or JPG, up to 2MB. Square images work best.
       </p>
     </div>
   );
