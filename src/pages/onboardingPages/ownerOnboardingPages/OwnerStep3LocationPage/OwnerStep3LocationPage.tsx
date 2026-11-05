@@ -60,7 +60,7 @@ const OwnerStep3Location = () => {
       {/* Main Content */}
       <div className="mx-auto mt-8 flex w-full max-w-[900px] flex-col gap-6 sm:mt-10 sm:gap-8">
         <OnBoardHeadline
-          title="Set up your location & hours"
+          title="Set up your location"
           subtitle="Customers will see this on your store page."
         />
 
