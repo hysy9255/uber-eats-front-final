@@ -1,12 +1,19 @@
 export const ClientStep3RightPanel = (
-  <div>
-    <p className="text-sm font-medium text-slate-700">What happens next</p>
-    <ul className="mt-3 space-y-2 text-sm text-slate-600">
-      <li>• You can edit these details anytime from your profile</li>
-      <li>• We’ll suggest nearby restaurants based on your address</li>
+  <div className="space-y-4">
+    <h3 className="text-sm font-semibold text-gray-800">Before you finish</h3>
+
+    <ul className="list-disc space-y-2 pl-5 text-sm leading-6 text-gray-600">
+      <li>Review your personal and contact information</li>
+      <li>Make sure your delivery address is accurate</li>
+      <li>Check that your email address and phone number are correct</li>
+      <li>Read and accept the required terms and agreements</li>
     </ul>
-    <div className="mt-5 rounded-lg bg-slate-50 p-3 text-[12px] text-slate-600">
-      Tip: Turn on notifications to get order updates in real time.
+
+    <div className="rounded-lg bg-gray-100/70 px-4 py-3">
+      <p className="text-xs leading-5 text-gray-600">
+        Tip: You can use the Edit buttons below to update your information
+        before creating your account.
+      </p>
     </div>
   </div>
 );

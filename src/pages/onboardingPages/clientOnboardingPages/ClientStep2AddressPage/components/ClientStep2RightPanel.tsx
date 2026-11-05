@@ -1,24 +1,21 @@
 export const ClientStep2RightPanel = (
-  <div>
-    <p className="text-sm font-medium text-slate-700">Delivery tips</p>
-    <ul className="mt-3 space-y-2 text-sm text-slate-600">
-      <li>• Add a gate code or call box if needed</li>
-      <li>• Pin the map as close to your entrance as possible</li>
-      <li>• Save a label to switch addresses quickly</li>
+  <div className="space-y-4">
+    <h3 className="text-sm font-semibold text-gray-800">
+      Delivery address guidelines
+    </h3>
+
+    <ul className="list-disc space-y-2 pl-5 text-sm leading-6 text-gray-600">
+      <li>Enter your complete delivery address</li>
+      <li>Make sure your street address, city, and ZIP code are accurate</li>
+      <li>Include an apartment or unit number if applicable</li>
+      <li>Use an address where delivery drivers can easily find you</li>
     </ul>
 
-    <div className="mt-5">
-      <div className="text-sm font-medium text-slate-700">Quick labels</div>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {["Home", "Work", "Friend’s", "Other"].map((t) => (
-          <span
-            key={t}
-            className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[12px] font-medium"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
+    <div className="rounded-lg bg-gray-100/70 px-4 py-3">
+      <p className="text-xs leading-5 text-gray-600">
+        Tip: An accurate delivery address helps drivers find your location and
+        deliver your orders without delays.
+      </p>
     </div>
   </div>
 );
