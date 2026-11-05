@@ -16,23 +16,32 @@ const OwnerStep4Review = () => {
     useOwnerStep4Review();
 
   return (
-    <div className="mx-auto max-w-[1100px]">
+    <main className="mx-auto w-full max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+      {/* Progress Steps */}
       <OnBoardSteps steps={CREATE_OWNER_PAGE_STEPS} active={3} />
-      <div className="mx-auto max-w-[900px] flex flex-col gap-y-8 my-8">
+
+      {/* Main Content */}
+      <div className="mx-auto mt-8 flex w-full max-w-[900px] flex-col gap-6 sm:mt-10 sm:gap-8">
         <OnBoardHeadline
           title="Review and confirm"
           subtitle="Make sure everything looks good before you finish."
         />
+
         <OnBoardDescription description={OwnerStep4RightPanel} />
+
         <ReviewContent data={data} showSuccess={showSuccess} />
       </div>
-      <OnBoardStepNavigation
-        onBack={handleBack}
-        onExit={handleExit}
-        onContinue={handleContinue}
-        continueLabel="Create account"
-      />
-    </div>
+
+      {/* Navigation */}
+      <div className="mx-auto mt-8 w-full max-w-[900px] border-t border-gray-100 pt-5 sm:mt-10 sm:pt-6">
+        <OnBoardStepNavigation
+          onBack={handleBack}
+          onExit={handleExit}
+          onContinue={handleContinue}
+          continueLabel="Create account"
+        />
+      </div>
+    </main>
   );
 };
 

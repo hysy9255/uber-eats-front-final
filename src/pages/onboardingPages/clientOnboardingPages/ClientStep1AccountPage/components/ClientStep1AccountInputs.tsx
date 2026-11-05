@@ -2,7 +2,7 @@ import ProfileOrLogoUploadZone from "@/shared/components/UploadZones/ProfileOrLo
 import type { EmailCheck } from "../../../shared/types/emailCheck.type";
 import OnBoardInput from "../../../shared/components/OnBoardInput";
 import { emailValidationMessage } from "../../../shared/utils/emailValidationMessage";
-import { formatPhoneNumber } from "../utils/formatPhoneNumber";
+import { formatPhoneNumber } from "../../../../../shared/utils/formatPhoneNumber";
 
 interface ClientStep1AccountInputsProps {
   onRemoveProfileImage: () => void;

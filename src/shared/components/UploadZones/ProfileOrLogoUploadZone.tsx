@@ -1,4 +1,4 @@
-import { Camera, Trash2 } from "lucide-react";
+import { Camera, Trash2, Store } from "lucide-react";
 import { useId } from "react";
 import type { ChangeEvent } from "react";
 import DefaultProfileImg from "../../../layouts/ClientPageLayout/Header/DefaultProfileImg/DefaultProfileImg";
@@ -7,8 +7,8 @@ interface ProfileOrLogoUploadZoneProps {
   onRemove: () => void;
   onProfileImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
   title: string;
-  // defaultImgBackground: ReactNode;
   imgUrl: string | null;
+  variant?: "profile" | "logo";
 }
 
 const ProfileOrLogoUploadZone = ({
@@ -16,8 +16,10 @@ const ProfileOrLogoUploadZone = ({
   onProfileImageChange,
   title,
   imgUrl,
+  variant = "profile",
 }: ProfileOrLogoUploadZoneProps) => {
   const inputId = useId();
+  const isLogo = variant === "logo";
 
   return (
     <div className="flex w-full min-w-0 flex-col items-center text-center">
@@ -41,6 +43,8 @@ const ProfileOrLogoUploadZone = ({
               alt={`${title} preview`}
               className="h-full w-full object-cover"
             />
+          ) : isLogo ? (
+            <Store className="h-12 w-12 text-gray-400" strokeWidth={1.5} />
           ) : (
             <DefaultProfileImg className="h-full w-full rounded-full object-cover" />
           )}
@@ -89,7 +93,13 @@ const ProfileOrLogoUploadZone = ({
           "
         >
           <Camera className="h-4 w-4" />
-          {imgUrl ? "Change photo" : "Upload photo"}
+          {imgUrl
+            ? isLogo
+              ? "Change logo"
+              : "Change photo"
+            : isLogo
+            ? "Upload logo"
+            : "Upload photo"}
         </label>
 
         {imgUrl && (

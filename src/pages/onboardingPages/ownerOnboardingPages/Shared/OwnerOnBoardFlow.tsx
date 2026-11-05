@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeaveThisStepPopup from "../../shared/components/LeaveThisPagePopup";
 import type { OwnerOnBoardingForm } from "../types/ownerOnBoardingForm.type";
 
@@ -57,15 +57,15 @@ const OwnerOnBoardFlow = () => {
 
   const handleClosePopup = () => setShowExitConfirm(false);
 
-  // useEffect(() => {
-  //   const step1 = methods.getValues("step1");
+  useEffect(() => {
+    const step1 = methods.getValues("step1");
 
-  //   if (!step1?.email || !step1?.firstName) {
-  //     navigate("/on-board/owner/step1", {
-  //       replace: true,
-  //     });
-  //   }
-  // }, [methods, navigate]);
+    if (!step1?.email || !step1?.firstName) {
+      navigate("/on-board/owner/step1", {
+        replace: true,
+      });
+    }
+  }, [methods, navigate]);
 
   return (
     <FormProvider {...methods}>
