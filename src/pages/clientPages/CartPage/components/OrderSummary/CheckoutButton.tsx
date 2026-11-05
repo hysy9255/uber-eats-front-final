@@ -1,17 +1,32 @@
+import { ArrowRight } from "lucide-react";
+
 interface CheckoutButtonProps {
-  onCheckOut: () => void;
+  onCheckout: () => void;
 }
 
-const CheckoutButton: React.FC<CheckoutButtonProps> = ({ onCheckOut }) => {
+const CheckoutButton = ({ onCheckout }: CheckoutButtonProps) => {
   return (
     <button
-      onClick={onCheckOut}
+      type="button"
+      onClick={onCheckout}
       className="
-        bg-green-700 hover:bg-green-800 active:bg-green-900 
-        hover:cursor-pointer rounded-md
-        text-white text-sm font-medium py-3 w-full"
+        group flex min-h-12 w-full
+        items-center justify-center gap-2
+        rounded-xl bg-green-700
+        px-4 py-3
+        text-sm font-semibold text-white
+        transition-all duration-200
+        cursor-pointer
+        hover:bg-green-800
+        active:scale-[0.99] active:bg-green-900
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+        focus-visible:outline-green-600
+      "
     >
-      CHECKOUT
+      <span>Checkout</span>
+
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
     </button>
   );
 };

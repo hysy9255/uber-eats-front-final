@@ -2,11 +2,11 @@ import { createPortal } from "react-dom";
 import { CircleAlert } from "lucide-react";
 
 interface CheckoutErrorModalProps {
-  onClickOk: () => void;
+  onOk: () => void;
 }
 
 export const CheckoutErrorModal: React.FC<CheckoutErrorModalProps> = ({
-  onClickOk,
+  onOk,
 }) => {
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
@@ -32,7 +32,7 @@ export const CheckoutErrorModal: React.FC<CheckoutErrorModalProps> = ({
 
         <div className="flex border-t border-slate-100 p-5">
           <button
-            onClick={onClickOk}
+            onClick={onOk}
             className="w-full cursor-pointer rounded-md border border-gray-700 bg-gray-700 py-2 font-medium text-white shadow-sm hover:bg-gray-800"
           >
             OK
