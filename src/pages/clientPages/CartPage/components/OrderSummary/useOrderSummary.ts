@@ -2,8 +2,8 @@ import { getToken } from "@/shared/utils/getToken";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { placeOrder } from "../../api/placeOrder/placeOrder";
-import { DeliveryType } from "../../../ClientOrdersPage/types/deliveryType.enum";
-import type { PlaceOrderForm } from "../../../ClientOrdersPage/types/placeOrderForm.type";
+import { DeliveryType } from "../../types/deliveryType.enum";
+import type { PlaceOrderForm } from "../../types/placeOrderForm.type";
 import { useCart } from "../../../shared/context/cart/useCart";
 
 export const useOrderSummary = () => {

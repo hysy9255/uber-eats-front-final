@@ -1,4 +1,4 @@
-import { DeliveryType } from "../../../ClientOrdersPage/types/deliveryType.enum";
+import { DeliveryType } from "../../types/deliveryType.enum";
 import type { CartDTO } from "../../api/getCart/cart.dto";
 
 export const calculateOrderTotal = (

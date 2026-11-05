@@ -35,7 +35,6 @@ export const ClientOrdersPage = () => {
             <TabButton
               key={tab}
               label={label}
-              // onClick={() => setCurrentTab(tab.key)}
               onClick={() => handleClickTab(tab)}
               selected={selected}
               count={count}
@@ -61,11 +60,7 @@ export const ClientOrdersPage = () => {
       ) : (
         <div className="flex flex-col gap-4">
           {currentOrders.map((order) => (
-            <ClientOrderSummaryCard
-              key={order.orderId}
-              order={order}
-              onClickDetails={() => console.log("")}
-            />
+            <ClientOrderSummaryCard key={order.orderId} order={order} />
           ))}
         </div>
       )}

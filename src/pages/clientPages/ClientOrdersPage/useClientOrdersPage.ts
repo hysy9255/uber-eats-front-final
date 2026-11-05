@@ -2,10 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import { getToken } from "@/shared/utils/getToken";
 import { ClientOrderView } from "./types/clientOrderView.enum";
-import type {
-  // ClientOrderSummaryDTO,
-  NewClientOrderSummaryDTO,
-} from "./api/getClientOrderSummaries/clientOrderSummary.dto";
+import type { NewClientOrderSummaryDTO } from "./api/getClientOrderSummaries/clientOrderSummary.dto";
 import { getClientOrderSummaries } from "./api/getClientOrderSummaries/getClientOrderSummaries";
 import { socket } from "../../../socket";
 import { OrderStatus } from "../../restaurantDashboardPages/RestaurantOrdersPage/types/orderStatus.enum";

@@ -3,11 +3,11 @@ import AddressCard from "./AddressCard/AddressCard";
 import DeliveryTypeSelector from "./DeliveryTypeSelector/DeliveryTypeSelector";
 import OrderRequest from "./OrderRequest";
 import CheckoutButton from "./CheckoutButton";
-import { DeliveryType } from "../../../ClientOrdersPage/types/deliveryType.enum";
+import { DeliveryType } from "../../types/deliveryType.enum";
 import { CheckoutErrorModal } from "./CheckoutErrorModal";
 import { calculateOrderTotal } from "./calculateOrderTotal";
 import { useForm } from "react-hook-form";
-import type { PlaceOrderForm } from "../../../ClientOrdersPage/types/placeOrderForm.type";
+import type { PlaceOrderForm } from "../../types/placeOrderForm.type";
 
 const OrderSummary = () => {
   const {
