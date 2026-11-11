@@ -1,4 +1,4 @@
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
 import { publicRoutes } from "@/routes/public.routes";
 import { onboardingRoutes } from "@/routes/on-boarding.routes";
 import { ownerRoutes } from "@/routes/owner.routes";
@@ -12,6 +12,10 @@ function AppRoutes() {
     ...onboardingRoutes,
     ...ownerRoutes,
     ...clientRoutes,
+    {
+      path: "/",
+      element: <Navigate to="/login" replace />,
+    },
     {
       path: "*",
       element: <PageNotFound />,
