@@ -4,12 +4,6 @@ export type LogoImageState = {
   file: File | null;
 };
 
-// export type ImageState = {
-//   status: "unchanged" | "changed" | "removed";
-//   preview: string | null;
-//   file: File | null;
-// };
-
 export type ImageState = {
   status: "unchanged" | "changed";
   preview: string;

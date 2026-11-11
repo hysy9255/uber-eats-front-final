@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import type { ClientOnBoardingForm } from "../../types/clientOnBoardingForm.type";
-import AgreementSection from "./AgreementSection";
+// import AgreementSection from "./AgreementSection";
 import EditButton from "./EditButton";
 import SuccessDialog from "../../../shared/components/SuccessPopup";
 
@@ -85,7 +85,7 @@ const ReviewContent = ({ data, showSuccess }: ReviewContentProps) => {
         </section>
 
         {/* Agreement */}
-        <AgreementSection />
+        {/* <AgreementSection /> */}
       </div>
 
       {/* Success Modal */}

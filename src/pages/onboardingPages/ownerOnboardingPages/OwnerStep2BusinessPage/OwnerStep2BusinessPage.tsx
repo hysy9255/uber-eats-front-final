@@ -12,17 +12,7 @@ import OnBoardStepNavigation from "../../shared/components/OnBoardStepNavigation
 const OwnerStep2Business = () => {
   const { handleExit } = useOutletContext<OwnerOnBoardContext>();
 
-  const {
-    images,
-    handleBack,
-    handleContinue,
-    handleSelectMainImage,
-    handleSelectSub1Image,
-    handleSelectSub2Image,
-    handleSelectBannerImage,
-    handleRemoveLogoImage,
-    handleLogoImageChange,
-  } = useOwnerStep2Business();
+  const { handleBack, handleContinue, canContinue } = useOwnerStep2Business();
 
   return (
     <main className="mx-auto w-full max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
@@ -38,19 +28,7 @@ const OwnerStep2Business = () => {
 
         <OnBoardDescription description={OwnerStep2RightPanel} />
 
-        <OwnerStep2BusinessInputs
-          logoImgUrl={images.logoImgUrl}
-          mainImgUrl={images.mainImgUrl}
-          sub1ImgUrl={images.sub1ImgUrl}
-          sub2ImgUrl={images.sub2ImgUrl}
-          bannerImgUrl={images.bannerImgUrl}
-          onRemoveLogoImage={handleRemoveLogoImage}
-          onLogoImageChange={handleLogoImageChange}
-          onSelectMainImage={handleSelectMainImage}
-          onSelectSub1Image={handleSelectSub1Image}
-          onSelectSub2Image={handleSelectSub2Image}
-          onSelectBannerImage={handleSelectBannerImage}
-        />
+        <OwnerStep2BusinessInputs />
       </div>
 
       {/* Navigation */}
@@ -60,6 +38,7 @@ const OwnerStep2Business = () => {
           onExit={handleExit}
           onContinue={handleContinue}
           continueLabel="Continue"
+          isValid={canContinue}
         />
       </div>
     </main>

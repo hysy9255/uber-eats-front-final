@@ -39,6 +39,7 @@ const ClientStep3Review = () => {
           onExit={handleExit}
           onContinue={handleContinue}
           continueLabel="Create account"
+          isValid={true}
         />
       </div>
     </main>

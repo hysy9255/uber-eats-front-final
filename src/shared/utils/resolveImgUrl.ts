@@ -1,7 +1,7 @@
 import { uploadImage } from "@/shared/utils/uploadImage";
-import type { DishImageState } from "../types/dishImageState";
+import type { DishImageState } from "../../pages/restaurantDashboardPages/MenuManagementPage/components/shared/types/dishImageState";
 
-export const resolveDishImgUrl = async (image: DishImageState) => {
+export const resolveImgUrl = async (image: DishImageState) => {
   switch (image.status) {
     case "changed": {
       if (!image.file) throw new Error("No image file to upload.");

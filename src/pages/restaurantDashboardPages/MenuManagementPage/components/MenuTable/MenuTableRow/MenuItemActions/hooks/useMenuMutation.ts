@@ -6,7 +6,7 @@ import { makeDishUnavailable } from "../../../../../api/dish/markDishUnavailable
 import { makeDishAvailable } from "../../../../../api/dish/markDishAvailable";
 import type { OwnerDishSummaryDTO } from "../../../../../api/dish/getOwnerDishSummaries/ownerDishSummary.dto";
 import type { EditMenuForm } from "../../../../Modals/EditMenuModal/edit-menu-form.types";
-import { resolveDishImgUrl } from "../../../../shared/utils/resolveDishImgUrl";
+import { resolveImgUrl } from "../../../../../../../../shared/utils/resolveImgUrl";
 import { updateDish } from "../../../../../api/dish/updateDish/updateDish";
 import { createDish } from "../../../../../api/dish/createDish/createDish";
 import type { AddMenuItemForm } from "../../../../Modals/AddMenuIModal/add-menu-item-form.types";
@@ -24,7 +24,7 @@ export const useMenuMutation = () => {
       if (!token) throw new Error("No Token");
       if (!restaurantId) throw new Error("No Restaurant ID");
 
-      const dishImgUrl = await resolveDishImgUrl(data.dishImage);
+      const dishImgUrl = await resolveImgUrl(data.dishImage);
 
       await createDish(token, restaurantId, data.category, {
         dishName: data.dishName,
@@ -102,7 +102,7 @@ export const useMenuMutation = () => {
       if (!token) throw new Error("No Token");
       if (!restaurantId) throw new Error("No Restaurant ID");
 
-      const dishImgUrl = await resolveDishImgUrl(data.dishImage);
+      const dishImgUrl = await resolveImgUrl(data.dishImage);
 
       await updateDish(token, restaurantId, data.dishId, {
         dishName: data.dishName,

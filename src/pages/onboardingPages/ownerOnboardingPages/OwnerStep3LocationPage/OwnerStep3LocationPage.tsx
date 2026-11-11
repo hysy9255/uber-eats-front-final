@@ -50,7 +50,8 @@ import OnBoardStepNavigation from "../../shared/components/OnBoardStepNavigation
 const OwnerStep3Location = () => {
   const { handleExit } = useOutletContext<OwnerOnBoardContext>();
 
-  const { handleBack, handleContinue } = useOwnerStep3LocationAndTime();
+  const { handleBack, handleContinue, canContinue } =
+    useOwnerStep3LocationAndTime();
 
   return (
     <main className="mx-auto w-full max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
@@ -76,6 +77,7 @@ const OwnerStep3Location = () => {
           onExit={handleExit}
           onContinue={handleContinue}
           continueLabel="Continue"
+          isValid={canContinue}
         />
       </div>
     </main>

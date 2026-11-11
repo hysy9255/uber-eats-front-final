@@ -4,48 +4,40 @@ import ProfileOrLogoUploadZone from "../../../../../shared/components/UploadZone
 import OnBoardInput from "../../../shared/components/OnBoardInput";
 import ImageUploadZone from "../../../../../shared/components/UploadZones/ImageUploadZone";
 import { formatPhoneNumber } from "@/shared/utils/formatPhoneNumber";
+import { useImageUpload } from "../hooks/useImageUpload";
 
-interface OwnerStep2BusinessInputsProps {
-  onRemoveLogoImage: () => void;
-  onLogoImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  logoImgUrl: string | null;
-  mainImgUrl: string;
-  sub1ImgUrl: string;
-  sub2ImgUrl: string;
-  bannerImgUrl: string;
-  onSelectMainImage: (file: File) => void;
-  onSelectSub1Image: (file: File) => void;
-  onSelectSub2Image: (file: File) => void;
-  onSelectBannerImage: (file: File) => void;
-}
+const OwnerStep2BusinessInputs = () => {
+  const {
+    handleSelectMainImage,
+    handleSelectSub1Image,
+    handleSelectSub2Image,
+    handleSelectBannerImage,
+    handleRemoveLogoImage,
+    handleLogoImageChange,
+  } = useImageUpload();
 
-const OwnerStep2BusinessInputs = ({
-  onRemoveLogoImage,
-  onLogoImageChange,
-  logoImgUrl,
-  mainImgUrl,
-  sub1ImgUrl,
-  sub2ImgUrl,
-  bannerImgUrl,
-  onSelectMainImage,
-  onSelectSub1Image,
-  onSelectSub2Image,
-  onSelectBannerImage,
-}: OwnerStep2BusinessInputsProps) => {
   const {
     register,
     formState: { errors },
+    watch,
   } = useFormContext<OwnerOnBoardingForm>();
+
+  const step2 = watch("step2");
+  const logoPreview = step2?.logoImgUrl.preview ?? null;
+  const mainPreview = step2?.mainImgUrl.preview ?? null;
+  const sub1Preview = step2?.sub1ImgUrl.preview ?? null;
+  const sub2Preview = step2?.sub2ImgUrl.preview ?? null;
+  const bannerPreview = step2?.bannerImgUrl.preview ?? null;
 
   return (
     <form className="min-w-0 space-y-8 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:p-8">
       {/* Restaurant Logo */}
       <div className="flex min-w-0 justify-center">
         <ProfileOrLogoUploadZone
-          onRemove={onRemoveLogoImage}
-          onProfileImageChange={onLogoImageChange}
+          onRemove={handleRemoveLogoImage}
+          onChange={handleLogoImageChange}
           title="Restaurant logo (optional)"
-          imgUrl={logoImgUrl}
+          imgUrl={logoPreview}
           variant="logo"
         />
       </div>
@@ -92,10 +84,11 @@ const OwnerStep2BusinessInputs = ({
         />
 
         <OnBoardInput
-          title="Business email"
+          title="Business email (optional)"
           field="step2.businessEmail"
           placeholder="Enter business email"
           type="email"
+          required={false}
           pattern={{
             value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
             message: "Please enter a valid email",
@@ -113,23 +106,23 @@ const OwnerStep2BusinessInputs = ({
         </div>
 
         <OnBoardInput
-          title="Website"
+          title="Website (optional)"
           field="step2.website"
           placeholder="https://example.com"
           required={false}
           pattern={{
-            value: /^https?:\/\/[^\s/$.?#].[^\s]*\.com\/?$/i,
-            message: "Website must be a valid .com URL",
+            value: /^(https?:\/\/)?([\w-]+\.)+[a-zA-Z]{2,}(:\d+)?(\/[^\s]*)?$/i,
+            message: "Please enter a valid website URL",
           }}
         />
 
         <OnBoardInput
-          title="Instagram"
+          title="Instagram (optional)"
           field="step2.instagram"
           placeholder="https://www.instagram.com/yourhandle"
           required={false}
           pattern={{
-            value: /^https:\/\/(www\.)?instagram\.com\/.+$/i,
+            value: /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9._]+\/?$/i,
             message: "Please enter a valid Instagram URL",
           }}
         />
@@ -161,9 +154,9 @@ const OwnerStep2BusinessInputs = ({
             />
 
             <ImageUploadZone
-              previewSrc={mainImgUrl}
+              previewSrc={mainPreview}
               className="aspect-square rounded-xl"
-              onSelect={onSelectMainImage}
+              onSelect={handleSelectMainImage}
             />
 
             {errors.step2?.mainImgUrl?.message && (
@@ -187,10 +180,10 @@ const OwnerStep2BusinessInputs = ({
             />
 
             <ImageUploadZone
-              previewSrc={sub1ImgUrl}
+              previewSrc={sub1Preview}
               className="aspect-square rounded-xl"
               label="Recommended 1600×900"
-              onSelect={onSelectSub1Image}
+              onSelect={handleSelectSub1Image}
             />
 
             {errors.step2?.sub1ImgUrl?.message && (
@@ -214,10 +207,10 @@ const OwnerStep2BusinessInputs = ({
             />
 
             <ImageUploadZone
-              previewSrc={sub2ImgUrl}
+              previewSrc={sub2Preview}
               className="aspect-square rounded-xl"
               label="Recommended 1600×900"
-              onSelect={onSelectSub2Image}
+              onSelect={handleSelectSub2Image}
             />
 
             {errors.step2?.sub2ImgUrl?.message && (
@@ -242,9 +235,9 @@ const OwnerStep2BusinessInputs = ({
 
             <ImageUploadZone
               variant="banner"
-              previewSrc={bannerImgUrl}
+              previewSrc={bannerPreview}
               label="Recommended wide banner image"
-              onSelect={onSelectBannerImage}
+              onSelect={handleSelectBannerImage}
               className="h-[180px] rounded-xl sm:h-[200px]"
             />
 

@@ -17,12 +17,17 @@ const ClientOnBoardFlow = () => {
     defaultValues: {
       step1: {
         email: "",
+        verifiedEmail: null,
         password: "",
         confirmPassword: "",
         firstName: "",
         lastName: "",
         phoneNumber: "",
-        profileImgUrl: "",
+        profileImgUrl: {
+          status: "unchanged",
+          preview: null,
+          file: null,
+        },
       },
       step2: {
         streetAddress: "",

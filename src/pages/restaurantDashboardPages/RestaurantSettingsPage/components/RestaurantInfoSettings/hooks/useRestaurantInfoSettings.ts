@@ -3,7 +3,7 @@ import type { UpdateRestaurantSettingForm } from "../../../types/updateRestauran
 import { useForm } from "react-hook-form";
 import { useRestaurantInfoData } from "./useRestaurantInfoData";
 import type { UpdateRestaurantSettingDTO } from "../../../api/updateRestaurantSetting/updateRestaurantSetting.dto";
-import { resolveDishImgUrl } from "../../../../MenuManagementPage/components/shared/utils/resolveDishImgUrl";
+import { resolveImgUrl } from "../../../../../../shared/utils/resolveImgUrl";
 
 export const useRestaurantInfoSettings = () => {
   const { loadRestaurantInfoData, updateRestaurantInfo } =
@@ -133,7 +133,7 @@ export const useRestaurantInfoSettings = () => {
         case "sub2Image":
         case "bannerImage": {
           payload.updatedImages ??= {};
-          payload.updatedImages[key] = (await resolveDishImgUrl(
+          payload.updatedImages[key] = (await resolveImgUrl(
             data[key]
           )) as never;
           break;

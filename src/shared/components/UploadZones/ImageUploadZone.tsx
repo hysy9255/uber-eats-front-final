@@ -1,12 +1,12 @@
 import { ImagePlus, Pencil, Upload } from "lucide-react";
-import { useRef, type ChangeEvent } from "react";
+import { useRef } from "react";
 
 interface ImageUploadZoneProps {
   label?: string;
   accept?: string;
   className?: string;
-  previewSrc?: string;
-  onSelect?: (file: File) => void;
+  previewSrc: string | null;
+  onSelect: (file: File) => void;
   variant?: "default" | "banner";
 }
 
@@ -25,21 +25,6 @@ const ImageUploadZone = ({
     inputRef.current?.click();
   };
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      alert("Please choose an image file.");
-      e.target.value = "";
-      return;
-    }
-
-    onSelect?.(file);
-    e.target.value = "";
-  };
-
   return (
     <div className="min-w-0">
       <button
@@ -53,10 +38,6 @@ const ImageUploadZone = ({
           border-2 border-dashed border-gray-200
           bg-gray-50/70
           transition-colors duration-200
-          hover:border-green-400 hover:bg-green-50/40
-          focus-visible:outline-2
-          focus-visible:outline-offset-2
-          focus-visible:outline-green-600
           ${className}
         `}
       >
@@ -118,7 +99,13 @@ const ImageUploadZone = ({
         accept={accept}
         className="sr-only"
         tabIndex={-1}
-        onChange={handleFileChange}
+        // onChange={handleFileChange}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          onSelect(file);
+        }}
       />
     </div>
   );

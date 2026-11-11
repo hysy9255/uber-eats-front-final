@@ -12,16 +12,7 @@ import OnBoardStepNavigation from "../../shared/components/OnBoardStepNavigation
 const ClientStep1Account = () => {
   const { handleExit } = useOutletContext<ClientOnBoardContext>();
 
-  const {
-    handleContinue,
-    handleRemoveProfileImage,
-    handleProfileImageChange,
-    handleCheckEmailAvailability,
-    showEmailCheckMessage,
-    profileImgPreview,
-    pwd,
-    emailCheck,
-  } = useClientStep1Account();
+  const { handleContinue, canContinue } = useClientStep1Account();
 
   return (
     <main className="mx-auto w-full max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
@@ -37,15 +28,7 @@ const ClientStep1Account = () => {
 
         <OnBoardDescription description={ClientStep1RightPanel} />
 
-        <ClientStep1AccountInputs
-          onRemoveProfileImage={handleRemoveProfileImage}
-          onProfileImageChange={handleProfileImageChange}
-          onCheckEmailAvailability={handleCheckEmailAvailability}
-          showEmailCheckMessage={showEmailCheckMessage}
-          profileImgPreview={profileImgPreview}
-          pwd={pwd}
-          emailCheck={emailCheck}
-        />
+        <ClientStep1AccountInputs />
       </div>
 
       {/* Navigation */}
@@ -55,6 +38,7 @@ const ClientStep1Account = () => {
           onExit={handleExit}
           onContinue={handleContinue}
           continueLabel="Continue"
+          isValid={canContinue}
         />
       </div>
     </main>

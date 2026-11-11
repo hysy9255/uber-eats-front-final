@@ -1,11 +1,10 @@
 import { Camera, Trash2, Store } from "lucide-react";
 import { useId } from "react";
-import type { ChangeEvent } from "react";
 import DefaultProfileImg from "../../../layouts/ClientPageLayout/Header/DefaultProfileImg/DefaultProfileImg";
 
 interface ProfileOrLogoUploadZoneProps {
   onRemove: () => void;
-  onProfileImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (file: File) => void;
   title: string;
   imgUrl: string | null;
   variant?: "profile" | "logo";
@@ -13,7 +12,7 @@ interface ProfileOrLogoUploadZoneProps {
 
 const ProfileOrLogoUploadZone = ({
   onRemove,
-  onProfileImageChange,
+  onChange,
   title,
   imgUrl,
   variant = "profile",
@@ -76,7 +75,12 @@ const ProfileOrLogoUploadZone = ({
         type="file"
         accept="image/*"
         className="sr-only"
-        onChange={onProfileImageChange}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          onChange(file);
+        }}
       />
 
       {/* Actions */}

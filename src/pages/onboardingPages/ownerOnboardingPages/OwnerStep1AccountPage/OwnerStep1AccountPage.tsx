@@ -6,22 +6,13 @@ import OnBoardHeadline from "../../shared/components/OnBoardHeadline";
 import { CREATE_OWNER_PAGE_STEPS } from "../constants/createOwnerPageSteps";
 import { OwnerStep1RightPanel } from "./components/OwnerStep1RightPanel";
 import OnBoardDescription from "../../shared/components/OnBoardDescription";
-import OwnerStep1AcountInputs from "./components/OwnerStep1AcountInputs";
+import OwnerStep1AccountInputs from "./components/OwnerStep1AccountInputs";
 import OnBoardStepNavigation from "../../shared/components/OnBoardStepNavigation";
 
 export default function OwnerStep1Account() {
   const { handleExit } = useOutletContext<OwnerOnBoardContext>();
 
-  const {
-    handleContinue,
-    handleRemoveProfileImage,
-    handleProfileImageChange,
-    handleCheckEmailAvailability,
-    showEmailCheckMessage,
-    profileImgPreview,
-    pwd,
-    emailCheck,
-  } = useOwnerStep1Account();
+  const { handleContinue, canContinue } = useOwnerStep1Account();
 
   return (
     <main className="mx-auto w-full max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
@@ -37,15 +28,7 @@ export default function OwnerStep1Account() {
 
         <OnBoardDescription description={OwnerStep1RightPanel} />
 
-        <OwnerStep1AcountInputs
-          onRemoveProfileImage={handleRemoveProfileImage}
-          onProfileImageChange={handleProfileImageChange}
-          onCheckEmailAvailability={handleCheckEmailAvailability}
-          showEmailCheckMessage={showEmailCheckMessage}
-          profileImgPreview={profileImgPreview}
-          pwd={pwd}
-          emailCheck={emailCheck}
-        />
+        <OwnerStep1AccountInputs />
       </div>
 
       {/* Navigation */}
@@ -55,6 +38,7 @@ export default function OwnerStep1Account() {
           onExit={handleExit}
           onContinue={handleContinue}
           continueLabel="Continue"
+          isValid={canContinue}
         />
       </div>
     </main>

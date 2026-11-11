@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
 import type { ClientOnBoardingForm } from "../types/clientOnBoardingForm.type";
 import { registerClient } from "../api/registerClient";
+import { resolveImgUrl } from "../../../../shared/utils/resolveImgUrl";
 
 export const useClientStep3Review = () => {
   const navigate = useNavigate();
@@ -14,13 +15,14 @@ export const useClientStep3Review = () => {
 
   const handleContinue = handleSubmit(async (data: ClientOnBoardingForm) => {
     try {
+      const profileImgUrl = await resolveImgUrl(data.step1.profileImgUrl);
       await registerClient({
         account: {
           email: data.step1.email,
           password: data.step1.password,
           name: `${data.step1.firstName} ${data.step1.lastName}`,
           phoneNumber: data.step1.phoneNumber,
-          profileImage: data.step1.profileImgUrl ?? null,
+          profileImage: profileImgUrl ?? null,
         },
         deliveryAddress: {
           streetAddress: data.step2.streetAddress,

@@ -39,6 +39,7 @@ const OwnerStep4Review = () => {
           onExit={handleExit}
           onContinue={handleContinue}
           continueLabel="Create account"
+          isValid={true}
         />
       </div>
     </main>
