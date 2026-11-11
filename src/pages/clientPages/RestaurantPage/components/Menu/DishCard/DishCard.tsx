@@ -4,8 +4,6 @@ import PopularTag from "./PopularTag";
 import FavoriteButton from "./FavoriteButton";
 import AddToCartButton from "./AddToCartButton";
 import { capitalizeWords } from "../../../../../../shared/utils/capitalizeWords";
-// import NoImgAvailable from "../../../../../../shared/components/NoImgAvailable/NoImgAvailable";
-// import CartErrorModal from "../../../../../clientOrdersPage/components/ClientOrderSummaryCard/OrderDetailArea/CartErrorModal";
 import { QuantityStepper } from "./QuantityStepper";
 import { useDishCard } from "./useDishCard";
 import CartErrorModal from "../../../../../../shared/components/CartErrorModal/CartErrorModal";
@@ -27,6 +25,7 @@ const DishCard: React.FC<DishCardProps> = ({
   dishImgUrl,
 }) => {
   const { restaurantId } = useParams();
+
   const {
     addToCartError,
     setAddToCartError,
@@ -44,16 +43,19 @@ const DishCard: React.FC<DishCardProps> = ({
       <Link
         to={`/restaurants/${restaurantId}/dishes/${dishId}`}
         className={`
-        relative select-none rounded-lg shadow-md
-        hover:bg-green-100/20
-      ${
-        quantityAddedToCart > 0
-          ? "border-green-400 bg-green-300/20"
-          : "border-gray-400"
-      }
-      `}
+          relative flex h-full flex-col
+          select-none overflow-hidden rounded-lg
+          shadow-md
+          hover:bg-green-100/20
+          ${
+            quantityAddedToCart > 0
+              ? "border-green-400 bg-green-300/20"
+              : "border-gray-400"
+          }
+        `}
       >
-        <div className="relative w-full aspect-[3/2] overflow-hidden rounded-t-lg">
+        {/* Dish Image */}
+        <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden">
           {dishImgUrl ? (
             <img
               src={dishImgUrl}
@@ -64,13 +66,15 @@ const DishCard: React.FC<DishCardProps> = ({
             <NoImagePlaceholder compact />
           )}
 
+          {/* Cart Quantity Badge */}
           {quantityAddedToCart > 0 && (
-            <div className="border border-green-200 bg-green-400 text-white rounded-full w-6 h-6 absolute right-2 top-2 flex items-center justify-center">
-              <div className="text-xs font-bold">{quantityAddedToCart}</div>
+            <div className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full border border-green-200 bg-green-400 text-white">
+              <span className="text-xs font-bold">{quantityAddedToCart}</span>
             </div>
           )}
 
           <PopularTag className="absolute bottom-2 left-2" />
+
           <FavoriteButton
             className="absolute bottom-2 right-2"
             isSelected={favorited}
@@ -78,27 +82,27 @@ const DishCard: React.FC<DishCardProps> = ({
           />
         </div>
 
-        <div
-          id="desc"
-          className="flex flex-col 
-          justify-center gap-1 
-          py-2 px-2
-          "
-        >
+        {/* Dish Information */}
+        <div id="desc" className="flex min-h-0 flex-1 flex-col gap-1 px-2 py-2">
+          {/* Dish Name */}
           <div
             id="name"
-            className="font-bold text-sm text-nowrap overflow-hidden text-ellipsis"
+            className="overflow-hidden text-ellipsis text-nowrap text-sm font-bold"
           >
             {capitalizeWords(name)}
           </div>
-          <div id="description" className="text-slate-700 text-xs line-clamp-3">
+
+          {/* Description */}
+          <div id="description" className="line-clamp-3 text-xs text-slate-700">
             {descriptions}
           </div>
 
-          <div className="flex justify-between items-center mt-2">
+          {/* Price and Cart Controls */}
+          <div className="mt-auto flex items-center justify-between pt-2">
             <div id="price" className="text-sm font-bold">
               ${price.toFixed(2)}
             </div>
+
             {quantityAddedToCart === 0 ? (
               <AddToCartButton onClick={handleAddToCart} />
             ) : (
@@ -111,6 +115,8 @@ const DishCard: React.FC<DishCardProps> = ({
           </div>
         </div>
       </Link>
+
+      {/* Cart Error Modal */}
       {addToCartError && (
         <CartErrorModal
           onClose={() => setAddToCartError(undefined)}
